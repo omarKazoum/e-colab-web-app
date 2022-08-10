@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkModesTable extends Migration
+class CreateBuisnessUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateWorkModesTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_modes', function (Blueprint $table) {
+        Schema::create('buisness_units', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->string('description');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateWorkModesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_modes');
+        Schema::dropIfExists('buisness_units');
     }
 }

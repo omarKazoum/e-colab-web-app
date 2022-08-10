@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkModesTable extends Migration
+class CreateBuildingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateWorkModesTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_modes', function (Blueprint $table) {
+        Schema::create('buildings', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
-            $table->string('description');
+            $table->foreignId('city_id')
+            ->references('id')
+            ->on('cities')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->string('adresse');
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ class CreateWorkModesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_modes');
+        Schema::dropIfExists('buildings');
     }
 }
