@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateUsersWorkStatutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,37 +13,37 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password_hash');
-            $table->timetamp('rememberToken_create_at');
-            $table->rememberToken();
+        Schema::create('users_work_statuts', function (Blueprint $table) {
+            $table->date('date');
+            $table->foreignId('work_mode_id')
+            ->references('id')
+            ->on('work_modes')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('user_id')
+            ->references('id')
+            ->on('users')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('presennce_status_id')
+            ->references('id')
+            ->on('presence_types')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('position_id')
+            ->references('id')
+            ->on('positions')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
-            $table->foreignId('role_id')
-            ->references('id')
-            ->on('roles')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('team_id')
-            ->references('id')
-            ->on('teams')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('job_type_id')
-            ->references('id')
-            ->on('job_types')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 
@@ -54,6 +54,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users_work_statuts');
     }
 }
