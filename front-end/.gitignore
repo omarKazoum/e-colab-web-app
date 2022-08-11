@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+#ibrahim
+/src/app2.js
+/src/Components/DownNavbar
+
 # production
 /build
 
