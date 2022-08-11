@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequestsTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,41 +13,37 @@ class CreateRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('creator_id')
-            ->references('id')
-            ->on('users')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('type_id')
-            ->references('id')
-            ->on('request_types')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('position_id')
-            ->references('id')
-            ->on('positions')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password_hash');
+            $table->timestamp('rememberToken_create_at');
+            $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('request_status_id')
+            $table->foreignId('role_id')
             ->references('id')
-            ->on('request_statuts')
+            ->on('roles')
             ->nullable()
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->timestamps();
-            $table->timestamps();
-            $table->timestamp('update_at');
-            $table->timestamp('create_at');
+            $table->foreignId('team_id')
+            ->references('id')
+            ->on('teams')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('job_type_id')
+            ->references('id')
+            ->on('job_types')
+            ->nullable()
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
@@ -58,6 +54,6 @@ class CreateRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('users');
     }
 }
