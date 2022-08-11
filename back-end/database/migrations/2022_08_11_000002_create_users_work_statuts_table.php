@@ -15,6 +15,7 @@ class CreateUsersWorkStatutsTable extends Migration
     {
         Schema::create('users_work_statuts', function (Blueprint $table) {
             $table->date('date');
+
             $table->foreignId('work_mode_id')
             ->references('id')
             ->on('work_modes')
@@ -22,6 +23,15 @@ class CreateUsersWorkStatutsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
+
+            $table->foreignId('position_id')
+                ->references('id')
+                ->on('positions')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->foreignId('user_id')
             ->references('id')
             ->on('users')
@@ -29,20 +39,15 @@ class CreateUsersWorkStatutsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreignId('presennce_status_id')
+
+            $table->foreignId('presence_status_id')
             ->references('id')
             ->on('presence_types')
             ->nullable()
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreignId('position_id')
-            ->references('id')
-            ->on('positions')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

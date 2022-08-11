@@ -16,7 +16,6 @@ class CreateBuisnessUnitsTable extends Migration
         Schema::create('buisness_units', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->timestamps();
         });
     }
 

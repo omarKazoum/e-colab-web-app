@@ -16,7 +16,6 @@ class CreatePresenceTypesTable extends Migration
         Schema::create('presence_types', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->timestamps();
         });
     }
 

@@ -14,8 +14,6 @@ class CreatePositionsTable extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
             $table->foreignId('open_space_id')
             ->references('id')
             ->on('open_spaces')
@@ -23,6 +21,7 @@ class CreatePositionsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->id();
             $table->integer('x');
             $table->integer('y');
             $table->integer('is_available');

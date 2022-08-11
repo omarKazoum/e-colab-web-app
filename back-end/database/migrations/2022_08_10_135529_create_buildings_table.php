@@ -22,8 +22,7 @@ class CreateBuildingsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->string('adresse');
-            $table->timestamps();
+            $table->string('adress');
         });
     }
 

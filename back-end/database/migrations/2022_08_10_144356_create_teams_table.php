@@ -17,16 +17,16 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('max_remote_days_per_week');
-            $table->foreignId('buisness_unit_id')
-            ->references('id')
-            ->on('buisness_units')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->timestamp('request_deadline');
-            $table->timestamps();
 
+            $table->time('request_deadline');
+
+            $table->foreignId('buisness_unit_id')
+                ->references('id')
+                ->on('buisness_units')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

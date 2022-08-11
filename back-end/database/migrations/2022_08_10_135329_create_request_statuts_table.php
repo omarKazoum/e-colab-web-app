@@ -16,8 +16,7 @@ class CreateRequestStatutsTable extends Migration
         Schema::create('request_statuts', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->string('description');
-            $table->timestamps();
+            $table->text('description');
         });
     }
 

@@ -14,14 +14,14 @@ class CreateTeamsPositionsTable extends Migration
     public function up()
     {
         Schema::create('teams_positions', function (Blueprint $table) {
-            $table->foreignId('chairsid')
+            $table->foreignId('position_id')
             ->references('id')
             ->on('positions')
             ->nullable()
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreignId('teamsid')
+            $table->foreignId('team_id')
             ->references('id')
             ->on('teams')
             ->nullable()

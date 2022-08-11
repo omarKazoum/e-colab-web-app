@@ -14,7 +14,6 @@ class CreateOpenSpacesTable extends Migration
     {
         Schema::create('open_spaces', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
             $table->integer('floor');
             $table->foreignId('building_id')
             ->references('id')
@@ -23,7 +22,7 @@ class CreateOpenSpacesTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->timestamps();
+            $table->string('label');
         });
     }
     /**

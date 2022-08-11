@@ -15,28 +15,34 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('role_id')
+                ->references('id')
+                ->on('roles')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreignId('team_id')
+                ->references('id')
+                ->on('teams')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+
             $table->string('password_hash');
-            $table->timestamp('rememberToken_create_at');
+
+            $table->string('email')->unique();
+            //unused for now
             $table->rememberToken();
+
+            $table->timestamp('remember_token_created_at');
             $table->timestamps();
-            $table->foreignId('role_id')
-            ->references('id')
-            ->on('roles')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreignId('team_id')
-            ->references('id')
-            ->on('teams')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+
             $table->foreignId('job_type_id')
             ->references('id')
             ->on('job_types')

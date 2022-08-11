@@ -16,8 +16,7 @@ class CreateWorkModesTable extends Migration
         Schema::create('work_modes', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->string('description');
-            $table->timestamps();
+            $table->text('description');
         });
     }
 
