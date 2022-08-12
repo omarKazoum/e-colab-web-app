@@ -1,0 +1,30 @@
+{
+"id":1,
+"label":"agadir first floor",
+"date":"12-08-2022",
+"teams":[{
+	"id":12,
+	"name":"devgeeks",
+	"positions":[
+		{"id":1,"x":12,"y":12,"is_avilable":1,"is_free":1},
+		{"id":2,"x":12,"y":12,"is_avilable":1,"is_free":0},
+		{"id":3,"x":12,"y":12,"is_avilable":1,"is_free":0},
+		{"id":4,"x":12,"y":12,"is_avilable":1,"is_free":1}
+	],
+	"membres":[
+		{"id":1,"position_id":1,"presence_type":1,"first_name":"badereddine","last_name":"some last name"}
+	]},
+	{
+		"id":12,
+		"name":"devgeeks",
+		"positions":[
+			{"id":1,"x":12,"y":12,"is_avilable":1,"is_free":1},
+			{"id":2,"x":12,"y":12,"is_avilable":1,"is_free":0},
+			{"id":3,"x":12,"y":12,"is_avilable":1,"is_free":0},
+			{"id":4,"x":12,"y":12,"is_avilable":1,"is_free":1}
+		],
+		"membres":[
+			{"id":1,"position_id":1,"presence_type":1,"first_name":"badereddine","last_name":"some last name"}
+		]}
+	]
+}

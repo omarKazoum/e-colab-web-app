@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class RequestStatus extends Model
 {
+    protected $table='request_statuts';
     use HasFactory;
-    function users(){
-        return $this->hasMany(User::class);
+    function requests(){
+        return $this->hasMany(Request::class);
     }
 }
