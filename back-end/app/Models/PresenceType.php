@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Presence_type extends Model
+class PresenceType extends Model
 {
     use HasFactory;
+    function plannings(){
+        return $this->belongsToMany(Planning::class);
+    }
 }
