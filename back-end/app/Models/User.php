@@ -24,28 +24,13 @@ class User extends Authenticatable
             'last_name',
             'email',
             'job_type_id',
-            'password_hash'
-    ];
-  
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password_hash',
-        'remember_token',
+            'password_hash',
+            'remember_token_created_at'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+
+
     function role(){
         return $this->belongsTo(Role::class);
     }
