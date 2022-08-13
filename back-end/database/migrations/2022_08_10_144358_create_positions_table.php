@@ -25,6 +25,14 @@ class CreatePositionsTable extends Migration
             $table->integer('x');
             $table->integer('y');
             $table->integer('is_available');
+
+            $table->foreignId('team_id')
+                ->references('id')
+                ->on('teams')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

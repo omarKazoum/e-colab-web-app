@@ -15,7 +15,6 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('created_at');
 
             $table->foreignId('creator_id')
                 ->references('id')
@@ -48,7 +47,7 @@ class CreateRequestsTable extends Migration
                 ->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->timestamp('updated_at');
+                $table->timestamps();
 
         });
     }

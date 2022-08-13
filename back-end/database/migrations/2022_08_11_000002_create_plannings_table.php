@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersWorkStatutsTable extends Migration
+class CreatePlanningsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUsersWorkStatutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_work_statuts', function (Blueprint $table) {
+        Schema::create('Plannings', function (Blueprint $table) {
             $table->date('date');
 
             $table->foreignId('work_mode_id')
@@ -40,7 +40,7 @@ class CreateUsersWorkStatutsTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
-            $table->foreignId('presence_status_id')
+            $table->foreignId('presence_type_id')
             ->references('id')
             ->on('presence_types')
             ->nullable()
@@ -59,6 +59,6 @@ class CreateUsersWorkStatutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_work_statuts');
+        Schema::dropIfExists('Plannings');
     }
 }

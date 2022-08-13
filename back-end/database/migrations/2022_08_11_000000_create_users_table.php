@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id')
                 ->references('id')
                 ->on('roles')
-                ->nullable()
+                ->nullable()->default(1)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -40,8 +40,7 @@ class CreateUsersTable extends Migration
             //unused for now
             $table->rememberToken();
 
-            $table->timestamp('remember_token_created_at');
-            $table->timestamps();
+            $table->timestamp('remember_token_created_at')->nullable()->default(null);
 
             $table->foreignId('job_type_id')
             ->references('id')
