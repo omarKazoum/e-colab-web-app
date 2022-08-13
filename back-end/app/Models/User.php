@@ -40,4 +40,11 @@ class User extends Authenticatable
     function jobType(){
         return $this->belongsTo(JobType::class);
     }
+    function hasRole($roleLabel):bool{
+        return $this->role->label==$roleLabel;
+    }
+    function hasAnyRole(array $roleLabels):bool{
+        return in_array($this->role->label,$roleLabels);
+    }
+
 }
