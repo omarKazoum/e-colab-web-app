@@ -44,8 +44,8 @@ export default function Example() {
         This example requires updating your template:
 
         ```
-        <html class="h-full">
-        <body class="h-full">
+        <html className="h-full">
+        <body className="h-full">
         ```
       */}
       <div>

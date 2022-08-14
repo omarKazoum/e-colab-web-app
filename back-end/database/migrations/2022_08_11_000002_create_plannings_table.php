@@ -15,7 +15,6 @@ class CreatePlanningsTable extends Migration
     {
         Schema::create('Plannings', function (Blueprint $table) {
             $table->date('date');
-
             $table->foreignId('work_mode_id')
             ->references('id')
             ->on('work_modes')
