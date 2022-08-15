@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
+
 });
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){

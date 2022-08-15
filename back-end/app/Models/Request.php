@@ -8,6 +8,13 @@ use phpDocumentor\Reflection\PseudoTypes\PositiveInteger;
 
 class Request extends Model
 {
+    const REQUEST_STATUS_CANCELED=3;
+    const REQUEST_STATUS_CONFIRMED=1;
+    const REQUEST_STATUS_REJECTED=0;
+    const REQUEST_STATUS_PENDING=2;
+
+
+
     use HasFactory;
     function status(){
         return $this->belongsTo(RequestStatus::class,'request_status_id','id');
@@ -30,5 +37,22 @@ class Request extends Model
      */
     function creator(){
         return $this->belongsTo(User::class,'creator_id','id');
+    }
+    function cancel(){
+        $this->request_status_id=self::REQUEST_STATUS_CANCELED;
+        return $this->save();
+    }
+    function confirm(){
+        $this->request_status_id=self::REQUEST_STATUS_CONFIRMED;
+        return $this->save();
+    }
+    function reject(){
+        $this->request_status_id=self::REQUEST_STATUS_REJECTED;
+        return $this->save();
+    }
+    function isForManager(User $manager){
+        $creatorBelongsToTeam=$manager->team->members->pluck('id')->contains($this->creator_id);
+        $requestedPositionBelongsToManagersTeam=$manager->team->positions->pluck('id')->contains($this->position->id);
+        return $creatorBelongsToTeam OR $requestedPositionBelongsToManagersTeam;
     }
 }
