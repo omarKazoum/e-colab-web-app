@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
-import Callendar from '../Components/Planning/PlaningComp'
+import Callendar from '../Me/PlaningComp3'
 
 import {
   CalendarIcon,
@@ -37,12 +37,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
-
       <div>
         {/* --------------- Static sidebar for desktop ---------------*/}
             <Sidebar />
@@ -50,13 +49,15 @@ export default function Example() {
         {/*--------------- content space --------------- */}
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
-            <div className="py-7">
+            <div className="py-7 bg-sky-200 h-screen">
               {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
               </div> */}
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                < Callendar />
+                {/* < Callendar /> */}
+                {props.cal1}
+                {props.cal2}
                 {/* /End replace */}
               </div>
             </div>

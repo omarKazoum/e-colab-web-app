@@ -119,12 +119,12 @@ export default function Example() {
   )
 
   return (
-    <div className="pt-16">
-      <div className=" px-4 mx-auto sm:px-7  md:px-6">
+    <div className="pt-16 md:h-full">
+      <div className=" px-4 mx-auto sm:px-7 h-full md:px-6">
         {/* <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200"> */}
-        <div className="md:flex  md:divide-x md:divide-gray-200">
+        <div className="md:flex h-full md:divide-x md:divide-gray-200">
 
-          <div className="md:pr-14 flex-1">
+          <div className="md:pr-14 w-fit flex-1">
             <div className="flex items-center">
               <h2 className="flex-auto font-semibold text-gray-900">
                 {format(firstDayCurrentMonth, 'MMMM yyyy')}
@@ -162,6 +162,7 @@ export default function Example() {
                   onClick={() => setSelectedDay(day)}
 
                   className={classNames(
+                    'bg-white', 
                       !isEqual(day, selectedDay) && 'hover:bg-gray-200',
                       isEqual(day, selectedDay) && 'text-white  bg-sky-300',
                     dayIdx === 0 && colStartClasses[getDay(day)],
@@ -208,14 +209,19 @@ export default function Example() {
               ))}
             </div>
           </div>
-          <section className="mt-12 md:mt-0 md:pl-14 ">
-            <h2 className="font-semibold text-gray-900">
-              Schedule for{' '}
-              <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
-                {format(selectedDay, 'MMM dd, yyy')}
-              </time>
-            </h2>
-            <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
+          <section className="mt-12 md:mt-0 h-full  md:p-7 ">
+            
+            <form>   
+              <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                <div class="relative">
+                    <input type="search" id="default-search" class="block px-4 py-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." required>
+                    </input>
+                    <button type="submit" class="text-white absolute  right-0 top-0 bottom-0 bg-pink-600 hover:bg-pink-700 focus:ring-4 font-medium rounded-lg text-sm px-2 py-2">
+                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </form>
+            <ol className="mt-4 space-y-2 text-sm leading-6 p-2 rounded-lg h-5/6 text-gray-500 bg-white">
               {selectedDayMeetings.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (
                   <Meeting meeting={meeting} key={meeting.id} />
