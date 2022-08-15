@@ -3,6 +3,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
+import Callendar from '../Components/Planning/PlaningComp'
+
 import {
   CalendarIcon,
   ChartBarIcon,
@@ -40,31 +42,21 @@ export default function Example() {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
 
-        ```
-        <html className="h-full">
-        <body className="h-full">
-        ```
-      */}
       <div>
-
-
         {/* --------------- Static sidebar for desktop ---------------*/}
-        
             <Sidebar />
 
         {/*--------------- content space --------------- */}
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
-            <div className="py-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <div className="py-7">
+              {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-              </div>
+              </div> */}
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                
+                < Callendar />
                 {/* /End replace */}
               </div>
             </div>
