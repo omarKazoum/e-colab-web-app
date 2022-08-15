@@ -42,6 +42,7 @@ export default function Example() {
 
   return (
     <>
+
       <div>
         {/* --------------- Static sidebar for desktop ---------------*/}
             <Sidebar />

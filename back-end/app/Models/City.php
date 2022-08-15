@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Request_type extends Model
+class City extends Model
 {
     use HasFactory;
+    function buildings(){
+        return $this->belongsTo(Building::class);
+    }
 }

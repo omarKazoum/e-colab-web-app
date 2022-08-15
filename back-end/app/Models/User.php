@@ -18,27 +18,33 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+            'role_id',
+            'team_id',
+            'first_name',
+            'last_name',
+            'email',
+            'job_type_id',
+            'password_hash',
+            'remember_token_created_at'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+
+    function role(){
+        return $this->belongsTo(Role::class);
+    }
+    function team(){
+        return $this->belongsTo(Team::class);
+    }
+    function jobType(){
+        return $this->belongsTo(JobType::class);
+    }
+    function hasRole($roleLabel):bool{
+        return $this->role->label==$roleLabel;
+    }
+    function hasAnyRole(array $roleLabels):bool{
+        return in_array($this->role->label,$roleLabels);
+    }
+
 }

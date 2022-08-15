@@ -41,8 +41,8 @@ export default function Sidebar() {
         This example requires updating your template:
 
         ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
+        <html className="h-full bg-gray-100">
+        <body className="h-full">
         ```
       */}
       <div className="hidden md:flex md:w-24 md:flex-col md:fixed md:inset-y-0">
@@ -55,8 +55,8 @@ export default function Sidebar() {
                 src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
                 alt="Workflow"
               /> */}
-              <a href="#_" class="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
-                <span class="text-l font-black leading-none text-blue-700 select-none logo whitespace-nowrap ">E-Collab</span>
+              <a href="#" className="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
+                <span className="text-l font-black leading-none text-blue-700 select-none logo whitespace-nowrap ">E-Collab</span>
               </a>
               {/* logo space */}
             </div>
