@@ -1,17 +1,3 @@
-// import React from 'react'
-// // import Sidebar from './Components/Sidebar/SidebarComp'
-// import Sidebar from './Pages/Dashboard'
-
-// function App() {
-//   return (
-//     <div>
-//       <Sidebar />
-//     </div>
-//   )
-// }
-
-// export default App
-
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
@@ -37,16 +23,18 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Dashboard />}/>
+        {/* <Route path="/" element={<Dashboard  />}/> */}
+        <Route path="/" element={<Dashboard cal1={<Callendar />} />}/>
+        <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
 
         <Route path="/Login" element={<LoginForm />}/>
+        <Route path="/Planning" element={<Callendar />} />
+
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />
-        <Route path="/Planning" element={<Callendar />} />
-
         <Route path='/test' element={<Test />} />
-
+        {/* page not found */}
         <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
           
         
