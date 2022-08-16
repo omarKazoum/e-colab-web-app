@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
@@ -19,8 +19,10 @@ const roles = {
   agentCustomer: "agentCustomer",
   shipManager: "shipManager",
 };
-
 function App() {
+  let [isloggedIn,setLogin]=useState(false);
+ 
+    
   return (
     <div>
       <Routes>
@@ -28,10 +30,8 @@ function App() {
         <Route path="/" element={<Dashboard cal1={<Callendar />} />}/>
         <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
 
-        <Route path="/Login" element={<LoginForm />}/>
+        <Route path="/Login" element={<LoginForm setLogginStatus={setLogin} />}/>
         <Route path="/Planning" element={<Callendar />} />
-  
-
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />

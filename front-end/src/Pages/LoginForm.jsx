@@ -1,10 +1,11 @@
-import { data } from "autoprefixer";
+
 import axios from "axios";
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
-  
+function LoginForm({ setLogginStatus }) {
 
+  const navigate = useNavigate()
   const [formData, setFormData] = useState(
     { email: "", password_hash: "" }
   )
@@ -17,17 +18,23 @@ function LoginForm() {
     })
   }
 
-  
+  const [error,setError] = useState('')
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    if(formData){
-      const res = await axios.post("http://127.0.0.1:8000/api/login",formData);
-      if(res) {
-        console.log(res);
+    if (formData) {
+      try {
+        const res = await axios.post("http://127.0.0.1:8000/api/login", formData);
+        console.log('You are logged in')
+        sessionStorage.setItem("session",JSON.stringify(res.data))
+        navigate('/Planning')
+      } catch (error) {
+        setError(error.response.data.message)
+        console.error(error.response.data.message);
       }
+
     }
-  } 
+  }
 
 
   return (
@@ -38,16 +45,16 @@ function LoginForm() {
         <h3 className="mx-10 p-6 title text-xl text-white"><b>E-Collab by Cegedim</b></h3>
         <div className="md:flex md:justify-center mb-6 mt-32 ">
           <form method="POST"
-          onSubmit={handleSubmit}
-          className="m-auto" 
-            >
+            onSubmit={handleSubmit}
+            className="m-auto"
+          >
             <div className=" text-white m-6">
               <h3 className=" m-6 flex justify-center text-4xl"><b>Se connecter</b></h3>
               <p>Utiliser vos identifiant Cegedim pour vous connecter</p>
-              <p className="text-red-500 flex justify-center text-sm italic m-3">L'indentifiant ou le mot de passe sont incorrecte</p>
+              <p className="text-red-500 flex justify-center text-sm italic m-3">{error}</p>
             </div>
             <div className="mb-4">
-              <label className="block required text-white text-sm font-bold mb-2" for="username">
+              <label className="block required text-white text-sm font-bold mb-2" htmlFor="Identifiant">
                 Identifiant
               </label>
               <input
@@ -59,7 +66,7 @@ function LoginForm() {
             </div>
             <div className="mb-6">
               <label
-                className="block required text-white text-sm font-bold mb-2" for="password">
+                className="block required text-white text-sm font-bold mb-2" htmlFor="password_hash" >
                 Mot de passe
               </label>
 
@@ -72,7 +79,7 @@ function LoginForm() {
 
             </div>
             <div className="flex items-center justify-between">
-              <button  type="submit" className="shadow appearance-none border border-transparent  w-full pink bg-blue-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</button>
+              <button type="submit" className="shadow appearance-none border border-transparent  w-full pink bg-blue-500 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign In</button>
             </div>
           </form>
 

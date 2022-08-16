@@ -48,7 +48,7 @@ class AuthController extends Controller
         $fields = $request->validate([
 
             'email' => 'required|string',
-            'password_hash' => 'required'
+            'password_hash' => 'required|string'
         ]);
 
         // Checking the email
