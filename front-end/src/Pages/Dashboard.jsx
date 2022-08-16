@@ -4,7 +4,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
 
-
 import {
   CalendarIcon,
   ChartBarIcon,
