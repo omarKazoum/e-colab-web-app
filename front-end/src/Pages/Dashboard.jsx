@@ -3,7 +3,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
-import Callendar from '../Me/PlaningComp3'
+// import Callendar from '../Me/PlaningComp3'
+import Statistiques from './Statistiques'
 
 import {
   CalendarIcon,
@@ -55,7 +56,7 @@ export default function Example(props) {
               </div> */}
               <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                {/* < Callendar /> */}
+                
                 {props.cal1}
                 {props.cal2}
                 {/* /End replace */}

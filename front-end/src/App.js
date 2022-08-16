@@ -4,10 +4,11 @@ import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
 
-import Test from './Me/test'
+
 
 import DownNavbar from '../src/Components/Sidebar/DownNavbar'
 import LoginForm from './Pages/LoginForm';
+import Statistiques from './Pages/Statistiques';
 import '../src/App.css'
 
 
@@ -29,11 +30,11 @@ function App() {
 
         <Route path="/Login" element={<LoginForm />}/>
         <Route path="/Planning" element={<Callendar />} />
-
+        <Route path="/statistiques" element={<Statistiques />} />
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />
-        <Route path='/test' element={<Test />} />
+        {/* <Route path='/test' element={<Test />} /> */}
         {/* page not found */}
         <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
           
