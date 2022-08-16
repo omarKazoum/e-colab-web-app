@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
-import Callendar from '../Me/PlaningComp3'
+// import Callendar from '../Me/PlaningComp3'
 
 import {
   CalendarIcon,
