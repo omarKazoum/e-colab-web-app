@@ -28,12 +28,21 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
 
+
 });
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
+    // for managing requests
     Route::get('/manager/requests/',[RequestsController::class, 'managerGetAll']);
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
+    //for managing planning
+    Route::get('/manager/planning/myTeamPlaning/month/{month}',[\App\Http\Controllers\PlanningController::class,'managerGetMonth']);
+    Route::get('/manager/planning/myTeamPlaning/from/{fromDate}/to/{toDate}',[\App\Http\Controllers\PlanningController::class,'managerGetMonth']);
+    Route::get('/manager/planning/openspaces/{openspaceId}/{date}',[\App\Http\Controllers\PlanningController::class,'managerGetMonth']);
+     Route::get('/manager/planning/openspaces/default/{date}',[\App\Http\Controllers\PlanningController::class,'managerGetMonth']);
+
+
 
 });
 
