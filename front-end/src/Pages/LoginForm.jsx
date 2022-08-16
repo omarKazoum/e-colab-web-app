@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+import axios from "axios";
 import { useState } from "react"
 
 function LoginForm() {
@@ -16,26 +18,16 @@ function LoginForm() {
   }
 
   
-  function handleSubmit(e){
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
-
-    var myHeaders = new Headers();
-      myHeaders.append("Accept", "application/json");
-
-      var urlencoded = new URLSearchParams();
-      urlencoded.append("email",formData.email );
-      urlencoded.append("password_hash", formData.password_hash);
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-      };
-    fetch('http://127.0.0.1:8000/api/login',requestOptions).then(r=>r.json()).then(parsedJson=>console.log(parsedJson)).catch(e=>console.error(e));
-    
-  }
+    console.log(formData);
+    if(formData){
+      const res = await axios.post("http://127.0.0.1:8000/api/login",formData);
+      if(res) {
+        console.log(res);
+      }
+    }
+  } 
 
 
   return (
@@ -45,7 +37,7 @@ function LoginForm() {
       <div >
         <h3 className="mx-10 p-6 title text-xl text-white"><b>E-Collab by Cegedim</b></h3>
         <div className="md:flex md:justify-center mb-6 mt-32 ">
-          <form 
+          <form method="POST"
           onSubmit={handleSubmit}
           className="m-auto" 
             >
