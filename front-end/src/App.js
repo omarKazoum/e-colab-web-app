@@ -4,7 +4,7 @@ import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
 
-import Test from './Me/test'
+// import Test from './Me/test'
 
 import DownNavbar from '../src/Components/Sidebar/DownNavbar'
 import LoginForm from './Pages/LoginForm';
@@ -20,7 +20,7 @@ const roles = {
 };
 
 function App() {
-  return (
+  return ( 
     <div>
       <Routes>
         {/* <Route path="/" element={<Dashboard  />}/> */}
@@ -33,7 +33,8 @@ function App() {
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />
-        <Route path='/test' element={<Test />} />
+        {/* <Route path='/test' element={<Test />} /> */}
+        
         {/* page not found */}
         <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
           
