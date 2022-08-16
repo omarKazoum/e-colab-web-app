@@ -30,6 +30,8 @@ function App() {
         <Route path="/Login" element={<LoginForm />}/>
         <Route path="/Planning" element={<Callendar />} />
 
+        {/* <Route path="/Login" element={<LoginForm />}/>
+        <Route path="/Planning" element={<Callendar />} /> */}
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />
