@@ -20,7 +20,7 @@ class RequestsController extends Controller
      */
     function memberGetAll(): \Illuminate\Http\JsonResponse
     {
-            return response()->json( \App\Models\Request::all()->where('creator_id', auth()->user()->id));
+            return response()->json( \App\Models\Request::all()->where('creator_id', auth()->user()->id)->with(['type','status','creator:last_name,first_name'])->get());
     }
 
     /**
@@ -103,7 +103,7 @@ class RequestsController extends Controller
         if($teamMembersIds){
             $requests=\App\Models\Request::whereIn('creator_id',$teamMembersIds)->get();
         }
-        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->get();
+        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->with(['type','status','creator:last_name,first_name'])->get();
         $requests=$requests->merge($crossTeamRequests)->unique();
         return response()->json([ $requests]);
     }
