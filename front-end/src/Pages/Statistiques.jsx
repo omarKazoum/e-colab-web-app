@@ -2,6 +2,8 @@ import React from 'react'
 import CardStatistic from '../Components/card/CardStatistic'
 import CharteStatistique1 from '../Components/charte/CharteStatistique1'
 import CharteStatistique2 from '../Components/charte/CharteStatistique2'
+import { Bar } from 'react-chartjs-2'
+import BarChart from '../Components/charte/Barchart'
 
 const statistiques = () => {
   return (
@@ -11,6 +13,7 @@ const statistiques = () => {
         <div className='flex'>
         <CharteStatistique1 />
         <CharteStatistique2 />
+       <BarChart />
       </div>
 </div>
   )

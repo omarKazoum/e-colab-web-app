@@ -10,9 +10,9 @@ export default function CharteStatistique2() {
         datasets:[
             {
                 label:"Fdataset",
-                data:[12, 5, 26, 23, 1],
+                data:[12, 5, 26, 23, 1,0,27,28,29,26,25,42,23,26,29],
                 backgroundColor:'gray',
-                borderColor:'gray',
+                borderColor:'blue',
                 tension:'0.4',
                 pointStyle:'rect'
             }
@@ -26,6 +26,7 @@ export default function CharteStatistique2() {
     };
     return(
         <div className='w-1/2  px-5 py-2'>
+            <h1 className='text-xl px-6'>taux d'occupation ce mois</h1>
             <Line data={data} style={mystyle}>Hello</Line>
         </div>
     )
