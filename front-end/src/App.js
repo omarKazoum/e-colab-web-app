@@ -38,7 +38,7 @@ function App() {
         <Route path="/Down" element={<DownNavbar />} />
         {/* <Route path='/test' element={<Test />} /> */}
         {/* page not found */}
-        <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
+        <Route path='*' element={<div  style={{color:"red",width:'100%',display:'flex',justifyContent:'center',textAlign:'center',fontWeight:'bolder',fontFamily:'Arial,sans-serif',fontSize:"30px",height:'100%'}}>page not found</div>} />
          
          {/*Home*/ }
          <Route path='/Home' element={<Home />}/>

@@ -119,7 +119,7 @@ export default function Example() {
   );
 
   return (
-    <div className="py-7 bg-sky-200 h-screen">
+    <div className="py-7 bg-blue-page h-screen">
       <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
         <div className="pt-16 md:h-full">
           <div className=" px-4 mx-auto sm:px-7 h-full md:px-6">
@@ -210,7 +210,7 @@ export default function Example() {
                   ))}
                 </div>
               </div>
-              <section className="mt-12 md:mt-0 h-full  md:p-7 ">
+              <section className=" bg-red-500 md:mt-0 h-full bg- md:p-7 h-screen ">
                 <form>
                   <label
                     for="default-search"
