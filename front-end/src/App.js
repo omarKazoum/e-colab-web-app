@@ -31,12 +31,12 @@ function App() {
 
         <Route path="/Login" element={<LoginForm />}/>
         <Route path="/Planning" element={<Callendar />} />
+  
 
 
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/Down" element={<DownNavbar />} />
         {/* <Route path='/test' element={<Test />} /> */}
-        
         {/* page not found */}
         <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
          
