@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WorkMode extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function plannings(){
         return $this->belongsToMany(Planning::class);

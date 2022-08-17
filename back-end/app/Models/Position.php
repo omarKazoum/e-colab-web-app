@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function openSpace(){
         return $this->belongsTo(OpenSpace::class);
