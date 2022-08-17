@@ -48,18 +48,14 @@ export default function Example(props) {
         {/*--------------- content space --------------- */}
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
-            <div className="py-7 bg-sky-200 h-screen">
-              {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-              </div> */}
-              <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
+
                 {/* Replace with your content */}
                 {/* < Callendar /> */}
                 {props.cal1}
                 {props.cal2}
+                {props.Home}
                 {/* /End replace */}
-              </div>
-            </div>
+
           </main>
         </div>
       </div>

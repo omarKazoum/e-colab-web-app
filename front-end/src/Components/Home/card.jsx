@@ -6,13 +6,12 @@ import {
     Typography,
     Tooltip,
   } from "@material-tailwind/react";
-
   import { Icon } from '@iconify/react';
   import PieChart from './chart.jsx'
 
   export default function Home() {
     return (
-      < >
+      <section className="width-screen" >
     <div className="flex">
       <div className="bg-blue-page w-10/12">
       <div className="mt-5">
@@ -146,6 +145,6 @@ import {
       </div>
     </div>
 
-      </>
+      </section>
     );
   }
