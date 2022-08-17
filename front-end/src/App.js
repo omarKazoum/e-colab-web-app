@@ -10,6 +10,7 @@ import DownNavbar from '../src/Components/Sidebar/DownNavbar'
 import LoginForm from './Pages/LoginForm';
 import '../src/App.css'
 
+import Home from './Components/Home/card'
 
 const roles = {
   superAdmin: "superAdmin",
@@ -24,7 +25,8 @@ function App() {
     <div>
       <Routes>
         {/* <Route path="/" element={<Dashboard  />}/> */}
-        <Route path="/" element={<Dashboard cal1={<Callendar />} />}/>
+        <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
+        <Route path="/" element={<Dashboard cal1={<Home />} />}/>
         <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
 
         <Route path="/Login" element={<LoginForm />}/>
@@ -37,7 +39,9 @@ function App() {
         {/* <Route path='/test' element={<Test />} /> */}
         {/* page not found */}
         <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
-          
+         
+         {/*Home*/ }
+         <Route path='/Home' element={<Home />}/>
         
       </Routes>
     </div>
