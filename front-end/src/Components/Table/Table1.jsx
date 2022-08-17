@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../../App.css"
+import "../../App.css";
 // import { classNames } from "./Table/utility";
 import Modal from "./Modal.jsx";
 
@@ -16,18 +16,18 @@ function Table1() {
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/api/membre/requests/",
-      headers: { 
-        'Authorization': 'Bearer 8|ahaecAyM7IECjvv6ERRmtX4NPbysADcANCgK8kRb'
+      headers: {
+        Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
         // get the access token from local storage
       },
       withCredentials: false,
     })
-      .then((res) =>
-      {
+      .then((res) => {
         // res.data=[]
-        setDataTable(res.data)
-        // console.log(res.data)
-        console.log(dataTable);
+
+        setDataTable(res.data);
+        console.log(res.data)
+        // console.log(dataTable);
       })
       .catch((err) => console.log(err));
   };
@@ -38,11 +38,11 @@ function Table1() {
     { heading: "Date de travail", value: "created_at" },
     { heading: "status", value: "request_status_id" },
     { heading: "Action" },
-    { heading: "Action" },  
+    { heading: "Action" },
     { heading: "Action" },
   ];
 
-    const [visible, setShowModal]= useState(false);
+  const [visible, setShowModal] = useState(false);
 
   return (
     <div>
@@ -68,10 +68,11 @@ function Table1() {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {dataTable.map((item, index) => (
+                  
                   <TableRow
                     key={index + "_item_row"}
                     item={item}
-                    columns={columns}
+                    column={columns.heading}
                   />
                 ))}
               </tbody>
@@ -91,7 +92,7 @@ const TableHeadItem = ({ item }) => (
     {item.heading}
   </th>
 );
-const TableRow = ({ item, columns }) => {
+const TableRow = ({ item, column }) => {
   // return a span elemnt
   const getStatusString = (s) => {
     if (s === 1)
