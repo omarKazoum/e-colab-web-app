@@ -25,9 +25,9 @@ function App() {
     <div>
       <Routes>
         {/* <Route path="/" element={<Dashboard  />}/> */}
-        <Route path="/" element={<Dashboard cal1={<Callendar />} />}/>
+        <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
+        <Route path="/" element={<Dashboard cal1={<Home />} />}/>
         <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
-        {/* <Route path="/Home" element={<Dashboard Home={<Home />} />}/> */}
 
         <Route path="/Login" element={<LoginForm />}/>
         <Route path="/Planning" element={<Callendar />} />
