@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlanningController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,15 +27,27 @@ Route::group(['middleware' => ['auth:sanctum',]], function () {
 
 //for team members only
 Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
+
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
 });
+Route::get('/manager/planning/myTeamPlaning/from/',function(){
+    return ['h'];
+});
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
+    // for managing requests
     Route::get('/manager/requests/',[RequestsController::class, 'managerGetAll']);
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
+    //for managing planning
+
+    Route::get('/manager/planning/openSpaces/{openspaceId}/{date}',[PlanningController::class,'managerGetOpenSpaceDataInDate']);
+    Route::get('/manager/planning/makeRemote/{membreId}/{date}',[PlanningController::class, 'managerMakeAMMemberRemoteInDate']);
+    Route::get('/manager/planning/makeInOffice/{membreId}/{date}/{positionId}',[PlanningController::class, 'managerMakeMemberInOfficeInDate']);
+
+
 
 });
 

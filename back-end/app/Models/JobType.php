@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobType extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function users(){
         return $this->hasMany(User::class);

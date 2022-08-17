@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function city(){
         return $this->hasOne(City::class);
