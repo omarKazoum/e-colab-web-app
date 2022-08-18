@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Team;
 class StatistiquesController extends Controller
 {
     //
 
     function emloyeesCount(){
-        //$data =  \App\Models\User::all()->cont()->where('role_id', 1);
-        dd("    ");
-        return response()->json([]);
+        $p =User::where('role_id',1)->count();
+        return response()->json($p);
         
     }
     function managerCount(){
-        $data =  \App\Models\User::all()->where('role_id', 2);
-        return response()->json([$data]);
+        $p =User::where('role_id',2)->count();
+        return response()->json($p);
         
     }
     function equipesCount(){
-        $data =  \App\Models/Team::count();
-        return response()->json([$data]);
+       $p = Team::All()->count();
+        return response()->json($p);
         
     }
 
