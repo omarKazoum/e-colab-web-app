@@ -50,5 +50,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 //for rh or head of bu only
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
     Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
+    Route::get('/statistiques/managerCount',[StatistiquesController::class,'managerCount']);
+    Route::get('/statistiques/equipesCount',[StatistiquesController::class,'equipesCount']);
 
 });
