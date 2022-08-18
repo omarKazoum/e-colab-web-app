@@ -58,5 +58,6 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
 });
 //partie profile
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){
-    Route::post('/member/profile/',[ProfileController::class, 'profileInfo']);
+    Route::post("/profile",[ProfileController::class, 'profileInfo']);
+    Route::get('/signalerPresence',[ProfileController::class,'signalerPresence']);
 });
