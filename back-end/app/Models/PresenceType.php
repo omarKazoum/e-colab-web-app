@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PresenceType extends Model
 {
+    const PRESENCE_TYPE_IN_OFFICE=1;
     public $timestamps=false;
     use HasFactory;
     function plannings(){
