@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(WorkModesSeeder::class);
         $this->call(PresenceTypesSeeder::class);
+        $this->call(PlanningsSeeder::class);
 
 
 

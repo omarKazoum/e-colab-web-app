@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
@@ -19,7 +19,9 @@ import {
 } from '@heroicons/react/solid' 
 import {
   LogoutIcon,
-} from '@heroicons/react/outline' 
+} from '@heroicons/react/outline'
+import {UserDataContext} from "../App";
+import {useNavigate} from "react-router-dom";
 
 const navigation = [
   { name: 'Profil', href: '#', icon: UserIcon, current: true },
@@ -38,6 +40,12 @@ function classNames(...classes) {
 
 export default function Example(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  let {connectedUserData,setUserData}=useContext(UserDataContext);
+  let navigate=useNavigate();
+  useEffect(()=>{
+    if(connectedUserData==null)
+      navigate("/login")
+  })
 
   return (
     <>

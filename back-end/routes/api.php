@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\StatistiquesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanningController;
 /*
@@ -32,9 +33,6 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
 });
-Route::get('/manager/planning/myTeamPlaning/from/',function(){
-    return ['h'];
-});
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     // for managing requests
@@ -42,7 +40,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
     //for managing planning
-
+    Route::get('/manager/planning/myTeamPlaning/from/{fromDate}/to/{toDate}',[PlanningController::class, 'managerGetPlanningForMyTeamInterval']);
     Route::get('/manager/planning/openSpaces/{openspaceId}/{date}',[PlanningController::class,'managerGetOpenSpaceDataInDate']);
     Route::get('/manager/planning/makeRemote/{membreId}/{date}',[PlanningController::class, 'managerMakeAMMemberRemoteInDate']);
     Route::get('/manager/planning/makeInOffice/{membreId}/{date}/{positionId}',[PlanningController::class, 'managerMakeMemberInOfficeInDate']);
@@ -53,7 +51,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 
 //for rh or head of bu only
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
-
+    Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
 
 });
 //partie profile
