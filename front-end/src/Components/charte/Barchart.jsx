@@ -5,21 +5,39 @@ import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
 const BarChart = () => {
-  const labels = ["January", "February", "March", "April", "May", "June"];
+
+  const labels = [
+  
+  ];
   const data = {
     labels: labels,
     datasets: [
       {
         label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: "gray",
         borderColor: "rgb(0, 0, 0)",
-        data: [0, 10, 5, 2, 20, 30, 45],
+        data: [],
+      },
+      {
+        label: "My First dataset",
+        backgroundColor: "blue",
+        borderColor: "rgb(0, 221, 412)",
+        data: [],
       },
     ],
   };
+  for(let i=1;i<30;i++){
+    labels.push(i);
+    data.datasets[0].data.push(i%30/30*100)
+    data.datasets[1].data.push(i%30/30*100)
+
+  }
+
   return (
-    <div>
-      <Bar data={data} />
+    <div className="flex justify-center ">
+      <div className="w-2/3 mt-10" >
+        <Bar options={{ maintainAspectRatio: false }} data={data} />
+      </div>
     </div>
   );
 };

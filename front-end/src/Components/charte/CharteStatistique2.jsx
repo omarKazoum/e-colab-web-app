@@ -25,8 +25,8 @@ export default function CharteStatistique2() {
       height: "8px",
     };
     return(
-        <div className='w-1/2  px-5 py-2'>
-            <h1 className='text-xl px-6'>taux d'occupation ce mois</h1>
+        <div className='w-1/2  px-6 py-2'>
+            <h1 className='text-xl '>taux d'occupation ce mois</h1>
             <Line data={data} style={mystyle}>Hello</Line>
         </div>
     )

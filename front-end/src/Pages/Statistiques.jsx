@@ -10,11 +10,13 @@ const statistiques = () => {
     <div>
         <h2>statistiques</h2>
         <CardStatistic />
-        <div className='flex'>
+   <div className='flex justify-between  '>
         <CharteStatistique1 />
         <CharteStatistique2 />
-       <BarChart />
-      </div>
+   </div>
+   <div >
+      <BarChart/>
+   </div>
 </div>
   )
 }
