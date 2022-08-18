@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OpenSpace extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function Building(){
         return $this->belongsTo(Building::class);

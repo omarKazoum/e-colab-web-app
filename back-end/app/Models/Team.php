@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
+    public $timestamps=false;
     use HasFactory;
     function positions(){
         return $this->hasMany(Position::class);
