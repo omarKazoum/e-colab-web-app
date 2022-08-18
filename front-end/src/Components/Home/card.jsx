@@ -46,11 +46,11 @@ import {
       </div>
       <div className="flex gap-x-5 m-5">
         <button className="bg-pink-hot text-white flex p-5 rounded-md">
-        <Icon icon="gridicons:create" width="25" style={{'margin-right': '10px'}} />
+        <Icon icon="gridicons:create" width="25" style={{'marginRight': '10px'}} />
         Crée une nouvelle demande
         </button>
         <button className="flex bg-white text-blue-side p-5 rounded-md">
-        <Icon icon="akar-icons:calendar" width="25" style={{'margin-right': '10px'}}/>
+        <Icon icon="akar-icons:calendar" width="25" style={{'marginRight': '10px'}}/>
         Consulter le planing
         </button>
       </div>
