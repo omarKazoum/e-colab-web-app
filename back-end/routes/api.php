@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\StatistiquesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanningController;
 /*
@@ -48,6 +49,6 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 
 //for rh or head of bu only
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
-
+    Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
 
 });
