@@ -22,7 +22,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum',]], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/member/profile/',[ProfileController::class, 'profileInfo']);
+
 });
 
 //for team members only
@@ -55,4 +55,8 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
 
 
+});
+//partie profile
+Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){
+    Route::post('/member/profile/',[ProfileController::class, 'profileInfo']);
 });
