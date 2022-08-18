@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OpenSpace;
 use App\Models\Planning;
+use App\Models\Position;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,15 +55,62 @@ class PlanningController extends Controller
      * @return void
      */
     function managerMakeAMMemberRemoteInDate($membreId, $date){
-        $validator=Validator::make(['membre_id'=>$membreId,'date'=>$date],['date'=>['required',"regex:/^\d+$/"]]);
+        $validator=Validator::make(['membre_id'=>$membreId,'date'=>$date],['date'=>['required',"regex:".self::DATE_REGEX],'membre_id'=>'required']);
         $validator->after(function($validator){
-            if(!OpenSpace::find($validator->validated()['open_space_id'])){
-                $validator->errors()->add('open_space_id','invalid open space id !');
+            $validated=$validator->validated();
+            if(!User::find($validated['membre_id'])){
+                $validator->errors()->add('membre_id','invalid open membre id !');
             }
         });
         $validator->validate();
+
+        // if the mamanger has an existing plan for this day and member let's change it and else we will add a new one
+
+        if(Planning::where('date',$date)->where('user_id',$membreId)->count()>0){
+            $p=Planning::where('date',$date)->where('user_id',$membreId)->first();
+            $p->work_mode_id=2;
+            $p->save();
+        }else{
+            $p = new Planning();
+            $p->date = Carbon::createFromFormat('Y-m-d',$date);
+            $p->work_mode_id=2;
+            $p->position_id=1;
+            $p->user_id=$membreId;
+            $p->presence_type_id=1;
+            $p->save();
+        }
+        return response()->json(['message'=>'cette utilisateur est désormais en télétravail!']);
     }
     function managerMakeMemberInOfficeInDate($membreId, $date, $positionId){
+        $validator=Validator::make(['membre_id'=>$membreId,'date'=>$date,'position_id'],['date'=>['required',"regex:".self::DATE_REGEX],'membre_id'=>'required','position_id'=>'required|numeric']);
+        $validator->after(function($validator){
+            $validated=$validator->validated();
+            if(!User::find($validated['membre_id'])){
+                $validator->errors()->add('membre_id','invalid open membre id !');
+            }
+            if(!Position::where('id',$validated['position_id'])->count()>0){
+                $validator->errors()->add('position_id','invalid position id !');
+            }else{
+                $planningForthisDayForThisPosition=Planning::where('date',)
+            }
+        });
+        $validator->validate();
 
+        // if the mamanger has an existing plan for this day and member let's change it and else we will add a new one
+
+        if(Planning::where('date',$date)->where('user_id',$membreId)->count()>0){
+            $p=Planning::where('date',$date)->where('user_id',$membreId)->first();
+            $p->work_mode_id=2;
+            $p->save();
+        }else{
+            $p = new Planning();
+            $p->date = Carbon::createFromFormat('Y-m-d',$date);
+            $p->work_mode_id=2;
+            $p->position_id=1;
+            $p->user_id=$membreId;
+            $p->presence_type_id=1;
+            $p->save();
+        }
+        return response()->json(['message'=>'cette utilisateur est désormais en présentiel!']);
     }
 }
