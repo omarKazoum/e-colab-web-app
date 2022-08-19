@@ -44,13 +44,13 @@ import {
         </CardBody>
       </Card> 
 
-      <div className="flex m-5 w-full">
-        <button className="bg-pink-hot text-white flex p-5 rounded-md font-medium w-5/12 mr-5">
-        <Icon icon="gridicons:create" width="25" style={{'margin-right': '10px'}} />
+      <div className="flex gap-x-5 m-5">
+        <button className="bg-pink-hot text-white flex p-5 rounded-md">
+        <Icon icon="gridicons:create" width="25" style={{'marginRight': '10px'}} />
         Crée une nouvelle demande
         </button>
-        <button className="flex bg-white justify-items-center items-center text-blue-side p-5 rounded-md font-medium w-5/12">
-        <Icon icon="akar-icons:calendar" width="25" style={{'margin-right': '10px'}}/>
+        <button className="flex bg-white text-blue-side p-5 rounded-md">
+        <Icon icon="akar-icons:calendar" width="25" style={{'marginRight': '10px'}}/>
         Consulter le planing
         </button>
       </div>

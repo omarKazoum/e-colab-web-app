@@ -1,6 +1,5 @@
-import { Menu, Transition } from "@headlessui/react";
-import { DotsVerticalIcon } from "@heroicons/react/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import Members from "./MembersComp";
 import {
   add,
   eachDayOfInterval,
@@ -18,7 +17,7 @@ import {
   parseISO,
   startOfToday,
 } from "date-fns";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 const meetings = [
   {
@@ -119,85 +118,82 @@ export default function Example() {
   );
 
   return (
-    <div className="py-7 bg-blue-page h-screen">
+    <div className="py-7 bg-sky-200 h-screen">
       <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
         <div className="pt-16 md:h-full">
-          <div className=" px-4 mx-auto sm:px-7 h-full md:px-6">
-            {/* <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200"> */}
-            <div className="md:flex h-full md:divide-x md:divide-gray-200">
-              <div className="md:pr-14 w-fit flex-1">
-                <div className="flex items-center">
-                  <h2 className="flex-auto font-semibold text-gray-900">
-                    {format(firstDayCurrentMonth, "MMMM yyyy")}
-                  </h2>
-                  <button
-                    type="button"
-                    onClick={previousMonth}
-                    className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-                  >
-                    <span className="sr-only">Previous month</span>
-                    <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
-                  </button>
-                  <button
-                    onClick={nextMonth}
-                    type="button"
-                    className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-                  >
-                    <span className="sr-only">Next month</span>
-                    <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
-                  </button>
-                </div>
-                <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-                  <div>S</div>
-                  <div>M</div>
-                  <div>T</div>
-                  <div>W</div>
-                  <div>T</div>
-                  <div>F</div>
-                  <div>S</div>
-                </div>
-                <div className="border-l border-b border-gray-200 grid grid-cols-7 mt-2 text-sm">
-                  {days.map((day, dayIdx) => (
-                    <div
-                      key={day.toString()}
-                      onClick={() => setSelectedDay(day)}
-                      className={classNames(
-                        "bg-white",
-                        !isEqual(day, selectedDay) && "hover:bg-gray-200",
-                        isEqual(day, selectedDay) && "text-white  bg-sky-300",
-                        dayIdx === 0 && colStartClasses[getDay(day)],
-                        "border-t border-r border-gray-200 p-4"
-                      )}
-                    >
-                      <button
-                        type="button"
-                        className={classNames(
-                          isEqual(day, selectedDay) && "text-white",
-                          (!isEqual(day, selectedDay) &&
-                            // isToday(day) && 'text-red-500',
-                            !isEqual(day, selectedDay)) ||
-                            (isToday(day) && "text-white"),
-                          !isEqual(day, selectedDay) &&
-                            !isToday(day) &&
-                            isSameMonth(day, firstDayCurrentMonth) &&
-                            "text-gray-900",
-                          !isEqual(day, selectedDay) &&
-                            !isToday(day) &&
-                            !isSameMonth(day, firstDayCurrentMonth) &&
-                            "text-gray-400",
-                          isToday(day) && "bg-blue-100",
-                          isEqual(day, selectedDay) &&
-                            !isToday(day) &&
-                            "bg-sky-400",
-                          (isEqual(day, selectedDay) || isToday(day)) &&
-                            "font-semibold",
-                          "mx-auto flex h-8 w-8 items-center justify-center rounded-full"
-                        )}
-                      >
-                        <time dateTime={format(day, "yyyy-MM-dd")}>
-                          {format(day, "d")}
-                        </time>
-                      </button>
+          <div className=" px-4 mx-auto  sm:px-6 md:px-8  h-full "> */}
+      <div className="md:flex h-full md:divide-x md:divide-gray-200">
+        <div className="w-5/6 sm:px-7 mx-auto md-px-14 pt-14 pb-7 flex-1">
+          <div className="flex items-center">
+            <h2 className="flex-auto font-semibold text-gray-900">
+              {format(firstDayCurrentMonth, "MMMM yyyy")}
+            </h2>
+            <button
+              type="button"
+              onClick={previousMonth}
+              className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+            >
+              <span className="sr-only">Previous month</span>
+              <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
+            </button>
+            <button
+              onClick={nextMonth}
+              type="button"
+              className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+            >
+              <span className="sr-only">Next month</span>
+              <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
+            <div>S</div>
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+          </div>
+          <div className="border-l border-b border-gray-200 grid grid-cols-7 mt-2 text-sm">
+            {days.map((day, dayIdx) => (
+              <div
+                key={day.toString()}
+                onClick={() => setSelectedDay(day)}
+                className={classNames(
+                  "bg-white",
+                  !isEqual(day, selectedDay) && "hover:bg-gray-200",
+                  isEqual(day, selectedDay) && "text-white  bg-sky-300",
+                  dayIdx === 0 && colStartClasses[getDay(day)],
+                  "border-t border-r border-gray-200 p-4"
+                )}
+              >
+                <button
+                  type="button"
+                  className={classNames(
+                    "font-semibold",
+                    isEqual(day, selectedDay) && "text-white",
+                    (!isEqual(day, selectedDay) &&
+                      // isToday(day) && 'text-red-500',
+                      !isEqual(day, selectedDay)) ||
+                      (isToday(day) && "text-white"),
+                    !isEqual(day, selectedDay) &&
+                      !isToday(day) &&
+                      isSameMonth(day, firstDayCurrentMonth) &&
+                      "text-gray-900",
+                    !isEqual(day, selectedDay) &&
+                      !isToday(day) &&
+                      !isSameMonth(day, firstDayCurrentMonth) &&
+                      "text-gray-400",
+                    isToday(day) && "bg-blue-100",
+                    isEqual(day, selectedDay) && !isToday(day) && "bg-sky-400",
+                    (isEqual(day, selectedDay) || isToday(day)) && "font-bold",
+                    "mx-auto flex h-8 w-8 items-center justify-center rounded-full"
+                  )}
+                >
+                  <time dateTime={format(day, "yyyy-MM-dd")}>
+                    {format(day, "d")}
+                  </time>
+                </button>
 
                       <div className="w-1 h-1 mx-auto mt-1">
                         {meetings.some((meeting) =>
@@ -210,7 +206,7 @@ export default function Example() {
                   ))}
                 </div>
               </div>
-              <section className=" bg-red-500 md:mt-0 h-full bg- md:p-7 h-screen ">
+              <section className="mt-12 md:mt-0 h-full  md:p-7 ">
                 <form>
                   <label
                     for="default-search"
@@ -294,59 +290,7 @@ function Meeting({ meeting }) {
           <p>{meeting.type}</p>
         </div>
       </div>
-      <Menu
-        as="div"
-        className="relative opacity-0 focus-within:opacity-100 group-hover:opacity-100"
-      >
-        <div>
-          <Menu.Button className="-m-2 flex items-center rounded-full p-1.5 text-gray-500 hover:text-gray-600">
-            <span className="sr-only">Open options</span>
-            <DotsVerticalIcon className="w-6 h-6" aria-hidden="true" />
-          </Menu.Button>
-        </div>
-
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
-          <Menu.Items className="absolute right-0 z-10 mt-2 origin-top-right bg-white rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="#"
-                    className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block px-4 py-2 text-sm"
-                    )}
-                  >
-                    Edit
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="#"
-                    className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block px-4 py-2 text-sm"
-                    )}
-                  >
-                    Cancel
-                  </a>
-                )}
-              </Menu.Item>
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
-    </li>
+    </div>
   );
 }
 
