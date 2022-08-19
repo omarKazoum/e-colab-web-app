@@ -57,7 +57,7 @@ class AuthController extends Controller
         // Check password
         if(!$user || !Hash::check($fields['password_hash'], $user->password_hash)) {
             return response([
-                'message' => 'unvalide data'
+                'message' => 'Email ou Mot de pass est invalid'
             ], 401);
         }
 

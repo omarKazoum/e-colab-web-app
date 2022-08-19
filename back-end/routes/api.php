@@ -23,6 +23,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum',]], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
 });
 
 //for team members only
@@ -52,4 +53,9 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
     Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
 
+});
+//partie profile
+Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){
+    Route::post("/profile",[ProfileController::class, 'profileInfo']);
+    Route::get('/signalerPresence',[ProfileController::class,'signalerPresence']);
 });
