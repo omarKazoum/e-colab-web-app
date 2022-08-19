@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Fragment, useState } from 'react'
 // import { Dialog, Transition } from '@headlessui/react'
 import "./../../index.css"
@@ -17,7 +17,9 @@ import {
 } from '@heroicons/react/solid' 
 import {
   LogoutIcon,
-} from '@heroicons/react/outline' 
+} from '@heroicons/react/outline'
+import {UserDataContext} from "../../App";
+import {useNavigate} from "react-router-dom";
 
 const navigation = [
   { name: 'Profil', href: '#', icon: UserIcon, current: true },
@@ -35,6 +37,9 @@ function classNames(...classes) {
 }
 
 export default function Sidebar() {
+  let {connectedUserData,setUserData}=useContext(UserDataContext);
+  const navigate=useNavigate();
+
   return (
     <>
       {/*
@@ -96,6 +101,10 @@ export default function Sidebar() {
                         )}
                       >
                         <LogoutIcon
+                            onClick={()=>{
+                              setUserData(null);
+                              navigate('/login')
+                            }}
                           className={classNames(
                             // item.current ? 'text-sky-500' :
                               'text-red-500 group-hover:text-red-600',

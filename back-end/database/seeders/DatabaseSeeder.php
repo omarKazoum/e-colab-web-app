@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\BuisnessUnit;
 use App\Models\PresenceType;
+use App\Models\RequestStatus;
+use App\Models\RequestType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,6 +32,12 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkModesSeeder::class);
         $this->call(PresenceTypesSeeder::class);
         $this->call(PlanningsSeeder::class);
+
+        $this->call(RequestStatusSeeder::class);
+        $this->call(RequestTypesSeeder::class);
+        $this->call(RequestsSeeder::class);
+
+
 
 
 

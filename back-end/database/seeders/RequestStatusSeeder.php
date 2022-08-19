@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\PresenceType;
 use Illuminate\Database\Seeder;
 
-class PresenceTypesSeeder extends Seeder
+class RequestStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +13,12 @@ class PresenceTypesSeeder extends Seeder
      */
     public function run()
     {
-        $pts=['non signalé','présent','absent'];
-        foreach ($pts as $ptn){
+        $requestStatus=['En attente'=>'','accepté','refusé'];
+
+        foreach ($requestStatus as $label){
             $pt=new PresenceType();
-            $pt->label=$ptn;
+            $pt->label=$label;
             $pt->save();
         }
-
     }
 }
