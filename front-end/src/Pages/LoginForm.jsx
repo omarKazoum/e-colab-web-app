@@ -35,11 +35,11 @@ function LoginForm() {
       setError(er.response.data.message);
     }
   } 
-  // useEffect(()=>{
-  //   if(connectedUserData!==null){
-  //     navigate('/home')
-  //   }
-  // },[connectedUserData])
+  useEffect(()=>{
+    if(connectedUserData!==null){
+      navigate('/home')
+    }
+  },[connectedUserData])
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-screen">
 
