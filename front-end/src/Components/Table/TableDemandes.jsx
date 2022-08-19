@@ -7,8 +7,8 @@ import "../../App.css";
 // import { classNames } from "./Table/utility";
 import Modal from "./Modal.jsx";
 import Badge from  '../Badge'
-const role = "membre";
 import {UserDataContext} from "../../App";
+const role = "membre";
 
 
 // function Table1() {
@@ -48,35 +48,35 @@ import {UserDataContext} from "../../App";
         {/* to here */}
 
 
- const dataTable = [
-    {
-          "id": 1,
-          "created_at": "2022-08-16T19:01:25.000000Z",
-          "creator_id": 1,
-          "type_id": 1,
-          "position_id": 1,
-          "request_status_id": 1,
-          "updated_at": "2022-08-12T14:17:33.000000Z"
-      },
-      {
-        "id": 2,
-        "created_at": "2022-08-16T19:01:25.000000Z",
-        "creator_id": 1,
-        "type_id": 1,
-        "position_id": 1,
-        "request_status_id": 0,
-        "updated_at": "2022-08-12T14:17:33.000000Z"
-      },
-      {
-        "id": 3,
-        "created_at": "2022-08-16T19:01:25.000000Z",
-        "creator_id": 1,
-        "type_id": 1,
-        "position_id": 1,
-        "request_status_id": 2,
-        "updated_at": "2022-08-12T14:17:33.000000Z"
-      }
-  ]
+//  const dataTable = [
+//     {
+//           "id": 1,
+//           "created_at": "2022-08-16T19:01:25.000000Z",
+//           "creator_id": 1,
+//           "type_id": 1,
+//           "position_id": 1,
+//           "request_status_id": 1,
+//           "updated_at": "2022-08-12T14:17:33.000000Z"
+//       },
+//       {
+//         "id": 2,
+//         "created_at": "2022-08-16T19:01:25.000000Z",
+//         "creator_id": 1,
+//         "type_id": 1,
+//         "position_id": 1,
+//         "request_status_id": 0,
+//         "updated_at": "2022-08-12T14:17:33.000000Z"
+//       },
+//       {
+//         "id": 3,
+//         "created_at": "2022-08-16T19:01:25.000000Z",
+//         "creator_id": 1,
+//         "type_id": 1,
+//         "position_id": 1,
+//         "request_status_id": 2,
+//         "updated_at": "2022-08-12T14:17:33.000000Z"
+//       }
+//   ]
 
   const columns = [
     { heading: "ID", value: "id" },
@@ -110,7 +110,7 @@ import {UserDataContext} from "../../App";
         useEffect(()=>{
           if(connectedUserData==null)
             navigate("/login")
-            console.log('user data',connectedUserData)
+            console.log('user data',connectedUserData.token)
         })
         const checkbox = useRef()
         const [checked, setChecked] = useState(false)
@@ -133,40 +133,40 @@ import {UserDataContext} from "../../App";
         setIndeterminate(false)
     }
 
-    // let [dataTable, setDataTable] = useState([]);
+    let [dataTable, setDataTable] = useState([]);
 
-    // useEffect(() => {
-    //     getUsers();
-    // }, []);
-    // const getUsers = () => {
-    //     axios({
-    //     method: "get",
-    //     url: "http://127.0.0.1:8000/api/membre/requests/",
-    //     headers: {
-    //         Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
-    //         // get the access token from local storage
-    //     },
-    //     withCredentials: false,
-    //     })
-    //     .then((res) => {
-    //         res.data=[
-    //         {
-    //             "id": 3,
-    //             "created_at": "2022-08-16T19:01:25.000000Z",
-    //             "creator_id": 1,
-    //             "type_id": 1,
-    //             "position_id": 1,
-    //             "request_status_id": 1,
-    //             "updated_at": "2022-08-12T14:17:33.000000Z"
-    //         }
-    //     ]
+    useEffect(() => {
+        getUsers();
+    }, []);
+    const getUsers = () => {
+        axios({
+        method: "get",
+        url: "http://127.0.0.1:8000/api/membre/requests/",
+        headers: {
+            Authorization: "Bearer "+connectedUserData.token,
+            // get the access token from local storage
+        },
+        withCredentials: false,
+        })
+        .then((res) => {
+            res.data=[
+            {
+                "id": 3,
+                "created_at": "2022-08-16T19:01:25.000000Z",
+                "creator_id": 1,
+                "type_id": 1,
+                "position_id": 1,
+                "request_status_id": 1,
+                "updated_at": "2022-08-12T14:17:33.000000Z"
+            }
+        ]
     
-    //         setDataTable(res.data);
-    //         console.log(res.data)
-    //         // console.log(dataTable);
-    //     })
-    //     .catch((err) => console.log(err));
-    // };
+            setDataTable(res.data);
+            console.log(res.data)
+            // console.log(dataTable);
+        })
+        .catch((err) => console.log(err));
+    };
     const [visible, setShowModal] = useState(false);
 
   return (
