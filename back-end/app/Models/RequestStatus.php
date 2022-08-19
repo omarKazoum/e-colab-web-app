@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RequestStatus extends Model
 {
+    public $timestamps=false;
     protected $table='request_statuts';
     use HasFactory;
     function requests(){
