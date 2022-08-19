@@ -4,7 +4,7 @@ import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
 import Table1 from './Components/Table/Table1'
-
+import Emplacement from './Pages/Emplacement';
 
 import DownNavbar from '../src/Components/Sidebar/DownNavbar'
 import LoginForm from './Pages/LoginForm';
@@ -33,11 +33,14 @@ function App() {
           {/* <Route path="/" element={<Dashboard  />}/> */}
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
           <Route path="/" element={<Dashboard cal1={<Home />} />}/>
+          
           <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
           <Route path="/Demandes" element={<Dashboard cal2={<Table1 />} />}/>
+          <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
           <Route path="/Planning" element={<Callendar />} />
+        
 
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/Down" element={<DownNavbar />} />
