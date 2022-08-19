@@ -4,8 +4,15 @@ import CharteStatistique1 from '../Components/charte/CharteStatistique1'
 import CharteStatistique2 from '../Components/charte/CharteStatistique2'
 import { Bar } from 'react-chartjs-2'
 import BarChart from '../Components/charte/Barchart'
+import axios from "axios";
+import {useContext, useEffect, useState} from "react"
 
-const statistiques = () => {
+const statistiques = async() => {
+  
+      const res = await axios.post("http://127.0.0.1:8000/api/statistiques/emloyeesCount");
+      console.log(res.data);
+    
+  
   return (
     <div>
         <h2>statistiques</h2>
@@ -19,6 +26,6 @@ const statistiques = () => {
    </div>
 </div>
   )
-}
 
+  }
 export default statistiques
