@@ -20,7 +20,7 @@ class RequestsController extends Controller
      */
     function memberGetAll(): \Illuminate\Http\JsonResponse
     {
-            return response()->json( \App\Models\Request::all()->where('creator_id', auth()->user()->id)->with(['type','status','creator:last_name,first_name'])->get());
+            return response()->json( \App\Models\Request::where('creator_id', auth()->user()->id)->with(['type','status','creator:last_name,first_name'])->get());
     }
 
     /**
@@ -29,7 +29,6 @@ class RequestsController extends Controller
      */
     function membreCreateRequest(Request $request): \Illuminate\Http\JsonResponse
     {
-
         $validator=Validator::make($request->all(),
             ['type_id'=>"bail|required",
                 'position_id'=>'bail|required_if:type_id,1',
