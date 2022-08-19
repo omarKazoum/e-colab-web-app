@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
-import Table from './Components/Table/Table'
+import Table from './Components/Table/TableDemandes'
 
 
 import DownNavbar from '../src/Components/Sidebar/DownNavbar'
@@ -34,7 +34,7 @@ function App() {
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
           <Route path="/" element={<Dashboard cal1={<Home />} />}/>
           <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
-          <Route path="/Demandes" element={<Dashboard cal2={<Table1 />} />}/>
+          <Route path="/Demandes" element={<Dashboard cal2={<Table />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
 

@@ -109,7 +109,7 @@ const role = "membre";
         const [indeterminate, setIndeterminate] = useState(false)
         const [selectedrequests, setSelectedrequests] = useState([])
         {/* from here */}
-        
+        const [visible, setShowModal] = useState(false);
         {/* to here */}
 
     useLayoutEffect(() => {
@@ -159,11 +159,9 @@ const role = "membre";
     //     })
     //     .catch((err) => console.log(err));
     // };
-    const [visible, setShowModal] = useState(false);
 
   return (
-      <div className="px-4 sm:px-6 bg-blue-page h-screen lg:px-8">
-        
+    <div className="px-4 sm:px-6 bg-blue-page h-screen lg:px-8">
         {/* from here */}
         {/* <div className="mt-5 mb-3 flex justify-between">
           <h2>Demandes de mon équipe</h2>
@@ -184,7 +182,6 @@ const role = "membre";
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-pink-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-pink-700  sm:w-auto"
-            onClick={() => setShowModal(true)}
           >
             Add 
           </button>
@@ -289,7 +286,7 @@ const role = "membre";
                           Edit<span className="sr-only">, {request.name}</span>
                         </a>
                       </td> */}
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{getButton("manager",request.id)}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{getButton("manger",request.id)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -298,7 +295,6 @@ const role = "membre";
           </div>
         </div>
       </div>
-      <Modal visible={visible} showMethod={setShowModal} />
     </div>
   )
 }
