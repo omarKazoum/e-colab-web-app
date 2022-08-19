@@ -266,7 +266,7 @@ function Meeting({ meeting }) {
   let endDateTime = parseISO(meeting.endDatetime);
 
   return (
-    <li className="flex items-center px-4 py-2 space-x-4 group rounded-xl bg-sky-400 focus-within:bg-sky-500 hover:bg-sky-500">
+    <div className="flex items-center px-4 py-2 space-x-4 group rounded-xl bg-sky-400 focus-within:bg-sky-500 hover:bg-sky-500">
       <img
         src={meeting.imageUrl}
         alt=""
