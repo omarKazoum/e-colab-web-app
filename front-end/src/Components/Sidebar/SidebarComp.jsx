@@ -87,8 +87,8 @@ export default function Sidebar() {
                 <div>
                   <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
                     
-                      <a
-                        href="#"
+                      
+                      <div
                         className={classNames(
                           // item.current ? 'bg-gray-100 text-gray-900' :
                             'text-red-500 hover:bg-grey-500 hover:text-red-600',
@@ -104,19 +104,10 @@ export default function Sidebar() {
                           aria-hidden="true"
                         />
                         Logout
-                      </a>
+                      </div>
                     
                   </nav>
                   </div>
-                  {/* <img
-                    className="inline-block h-9 w-9 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                </div> */}
             </a>
           </div>
         </div>

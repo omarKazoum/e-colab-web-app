@@ -4,42 +4,83 @@ import { useEffect, useState } from "react";
 import "../../App.css";
 // import { classNames } from "./Table/utility";
 import Modal from "./Modal.jsx";
-
+import Badge from  '../Badge'
 const role = "membre";
 
 function Table1() {
   let [dataTable, setDataTable] = useState([]);
-  useEffect(() => {
-    getUsers();
-  }, []);
-  const getUsers = () => {
-    axios({
-      method: "get",
-      url: "http://127.0.0.1:8000/api/membre/requests/",
-      headers: {
-        Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
-        // get the access token from local storage
-      },
-      withCredentials: false,
-    })
-      .then((res) => {
-        // res.data=[]
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
+  // const getUsers = () => {
+  //   axios({
+  //     method: "get",
+  //     url: "http://127.0.0.1:8000/api/membre/requests/",
+  //     headers: {
+  //       Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
+  //       // get the access token from local storage
+  //     },
+  //     withCredentials: false,
+  //   })
+  //     .then((res) => {
+  //       res.data=[
+  //         {
+  //             "id": 3,
+  //             "created_at": "2022-08-16T19:01:25.000000Z",
+  //             "creator_id": 1,
+  //             "type_id": 1,
+  //             "position_id": 1,
+  //             "request_status_id": 1,
+  //             "updated_at": "2022-08-12T14:17:33.000000Z"
+  //         }
+  //     ]
 
-        setDataTable(res.data);
-        console.log(res.data)
-        // console.log(dataTable);
-      })
-      .catch((err) => console.log(err));
-  };
+  //       setDataTable(res.data);
+  //       console.log(res.data)
+  //       // console.log(dataTable);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  dataTable = [
+  {
+        "id": 3,
+        "created_at": "2022-08-16T19:01:25.000000Z",
+        "creator_id": 1,
+        "type_id": 1,
+        "position_id": 1,
+        "request_status_id": 1,
+        "updated_at": "2022-08-12T14:17:33.000000Z"
+    },
+    {
+      "id": 3,
+      "created_at": "2022-08-16T19:01:25.000000Z",
+      "creator_id": 1,
+      "type_id": 1,
+      "position_id": 1,
+      "request_status_id": 0,
+      "updated_at": "2022-08-12T14:17:33.000000Z"
+    },
+    {
+      "id": 3,
+      "created_at": "2022-08-16T19:01:25.000000Z",
+      "creator_id": 1,
+      "type_id": 1,
+      "position_id": 1,
+      "request_status_id": 2,
+      "updated_at": "2022-08-12T14:17:33.000000Z"
+    }
+]
+
   const columns = [
     { heading: "ID", value: "id" },
     { heading: "Créateur", value: "creator_id" },
     { heading: "Position demandé", value: "position_id" },
     { heading: "Date de travail", value: "created_at" },
     { heading: "status", value: "request_status_id" },
-    { heading: "Action" },
-    { heading: "Action" },
-    { heading: "Action" },
+    { heading: "" },
+    // { heading: "Action" },
+    // { heading: "Action" },
   ];
 
   const [visible, setShowModal] = useState(false);
@@ -66,14 +107,17 @@ function Table1() {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
+              <tbody className="divide-y divide-gray-200 text-center bg-white">
                 {dataTable.map((item, index) => (
-                  
-                  <TableRow
-                    key={index + "_item_row"}
-                    item={item}
-                    column={columns.heading}
-                  />
+                  <tr>
+                    <td>{item.id}</td>
+                    <td>{item.creator_id}</td>
+                    <td>{item.position_id}</td>
+                    <td>{item.date}</td>
+                    <td><Badge statusId={item.request_status_id} >Confirmé</Badge></td>
+                    <td><getButton role="manager" /> </td>
+                  </tr>
+
                 ))}
               </tbody>
             </table>
