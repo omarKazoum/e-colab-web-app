@@ -12,7 +12,7 @@ export default function Emplacement() {
         <DateSpace/>
         <WorkSpace/>
         </div>
-        <div className="w-">
+        <div className="w-1/5">
 
 
         <RightSideBar/>

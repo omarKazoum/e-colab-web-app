@@ -1,5 +1,13 @@
-export default function Chair(){
+
+import { Icon } from '@iconify/react';
+export default function Chair(props){
+    console.log(props.color)
     return (
-        <h1></h1>
+        <small className=''>
+            
+      
+        <Icon color={props.color} width='60px'  icon="material-symbols:chair-outline" />
+        
+        </small>
     )
 }
