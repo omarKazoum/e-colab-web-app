@@ -2,9 +2,9 @@ import React from 'react'
 
  const  Badge= ({children,statusId}) => {
     let classes=[];
-    classes[1]='bg-green-100 text-green-800';
-    classes[0]='bg-pink-100 text-pink-800';
-    classes[2]='bg-yellow-100 text-yellow-800';
+    classes[2]='bg-green-100 text-green-800';
+    classes[3]='bg-red-200 text-red-800';
+    classes[1]='bg-yellow-100 text-yellow-800';
 
 
   return (

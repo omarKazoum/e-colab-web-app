@@ -1,4 +1,5 @@
-import { useLayoutEffect, useEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useEffect, useRef, useState,useContext } from 'react'
+import {useNavigate} from 'react-router-dom'
 import React from "react";
 import axios from "axios";
 // import {  useState } from "react";
@@ -6,9 +7,9 @@ import "../../App.css";
 // import { classNames } from "./Table/utility";
 import Modal from "./Modal.jsx";
 import Badge from  '../Badge'
+import {UserDataContext} from "../../App";
 const role = "membre";
-  
-        {/* from here */}
+
 
 // function Table1() {
 //   let [dataTable, setDataTable] = useState([]);
@@ -47,35 +48,35 @@ const role = "membre";
         {/* to here */}
 
 
- const dataTable = [
-    {
-          "id": 1,
-          "created_at": "2022-08-16T19:01:25.000000Z",
-          "creator_id": 1,
-          "type_id": 1,
-          "position_id": 1,
-          "request_status_id": 1,
-          "updated_at": "2022-08-12T14:17:33.000000Z"
-      },
-      {
-        "id": 2,
-        "created_at": "2022-08-16T19:01:25.000000Z",
-        "creator_id": 1,
-        "type_id": 1,
-        "position_id": 1,
-        "request_status_id": 0,
-        "updated_at": "2022-08-12T14:17:33.000000Z"
-      },
-      {
-        "id": 3,
-        "created_at": "2022-08-16T19:01:25.000000Z",
-        "creator_id": 1,
-        "type_id": 1,
-        "position_id": 1,
-        "request_status_id": 2,
-        "updated_at": "2022-08-12T14:17:33.000000Z"
-      }
-  ]
+//  const dataTable = [
+//     {
+//           "id": 1,
+//           "created_at": "2022-08-16T19:01:25.000000Z",
+//           "creator_id": 1,
+//           "type_id": 1,
+//           "position_id": 1,
+//           "request_status_id": 1,
+//           "updated_at": "2022-08-12T14:17:33.000000Z"
+//       },
+//       {
+//         "id": 2,
+//         "created_at": "2022-08-16T19:01:25.000000Z",
+//         "creator_id": 1,
+//         "type_id": 1,
+//         "position_id": 1,
+//         "request_status_id": 0,
+//         "updated_at": "2022-08-12T14:17:33.000000Z"
+//       },
+//       {
+//         "id": 3,
+//         "created_at": "2022-08-16T19:01:25.000000Z",
+//         "creator_id": 1,
+//         "type_id": 1,
+//         "position_id": 1,
+//         "request_status_id": 2,
+//         "updated_at": "2022-08-12T14:17:33.000000Z"
+//       }
+//   ]
 
   const columns = [
     { heading: "ID", value: "id" },
@@ -103,7 +104,14 @@ const role = "membre";
         return classes.filter(Boolean).join(' ')
     }
     
-    export default function Example() {
+    export default function TableDemandes() {
+        let {connectedUserData}=useContext(UserDataContext);
+        let navigate=useNavigate();
+        useEffect(()=>{
+          if(connectedUserData==null)
+            navigate("/login")
+            console.log('user data',connectedUserData.token)
+        })
         const checkbox = useRef()
         const [checked, setChecked] = useState(false)
         const [indeterminate, setIndeterminate] = useState(false)
@@ -125,40 +133,40 @@ const role = "membre";
         setIndeterminate(false)
     }
 
-    // let [dataTable, setDataTable] = useState([]);
+    let [dataTable, setDataTable] = useState([]);
 
-    // useEffect(() => {
-    //     getUsers();
-    // }, []);
-    // const getUsers = () => {
-    //     axios({
-    //     method: "get",
-    //     url: "http://127.0.0.1:8000/api/membre/requests/",
-    //     headers: {
-    //         Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
-    //         // get the access token from local storage
-    //     },
-    //     withCredentials: false,
-    //     })
-    //     .then((res) => {
-    //         res.data=[
-    //         {
-    //             "id": 3,
-    //             "created_at": "2022-08-16T19:01:25.000000Z",
-    //             "creator_id": 1,
-    //             "type_id": 1,
-    //             "position_id": 1,
-    //             "request_status_id": 1,
-    //             "updated_at": "2022-08-12T14:17:33.000000Z"
-    //         }
-    //     ]
+    useEffect(() => {
+        getUsers();
+    }, []);
+    const getUsers = () => {
+        axios({
+        method: "get",
+        url: "http://127.0.0.1:8000/api/membre/requests/",
+        headers: {
+            Authorization: "Bearer "+connectedUserData.token,
+            // get the access token from local storage
+        },
+        withCredentials: false,
+        })
+        .then((res) => {
+        //     res.data=[
+        //     {
+        //         "id": 3,
+        //         "created_at": "2022-08-16T19:01:25.000000Z",
+        //         "creator_id": 1,
+        //         "type_id": 1,
+        //         "position_id": 1,
+        //         "request_status_id": 1,
+        //         "updated_at": "2022-08-12T14:17:33.000000Z"
+        //     }
+        // ]
     
-    //         setDataTable(res.data);
-    //         console.log(res.data)
-    //         // console.log(dataTable);
-    //     })
-    //     .catch((err) => console.log(err));
-    // };
+            setDataTable(res.data);
+            console.log(res.data)
+            // console.log(dataTable);
+        })
+        .catch((err) => console.log(err));
+    };
     const [visible, setShowModal] = useState(false);
 
   return (
@@ -178,7 +186,7 @@ const role = "membre";
 
       <div className="sm:flex pt-32 sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">Demandes de mon équipe</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Demandes de mon équipe MEEEMBRE</h1>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <button
@@ -280,15 +288,15 @@ const role = "membre";
                       >
                         {request.id}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.creator_id}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.creator.first_name}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.position_id}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.date}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.request_status_id}</td>
-                      {/* <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Edit<span className="sr-only">, {request.name}</span>
-                        </a>
-                      </td> */}
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <Badge statusId={request.status.id}>
+                        {request.status.label}
+                        </Badge>
+                        </td>
+                      
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{getButton("manager",request.id)}</td>
                     </tr>
                   ))}
@@ -346,3 +354,33 @@ const getButton = (role,id) => {
       );
     }
   };
+  const getStatusString = (s) => {
+    if (s === 1)
+      return (
+        <span className="px-3 leading-wide font-bold text-xs rounded-full shadow-sm bg-green-100 text-green-800">
+          Confirmé
+        </span>
+      );
+    else if (s === 0)
+      return (
+        <span className="px-3 my-2 leading-wide font-bold text-xs rounded-full shadow-sm bg-pink-100 text-pink-800">
+          Refusé
+        </span>
+      );
+    else if (s === 2) {
+      return (
+        <span className="px-3  leading-wide font-bold text-xs rounded-full shadow-sm bg-yellow-100 text-yellow-800">
+          En attente
+        </span>
+      );
+    }
+  };
+
+  // if(role is membre){
+  //   demande accepté /refusé > aucun botton
+  //   demande en attente > butoon annuler
+  // }else if(role is manager){
+  //   demande en attent > deux button accepter et refuser 
+  //   sinon pas de button
+
+  // }
