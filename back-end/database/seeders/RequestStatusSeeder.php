@@ -16,10 +16,10 @@ class RequestStatusSeeder extends Seeder
     {
         $requestStatus=['En attente'=>'','accepté'=>'','refusé'=>''];
 
-        foreach ($requestStatus as $label){
+        foreach ($requestStatus as $label=>$des){
             $pt=new RequestStatus();
             $pt->label=$label;
-            $pt->description="";
+            $pt->description=$des;
             $pt->save();
         }
     }
