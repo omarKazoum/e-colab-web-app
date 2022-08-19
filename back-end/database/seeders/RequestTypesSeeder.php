@@ -13,7 +13,7 @@ class RequestTypesSeeder extends Seeder
      */
     public function run()
     {
-        $requestType=['Télétravail'=>'','Présentiel'=>''];
+        $requestType=['Présentiel'=>'','Télétravail'=>''];
         foreach ($requestType as $label=> $des){
             $pt=new \App\Models\RequestType();
             $pt->label=$label;
