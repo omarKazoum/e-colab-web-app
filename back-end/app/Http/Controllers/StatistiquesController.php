@@ -10,18 +10,18 @@ class StatistiquesController extends Controller
     //
 
     function emloyeesCount(){
-        $p =User::where('role_id',1)->count();
-        return response()->json($p);
+        $employeNumber =User::where('role_id',1)->count();
+        return response()->json($employeNumber);
         
     }
     function managerCount(){
-        $p =User::where('role_id',2)->count();
-        return response()->json($p);
+        $managerNumber =User::where('role_id',2)->count();
+        return response()->json($managerNumber);
         
     }
     function equipesCount(){
-       $p = Team::All()->count();
-        return response()->json($p);
+       $equipeNumber = Team::All()->count();
+        return response()->json($equipeNumber);
         
     }
 
