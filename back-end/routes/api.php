@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlanningMembreController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StatistiquesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PlanningController;
+use App\Http\Controllers\PlanningManagerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +32,8 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
+    //for manager planning
+    Route::get('/membre/planning/from/{fromDate}/to/{toDate}',[PlanningMembreController::class,'membreGetPlanningInterval']);
 });
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
@@ -40,12 +42,10 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
     //for managing planning
-    Route::get('/manager/planning/myTeamPlaning/from/{fromDate}/to/{toDate}',[PlanningController::class, 'managerGetPlanningForMyTeamInterval']);
-    Route::get('/manager/planning/openSpaces/{openspaceId}/{date}',[PlanningController::class,'managerGetOpenSpaceDataInDate']);
-    Route::get('/manager/planning/makeRemote/{membreId}/{date}',[PlanningController::class, 'managerMakeAMMemberRemoteInDate']);
-    Route::get('/manager/planning/makeInOffice/{membreId}/{date}/{positionId}',[PlanningController::class, 'managerMakeMemberInOfficeInDate']);
-
-
+    Route::get('/manager/planning/myTeamPlaning/from/{fromDate}/to/{toDate}',[PlanningManagerController::class, 'managerGetPlanningForMyTeamInterval']);
+    Route::get('/manager/planning/openSpaces/{openspaceId}/{date}',[PlanningManagerController::class,'managerGetOpenSpaceDataInDate']);
+    Route::get('/manager/planning/makeRemote/{membreId}/{date}',[PlanningManagerController::class, 'managerMakeMemberRemoteInDate']);
+    Route::get('/manager/planning/makeInOffice/{membreId}/{date}/{positionId}',[PlanningManagerController::class, 'managerMakeMemberInOfficeInDate']);
 
 });
 
