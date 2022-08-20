@@ -6,6 +6,7 @@ use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StatistiquesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanningManagerController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

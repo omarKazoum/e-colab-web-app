@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Request;
 use App\Models\User;
 use App\Models\Role;
 use \App\Models\Planning;
@@ -14,12 +14,16 @@ class ProfileController extends Controller
     {
             $data=User::where( 'id',auth()->user()->id)->with(['role','team','jobType'])->get();
             $p=Planning::where('user_id',auth()->user()->id)->where('date',now()->format('Y-m-d'))->first();
+            $rec=Request::where('creator_id',auth()->user()->id)->where('request_status_id','1')->count();
+            $ra=Request::where('creator_id',auth()->user()->id)->where('request_status_id','2')->count();
+            $rr=Request::where('creator_id',auth()->user()->id)->where('request_status_id','3')->count();
          // planning exists 
             if($p){
               $data['is_present']=$p->presenceType();
             }else{
                 $data['is_present']=['label'=>'non signalé','id'=>1];
             }
+            $data['demandes']=['demande_en_cour'=>$rec,'demande_accepté'=>$ra,'demande_refusé'=>$rr,];
          //planning does not exis
         
             return response()->json($data);
