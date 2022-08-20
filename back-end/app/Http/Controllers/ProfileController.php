@@ -14,6 +14,7 @@ class ProfileController extends Controller
     function profileInfo()
     {
             $data=User::where( 'id',auth()->user()->id)->with(['role','team','jobType'])->get();
+           if(auth()->user()->role_id==2){ $data['team_members']=auth()->user()->team->members;}
             $p=Planning::where('user_id',auth()->user()->id)->where('date',now()->format('Y-m-d'))->first();
             //demande en cours
             $rec=Request::where('creator_id',auth()->user()->id)->where('request_status_id','1')->count();
