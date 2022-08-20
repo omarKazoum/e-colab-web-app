@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Request;
 use App\Models\User;
 use App\Models\Role;
 use \App\Models\Planning;
+use Carbon\Carbon;
 
 
 class ProfileController extends Controller
@@ -13,13 +14,27 @@ class ProfileController extends Controller
     function profileInfo()
     {
             $data=User::where( 'id',auth()->user()->id)->with(['role','team','jobType'])->get();
+            //display teamates to managers
+           if(auth()->user()->role_id==2){ $data['team_members']=auth()->user()->team->members;}
             $p=Planning::where('user_id',auth()->user()->id)->where('date',now()->format('Y-m-d'))->first();
+            //demande en cours
+            $rec=Request::where('creator_id',auth()->user()->id)->where('request_status_id','1')->count();
+            //demande acceptees
+            $ra=Request::where('creator_id',auth()->user()->id)->where('request_status_id','2')->count();
+            //demande refusees
+            $rr=Request::where('creator_id',auth()->user()->id)->where('request_status_id','3')->count();
+            //presentielle
+            $sur_site=Planning::whereBetween('date', [Carbon::now()->startOfMonth()->format('Y-m-d'), Carbon::now()->endOfMonth()->format('Y-m-d')])->where('work_mode_id', 1)->count();
+            //teletravaille
+            $tele=Planning::whereBetween('date', [Carbon::now()->startOfMonth()->format('Y-m-d'), Carbon::now()->endOfMonth()->format('Y-m-d')])->where('work_mode_id', 2)->count();
          // planning exists 
             if($p){
               $data['is_present']=$p->presenceType();
             }else{
                 $data['is_present']=['label'=>'non signalé','id'=>1];
             }
+            $data['demandes']=['demande_en_cour'=>$rec,'demande_accepté'=>$ra,'demande_refusé'=>$rr,];
+            $data['taux_de_travaille']=['teletravaille_du_mois'=>$tele,'travaille_sur_site_du_mois'=>$sur_site];
          //planning does not exis
         
             return response()->json($data);
@@ -41,6 +56,5 @@ class ProfileController extends Controller
             $p->save();
             return response()->json(['message'=>'votre présence est bien enregistrée']);
     }
-
 
 }
