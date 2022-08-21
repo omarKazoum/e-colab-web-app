@@ -3,6 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
+
+
+import Emplacement from './Pages/Emplacement';
+
 import Table from './Components/Table/TableDemandes'
 
 
@@ -33,10 +37,17 @@ function App() {
           {/* <Route path="/" element={<Dashboard  />}/> */}
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
           <Route path="/" element={<Dashboard cal1={<Home />} />}/>
+          
           <Route path="/callendar" element={<Dashboard cal2={<Callendar />} />}/>
+
+          <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
+
+        
+
           <Route path="/Demandes" element={<Dashboard cal2={<Table />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
+
 
           <Route path="/Down" element={<DownNavbar />} />
 
