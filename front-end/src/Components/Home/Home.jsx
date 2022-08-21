@@ -107,7 +107,7 @@ import {useNavigate} from "react-router-dom";
           </div>
           <div className="flex">
             <Icon icon="akar-icons:people-group" width="25" />
-            <p>{userData!=null?userData.team.buisness_unit.label:'---'}</p>
+            <p>{userData!=null?userData.name:'---'}</p>
           </div>
           </div>
           {(userData==null||userData.is_present.id==1)&&<button onClick={()=>{

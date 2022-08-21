@@ -44,10 +44,10 @@ export default function Example(props) {
   let {connectedUserData}=useContext(UserDataContext);
   let navigate=useNavigate();
 
-  // useEffect(()=>{
-  //   if(connectedUserData==null)
-  //      navigate("/login")
-  // })
+  useEffect(()=>{
+    if(connectedUserData==null)
+       navigate("/login")
+  })
 
   return (
     <>
@@ -59,11 +59,10 @@ export default function Example(props) {
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
 
-                {/* Replace with your content */}
-                {/* < Callendar /> */}
-                {props.cal1}
-                {props.cal2}
+                {props.calendar}
+                {props.demande}
                 {props.Home}
+
                 {props.Emplacement}
                 {/* /End replace */}
 

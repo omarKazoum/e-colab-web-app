@@ -25,7 +25,7 @@ import {useNavigate} from "react-router-dom";
 const navigation = [
   { name: 'Profil', href: '/', icon: UserIcon, current: true },
   { name: 'Demandes', href: '/demandes', icon: PencilAltIcon, current: false },
-  { name: 'Planning', href: '/callendar', icon: CalendarIcon, current: false },
+  { name: 'Planning', href: '/calendar', icon: CalendarIcon, current: false },
   // { name: 'Dashboard', href: '#', icon: LogoutIcon, current: false },
   // { name: 'Team', href: '#', icon: UsersIcon, current: false },
   // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
