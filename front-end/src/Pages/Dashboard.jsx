@@ -40,12 +40,14 @@ function classNames(...classes) {
 
 export default function Example(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  // let {connectedUserData}=useContext(UserDataContext);
-  // let navigate=useNavigate();
-  // useEffect(()=>{
-  //   if(connectedUserData==null)
-  //      navigate("/login")
-  // })
+
+  let {connectedUserData}=useContext(UserDataContext);
+  let navigate=useNavigate();
+
+  useEffect(()=>{
+    if(connectedUserData==null)
+       navigate("/login")
+  })
 
   return (
     <>
@@ -60,6 +62,9 @@ export default function Example(props) {
                 {props.calendar}
                 {props.demande}
                 {props.Home}
+
+                {props.Emplacement}
+                {/* /End replace */}
 
           </main>
         </div>

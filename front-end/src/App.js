@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Calendar from './Components/Planning/PlaningComp'
+import Emplacement from './Pages/Emplacement';
 import Table from './Components/Table/TableDemandes'
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<Dashboard cal1={<Home />} />}/>
           <Route path="/calendar" element={<Dashboard calendar={<Calendar />} />}/>
           <Route path="/Demandes" element={<Dashboard demande={<Table />} />}/>
+          <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
 
