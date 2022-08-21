@@ -11,42 +11,6 @@ import {UserDataContext} from "../../App";
 const role = "membre";
 
 
-// function Table1() {
-//   let [dataTable, setDataTable] = useState([]);
-//   useEffect(() => {
-//     getUsers();
-//   }, []);
-//   const getUsers = () => {
-//     axios({
-//       method: "get",
-//       url: "http://127.0.0.1:8000/api/membre/requests/",
-//       headers: {
-//         Authorization: "Bearer 10|lM66D7NwgWn9mqJY2kBSw9hd7A34I54fljdwzoS8",
-//         // get the access token from local storage
-//       },
-//       withCredentials: false,
-//     })
-//       .then((res) => {
-//         res.data=[
-//           {
-//               "id": 3,
-//               "created_at": "2022-08-16T19:01:25.000000Z",
-//               "creator_id": 1,
-//               "type_id": 1,
-//               "position_id": 1,
-//               "request_status_id": 1,
-//               "updated_at": "2022-08-12T14:17:33.000000Z"
-//           }
-//       ]
-  
-//         setDataTable(res.data);
-//         console.log(res.data)
-//         // console.log(dataTable);
-//       })
-//       .catch((err) => console.log(err));
-//   };
-        {/* to here */}
-
 
 //  const dataTable = [
 //     {
@@ -110,8 +74,8 @@ const role = "membre";
         useEffect(()=>{
           if(connectedUserData==null)
             navigate("/login")
-            console.log('user data',connectedUserData.token)
-        })
+            console.log(connectedUserData)
+        },[])
         const checkbox = useRef()
         const [checked, setChecked] = useState(false)
         const [indeterminate, setIndeterminate] = useState(false)
@@ -134,55 +98,61 @@ const role = "membre";
     }
 
     let [dataTable, setDataTable] = useState([]);
+    // let [isLoading, setIsLoading] = useState(true);
 
+    var link = "";
+    if(String(connectedUserData.user.role_id)=="1"){
+      link = "http://127.0.0.1:8000/api/membre/requests/";
+    }else if(String(connectedUserData.user.role_id)=="2"){
+      link = "http://127.0.0.1:8000/api/manager/requests/";
+    }
     useEffect(() => {
         getUsers();
     }, []);
-    const getUsers = () => {
-        axios({
-        method: "get",
-        url: "http://127.0.0.1:8000/api/membre/requests/",
+    const getUsers = async() => {
+      const headers =  {
         headers: {
-            Authorization: "Bearer "+connectedUserData.token,
-            // get the access token from local storage
+          Authorization: "Bearer "+connectedUserData.token,
         },
-        withCredentials: false,
-        })
-        .then((res) => {
-        //     res.data=[
-        //     {
-        //         "id": 3,
-        //         "created_at": "2022-08-16T19:01:25.000000Z",
-        //         "creator_id": 1,
-        //         "type_id": 1,
-        //         "position_id": 1,
-        //         "request_status_id": 1,
-        //         "updated_at": "2022-08-12T14:17:33.000000Z"
-        //     }
-        // ]
+      }
+      // console.log(link);
+      const res = await axios.get(link, headers);
+      try {
+        setDataTable(res.data);
+        console.log(res.data);
+        // setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+        // axios({
+        // method: "get",
+        // url: link,
+        
+        // withCredentials: false,
+        // })
+        // .then((res) => {
+        // //     res.data=[
+        // //     {
+        // //         "id": 3,
+        // //         "created_at": "2022-08-16T19:01:25.000000Z",
+        // //         "creator_id": 1,
+        // //         "type_id": 1,
+        // //         "position_id": 1,
+        // //         "request_status_id": 1,
+        // //         "updated_at": "2022-08-12T14:17:33.000000Z"
+        // //     }
+        // // ]
     
-            setDataTable(res.data);
-            console.log(res.data)
-            // console.log(dataTable);
-        })
-        .catch((err) => console.log(err));
+        //     setDataTable(res.data);
+        //     console.log(res.data)
+        //     // console.log(dataTable);
+        // })
+        // .catch((err) => console.log(err));
     };
     const [visible, setShowModal] = useState(false);
 
   return (
       <div className="px-4 sm:px-6 bg-blue-page h-screen lg:px-8">
-        
-        {/* from here */}
-        {/* <div className="mt-5 mb-3 flex justify-between">
-          <h2>Demandes de mon équipe</h2>
-          <button
-            className="bg-pink-700 text-white px-3 rounded"
-            onClick={() => setShowModal(true)}
-          >
-            Add
-          </button>
-        </div> */}
-        {/* to here */}
 
       <div className="sm:flex pt-32 sm:items-center">
         <div className="sm:flex-auto">
@@ -236,7 +206,7 @@ const role = "membre";
                         onChange={toggleAll}
                       />
                     </th>
-                    <th scope="col" className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         ID
                     </th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -248,26 +218,24 @@ const role = "membre";
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Date de travail
                     </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="px-3 py-3.5 text-centre text-sm font-semibold text-gray-900">
                         status
                     </th>
-                    {/* <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                      <span className="sr-only">Edit</span>
-                    </th> */}
                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                       <span className="sr-only">actions</span>
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200  bg-white">
-                  {dataTable.map((request) => (
-                    <tr key={request.id} className={selectedrequests.includes(request) ? 'bg-gray-50' : undefined}>
+                  {dataTable[0]?.map((request, index) => (
+                    <tr key={index} className={selectedrequests.includes(request) ? 'bg-gray-50' : undefined}>
                       <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                         {selectedrequests.includes(request) && (
                           <div className="absolute inset-y-0 left-0 w-0.5 bg-indigo-600" />
                         )}
                         <input
                           type="checkbox"
+                          // disabled={request.request_status_id === 2 || request.request_status_id === 3}
                           className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
                           value={request.id}
                           checked={selectedrequests.includes(request)}
@@ -282,13 +250,14 @@ const role = "membre";
                       </td>
                       <td
                         className={classNames(
-                          'whitespace-nowrap py-4 pr-3 text-sm font-medium',
+                          'whitespace-nowrap py-4 px-3 text-sm font-medium',
                           selectedrequests.includes(request) ? 'text-indigo-600' : 'text-gray-900'
                         )}
                       >
                         {request.id}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.creator.first_name}</td>
+                      {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.creator.first_name}</td> */}
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">first_name</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.position_id}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{request.date}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -296,8 +265,9 @@ const role = "membre";
                         {request.status.label}
                         </Badge>
                         </td>
+                        {/* {console.log(request)} */}
                       
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{getButton("manager",request.id)}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{getButton(String(connectedUserData.user.role_id),request.id,request.status.id)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -311,22 +281,24 @@ const role = "membre";
   )
 }
 
-const getButton = (role,id) => {
-    if (role === "manager") {
+const getButton = (role,requestId,statusId) => {
+  // manager
+    if (role === "2") {
+      if(statusId == "1"){
       return (
         <div>
-          <button
+          {/* <button
             className="button bg-red-500 mx-1 text-white rounded px-2"
             onClick={() => {
               console.log("Annuler"+id);
             }}
           >
             Annuler
-          </button>
+          </button> */}
           <button
             className="bg-green-500 mx-1 rounded px-2 text-white"
             onClick={() => {
-              console.log("accepter"+id);
+              console.log("accepter"+requestId);
             }}
           >
             Accepter
@@ -334,14 +306,17 @@ const getButton = (role,id) => {
           <button
             className="bg-red-500 mx-1 rounded px-2 text-white"
             onClick={() => {
-              console.log("refuser"+id);
+              console.log("refuser"+requestId);
             }}
           >
             Refuser
           </button>
         </div>
       );
-    } else {
+    }
+    } else
+    // user
+     { if (role === "1") {
       return (
         <button
           className="button bg-red-500 mx-1 text-white rounded px-2"
@@ -353,6 +328,7 @@ const getButton = (role,id) => {
         </button>
       );
     }
+  }
   };
   const getStatusString = (s) => {
     if (s === 1)
