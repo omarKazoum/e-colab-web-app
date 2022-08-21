@@ -57,12 +57,9 @@ export default function Example(props) {
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
 
-                {/* Replace with your content */}
-                {/* < Callendar /> */}
-                {props.cal1}
-                {props.cal2}
+                {props.calendar}
+                {props.demande}
                 {props.Home}
-                {/* /End replace */}
 
           </main>
         </div>
