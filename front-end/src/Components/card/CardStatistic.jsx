@@ -4,7 +4,7 @@ import {UserIcon,ChevronRightIcon} from '@heroicons/react/solid'
 export default function CardStatistic() {
   return (
       // <div className=' my-0 '>
-        <div className="grid grid-cols-1 mx-auto sm:grid-cols-2 lg:grid-cols-3 py-3 px-8 gap-8 ">
+        <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-cols-2 lg:grid-cols-3 px-8 gap-8 " >
         <div className="bg-gradient-to-r from-blue-400 to-cyan-500 h-[12rem] py-6 px-6 hover:bg-gradient-to-l transition ease-in-out duration-300 cursor-pointer shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600  text-white font-medium group">
            <div className=" flex flex-col gap-10">
             <UserIcon className="w-10 h-10" aria-hidden="true" />
