@@ -60,3 +60,6 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']
     Route::post("/profile",[ProfileController::class, 'profileInfo']);
     Route::get('/signalerPresence',[ProfileController::class,'signalerPresence']);
 });
+Route::get('/test/',function(){
+   return ['message'=>'this is a test message!'];
+});

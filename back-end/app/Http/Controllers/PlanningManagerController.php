@@ -21,7 +21,7 @@ class PlanningManagerController extends Controller
         $validator->validate();
         //teamMembersData
         $response['team_members']=User::where('team_id',auth()->user()->team->id)->get();
-        $response['plannings']=Planning::whereBetween('date',[Carbon::createFromFormat('Y-m-d',$fromDate),Carbon::createFromFormat('Y-m-d',$toDate)])->whereIn('user_id',$response['team_members']->pluck('id'))->with('position','user:first_name,last_name,id,email','jobType')->get();
+        $response['plannings']=Planning::whereBetween('date',[Carbon::createFromFormat('Y-m-d',$fromDate),Carbon::createFromFormat('Y-m-d',$toDate)])->whereIn('user_id',$response['team_members']->pluck('id'))->with('position','user:first_name,last_name,id,email')->get();
         return response()->json($response);
     }
 
