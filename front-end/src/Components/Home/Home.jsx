@@ -72,7 +72,6 @@ import {useNavigate} from "react-router-dom";
                   let data=response.data[0];
                   data.is_present=response.data.is_present;
                   setUserData(data)
-                  console.log('from backend',data);
 
               })
               .catch(function (error) {

@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react'
+import React, {createContext, useContext, useEffect, useState} from 'react'
 import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
@@ -12,6 +12,7 @@ import LoginForm from './Pages/LoginForm';
 import '../src/App.css'
 
 import Home from './Components/Home/Home'
+import Header from "./Components/Emplacement/Header";
 
 const roles = {
   superAdmin: "superAdmin",
@@ -23,6 +24,7 @@ const roles = {
 export const UserDataContext=createContext();
 
 function App() {
+
   let [connectedUserData,setUserData]=useState( JSON.parse(sessionStorage.getItem('connectedUserData')));
   useEffect(()=>{
     sessionStorage.setItem('connectedUserData',JSON.stringify(connectedUserData))

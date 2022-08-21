@@ -1,9 +1,17 @@
-export default function DateSpace(){
+export default function DateSpace({openspaceName,date,setDate}) {
+    console.log('date fromparent',date)
     return (
         <section className="flex justify-around text-2xl">
-            <div className="bg-white"><p><small className="text-pink-hot">&#60;</small>Open Space<small  className="text-pink-hot">&#62;</small></p></div>
-            <div className="bg-white"><p><small className="text-pink-hot">&#60;</small>Samedi 12 Out 2022<small  className="text-pink-hot">&#62;</small></p></div>
-           
+            <div className="bg-white">
+                <p>
+                    {openspaceName}
+                </p>
+            </div>
+            <div className="bg-white ">
+                <p>
+                    <input type="date" value={date} onChange={(e)=>{setDate(new Date(e.target.value))}}/>
+                </p>
+            </div>
         </section>
     )
 }

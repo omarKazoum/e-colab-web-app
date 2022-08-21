@@ -20,20 +20,20 @@ export default function Members(selectedDay1) {
             >
                 Search
             </label>
-            <div class="relative">
+            <div className="relative">
                 <input
                     type="search"
                     id="default-search"
-                    class="block px-4 py-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block px-4 py-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search..."
                     required
                 ></input>
                 <button
                     type="submit"
-                    class="text-white absolute  right-0 top-0 bottom-0 bg-pink-600 hover:bg-pink-700 focus:ring-4 font-medium rounded-lg text-sm px-2 py-2"
+                    className="text-white absolute  right-0 top-0 bottom-0 bg-pink-600 hover:bg-pink-700 focus:ring-4 font-medium rounded-lg text-sm px-2 py-2"
                 >
                     <svg
-                        class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                        className="w-5 h-5 text-gray-500 dark:text-gray-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
