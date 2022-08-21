@@ -50,8 +50,8 @@ export default function Members(selectedDay1) {
             </div>
         </form>
         <ol className="mt-4 space-y-2 text-sm leading-6 p-2 rounded-lg h-5/6 text-gray-500 bg-white">
-            {selectedDayMeetings.length > 0 ? (
-                selectedDayMeetings.map((meeting) => (
+            {selectedDayMeetings?.length > 0 ? (
+                selectedDayMeetings?.map((meeting) => (
                     <Meeting meeting={meeting} key={meeting.id} />
                 ))
             ) : (

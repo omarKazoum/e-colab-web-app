@@ -40,8 +40,10 @@ function classNames(...classes) {
 
 export default function Example(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  // let {connectedUserData}=useContext(UserDataContext);
-  // let navigate=useNavigate();
+
+  let {connectedUserData}=useContext(UserDataContext);
+  let navigate=useNavigate();
+
   // useEffect(()=>{
   //   if(connectedUserData==null)
   //      navigate("/login")
@@ -62,6 +64,7 @@ export default function Example(props) {
                 {props.cal1}
                 {props.cal2}
                 {props.Home}
+                {props.Emplacement}
                 {/* /End replace */}
 
           </main>
