@@ -8,10 +8,10 @@ use phpDocumentor\Reflection\PseudoTypes\PositiveInteger;
 
 class Request extends Model
 {
-    const REQUEST_STATUS_CANCELED=3;
-    const REQUEST_STATUS_CONFIRMED=1;
-    const REQUEST_STATUS_REJECTED=0;
-    const REQUEST_STATUS_PENDING=2;
+    const REQUEST_STATUS_CANCELED=4;
+    const REQUEST_STATUS_CONFIRMED=2;
+    const REQUEST_STATUS_REJECTED=3;
+    const REQUEST_STATUS_PENDING=1;
 
 
 

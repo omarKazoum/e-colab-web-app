@@ -40,8 +40,10 @@ function classNames(...classes) {
 
 export default function Example(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
   let {connectedUserData}=useContext(UserDataContext);
   let navigate=useNavigate();
+
   // useEffect(()=>{
   //   if(connectedUserData==null)
   //      navigate("/login")
