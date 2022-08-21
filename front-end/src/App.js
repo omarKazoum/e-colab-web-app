@@ -33,7 +33,7 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Dashboard  />}/> */}
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
-          <Route path="/" element={<Dashboard cal1={<Home />} />}/>
+          <Route path="/" element={<Dashboard Home={<Home />} />}/>
           <Route path="/calendar" element={<Dashboard calendar={<Calendar />} />}/>
           <Route path="/Demandes" element={<Dashboard demande={<Table />} />}/>
           <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
