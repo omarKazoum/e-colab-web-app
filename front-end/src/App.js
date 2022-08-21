@@ -10,7 +10,7 @@ import DownNavbar from '../src/Components/Sidebar/DownNavbar'
 import LoginForm from './Pages/LoginForm';
 import '../src/App.css'
 
-import Home from './Components/Home/card'
+import Home from './Components/Home/Home'
 
 const roles = {
   superAdmin: "superAdmin",

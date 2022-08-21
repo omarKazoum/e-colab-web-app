@@ -8,8 +8,79 @@ import {
   } from "@material-tailwind/react";
   import { Icon } from '@iconify/react';
   import PieChart from './chart.jsx'
+import { useState } from "react";
+import { useEffect,useContext } from "react";
+import {UserDataContext} from "../../App";
+import {useNavigate} from "react-router-dom";
+
+ 
 
   export default function Home() {
+      //TODO:: continue this // send request to backen dand hide button after that
+        const signallerSaPresence=(token)=>{
+          var axios = require('axios');
+          var qs = require('qs');
+          var data = qs.stringify({
+            
+          });
+          var config = {
+          method: 'get',
+          url: 'http://127.0.0.1:8000/api/signalerPresence',
+          headers: { 
+            'Accept': 'application/json', 
+            'Authorization': 'Bearer '+token
+          },
+          data : data
+          };
+
+          axios(config)
+          .then(function (response) {
+              console.log(JSON.stringify(response.data));
+              
+          })
+          .catch(function (error) {
+          console.log(error);
+          });
+
+    }
+
+
+      let {connectedUserData}=useContext(UserDataContext);
+      let navigate=useNavigate();
+      useEffect(()=>{
+      if(connectedUserData==null)
+          navigate("/login")
+      })
+    
+      let[userData,setUserData]=useState(null);
+      useEffect(()=>{
+              var axios = require('axios');
+              var qs = require('qs');
+              var data ='';
+              var config = {
+              method: 'post',
+              url: 'http://127.0.0.1:8000/api/profile/',
+              headers: { 
+              'Accept': 'application/json', 
+              'Authorization': 'Bearer '+connectedUserData.token, 
+              'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              data : data
+              };
+              axios(config)
+              .then(function (response) {
+                  let data=response.data[0];
+                  data.is_present=response.data.is_present;
+                  setUserData(data)
+                  console.log('from backend',data);
+
+              })
+              .catch(function (error) {
+                  console.log('from backend',error);
+                  setUserData(null)
+              });
+
+      },[]);
     return (
       <section className="width-screen" >
     <div className="flex sm:flex-col md:flex-row">
@@ -21,26 +92,28 @@ import {
           </div>  
          <div className="flex flex-col justify-items-center items-center w-2/6">  
          <Typography variant="h4" color="black" className="mb-2 font-sans">
-                First name LastName
+                {userData!=null?userData.first_name+' '+userData.last_name:'---'}
               </Typography>
           <div className="flex">
             <Icon icon="ant-design:mail-outlined" width={25} />
-            <p>email@email.com</p>
+            <p> {userData!=null?userData.email:'---'}</p>
           </div>
           <div className="flex">
-            <Icon icon="ant-design:phone-outlined" width="25" />
-            <p>+2124884885</p>
+           
           </div>
           <div className="flex">
             <Icon icon="gg:work-alt" width="25" />
-            <p>Stagiaire</p>
+            <p>{userData!=null?userData.job_type.label:'---'}</p>
           </div>
           <div className="flex">
             <Icon icon="akar-icons:people-group" width="25" />
-            <p>E-Business</p>
+            <p>{userData!=null?userData.team.buisness_unit.label:'---'}</p>
           </div>
           </div>
-          <button className="bg-blue-dark text-white px-3 rounded py-1 float-right h-10  w-2/6">Signalez Ma présence</button>
+          {(userData==null||userData.is_present.id==1)&&<button onClick={()=>{
+            signallerSaPresence(connectedUserData.token);
+          }} className="bg-blue-dark text-white px-3 rounded py-1 float-right h-10  w-2/6">Signalez Ma présence</button> }
+          
         </CardBody>
       </Card> 
 

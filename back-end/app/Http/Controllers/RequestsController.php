@@ -102,9 +102,9 @@ class RequestsController extends Controller
         if($teamMembersIds){
             $requests=\App\Models\Request::whereIn('creator_id',$teamMembersIds)->get();
         }
-        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->with(['type','status','creator:last_name,first_name'])->get();
+        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->with('type','status','creator')->get();
         $requests=$requests->merge($crossTeamRequests)->unique();
-        return response()->json([ $requests]);
+        return response()->json( $requests);
     }
 
     /**

@@ -14,7 +14,7 @@ class RequestStatusSeeder extends Seeder
      */
     public function run()
     {
-        $requestStatus=['En attente'=>'','accepté'=>'','refusé'=>''];
+        $requestStatus=['En attente'=>'','accepté'=>'','refusé'=>'','annulé'];
 
         foreach ($requestStatus as $label=>$des){
             $pt=new RequestStatus();
