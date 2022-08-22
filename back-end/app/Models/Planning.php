@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Planning extends Model
 {
+
     use HasFactory;
     function workMode(){
         return $this->belongsTo(WorkMode::class);
