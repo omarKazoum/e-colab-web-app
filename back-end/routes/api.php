@@ -32,9 +32,12 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
 
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
+    Route::get('/membre/requests/getCreateOptions/{date}',[RequestsController::class,'membreGetCreateOptions']);
+
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
     //for manager planning
     Route::get('/membre/planning/from/{fromDate}/to/{toDate}',[PlanningMembreController::class,'membreGetPlanningInterval']);
+
 });
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){

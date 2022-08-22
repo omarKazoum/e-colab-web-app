@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Planning;
 use App\Models\Position;
+use App\Models\PresenceType;
 use App\Models\RequestStatus;
 use App\Models\RequestType;
 use App\Models\User;
+use App\Models\WorkMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -166,4 +168,12 @@ class RequestsController extends Controller
             return response()->json(['message'=>'demande bien confirmée']);
         }
 
+    function membreGetCreateOptions($date){
+        $validator=Validator::make(['date'=>$date],['date'=>"regex:".PlanningManagerController::DATE_REGEX]);
+        $validator->validate();
+        return response()->json( \auth()->user()->team->positions()->leftJoin('plannings',function($join) use($date){
+            $join->on('plannings.position_id','=','positions.id');
+            $join->where('plannings.date',$date);
+        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->with('team','openspace')->get());
+    }
 }
