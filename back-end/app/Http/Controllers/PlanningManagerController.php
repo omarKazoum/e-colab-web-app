@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OpenSpace;
 use App\Models\Planning;
 use App\Models\Position;
+use App\Models\Team;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,9 +43,17 @@ class PlanningManagerController extends Controller
 
         $validator->validate();
         $openSpace=OpenSpace::find($openSpaceId);
-        $planning=Planning::where('date',$date)->whereIn('position_id',$openSpace->positions->pluck('id'))->with(['workMode','position','presenceType','user:id,first_name,last_name,email,role_id'])->get();
+
+        //$planning=Planning::where('date',$date)->whereIn('position_id',$openSpace->positions->pluck('id'))->with(['workMode','position','presenceType','user:id,first_name,last_name,email,role_id'])->get();
         $response['open_space']=$openSpace;
-        $response['plannings']=$planning;
+
+        $response['plannings']=$openSpace->positions()->leftJoin('plannings',function($join){
+            $join->on('plannings.position_id','=','positions.id');
+            $join->where('plannings.position_id','!=',NULL);
+            $join->whereNull('plannings.position_id');
+
+        })->where('plannings.date','=',"2022-08-22")->count();
+
         return response()->json($response);
 
     }
