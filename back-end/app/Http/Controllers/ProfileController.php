@@ -27,7 +27,7 @@ class ProfileController extends Controller
             }else{
                 $data['is_present']=['label'=>'non signalé','id'=>1];
             }
-            $data['taux_de_presence']=['presences'=>$present,'absences'=>$absent];
+            $data['taux_de_presences']=['presences'=>$present,'absences'=>$absent];
          //planning does not exis
         
             return response()->json($data);
