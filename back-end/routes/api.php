@@ -6,6 +6,8 @@ use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StatistiquesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlanningManagerController;
+use App\Http\Controllers\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,7 +30,6 @@ Route::group(['middleware' => ['auth:sanctum',]], function () {
 
 //for team members only
 Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
-
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);

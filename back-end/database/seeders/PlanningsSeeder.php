@@ -18,7 +18,7 @@ class PlanningsSeeder extends Seeder
     public function run()
     {
         $workModes=WorkMode::all()->pluck('id');
-        $memberUserId=User::where('role_id',Role::where('label','membre')->first()->id)->first()->id;
+        $memberUserId=User::where('role_id',Role::where('label','membre',)->first()->id)->first()->id;
         for($i=0;$i<50;$i++) {
             $p = new Planning();
             $d = now();

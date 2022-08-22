@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \App\Models\BuisnessUnit;
 
 class Team extends Model
 {
@@ -14,5 +15,8 @@ class Team extends Model
     }
     function members(){
         return $this->hasMany(User::class,'team_id');
+    }
+    function buisnessUnit(){
+        return $this->belongsTo(buisnessUnit::class,'buisness_unit_id');
     }
 }
