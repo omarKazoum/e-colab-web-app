@@ -60,7 +60,7 @@ class RequestsController extends Controller
         $planningRequest->type_id=$request->input('type_id');
         $planningRequest->position_id=$request->input('position_id');
         // let's make the newly created request in pending  for now
-        $planningRequest->request_status_id=2;
+        $planningRequest->request_status_id=1;
         $planningRequest->updated_at=now();
         //dd($request->input('type_id'));
         $planningRequest->save();
