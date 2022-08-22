@@ -93,7 +93,7 @@ import {useNavigate} from "react-router-dom";
           <div className="w-1/6">
             <div className="w-24 h-24 bg-black rounded-full "></div>
           </div>  
-         <div className="flex flex-col justify-items-center items-start w-2/6">
+         <div className="flex flex-col justify-items-center items-start w-2/6 gap-2">
          <Typography variant="h4" color="black" className="mb-2 font-sans">
                 {userData!=null?userData.first_name+' '+userData.last_name:'---'}
               </Typography>
