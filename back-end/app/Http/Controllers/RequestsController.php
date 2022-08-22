@@ -172,9 +172,11 @@ class RequestsController extends Controller
     function membreGetCreateOptions($date){
         $validator=Validator::make(['date'=>$date],['date'=>"regex:".PlanningManagerController::DATE_REGEX]);
         $validator->validate();
-        return response()->json( \auth()->user()->team->positions()->leftJoin('plannings',function($join) use($date){
+        $availablePositions=\auth()->user()->team->positions()->leftJoin('plannings',function($join) use($date){
             $join->on('plannings.position_id','=','positions.id');
             $join->where('plannings.date',$date);
-        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->with('team','openspace')->get());
+        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->with('team','openspace')->get();
+        $requestTypes=RequestType::all();
+        return response()->json( ['available_positions'=>$availablePositions,'request_types'=>$requestTypes]);
     }
 }
