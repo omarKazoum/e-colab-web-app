@@ -1,7 +1,7 @@
 import Header from "../Components/Emplacement/Header"
 import DateSpace from "../Components/Emplacement/DateSpace"
 import WorkSpace from "../Components/Emplacement/WorkSpace"
-import RightSideBar from '../Components/Planning/MembersComp'
+import Members from '../Components/Planning/MembersComp'
 import axios from 'axios';
 import {createContext, useEffect, useState} from "react";
 import {useContext} from "react";
@@ -73,7 +73,7 @@ export default function Emplacement() {
                 <WorkSpace data={openSpaceData}/>
                 </div>
                 <div className="w-1/5">
-                <RightSideBar/>
+                <Members data={openSpaceData} />
                     </div>
         </main>
     )
