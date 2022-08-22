@@ -50,7 +50,9 @@ class PlanningManagerController extends Controller
         $response['plannings']=$openSpace->positions()->leftJoin('plannings',function($join) use($date){
             $join->on('plannings.position_id','=','positions.id');
             $join->where('plannings.date','=',$date);
-
+            $join->leftJoin('users',function($join2){
+                $join2->on('plannings.user_id','=','users.id');
+            });
         })->get();
 
         return response()->json($response);
