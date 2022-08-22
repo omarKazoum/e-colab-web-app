@@ -1,6 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { UserDataContext } from "../../App";
+import { useRef } from "react";
 
 // const handleAdd = async (e) => {
 //   e.preventDefault();
@@ -22,31 +25,45 @@ export default function Modal({ visible, showMethod }) {
   const [date, setDate] = useState("");
   const [mode, setMode] = useState("");
   const [position, setPosition] = useState("");
+  const [err, setErr] = useState(null);
+
+  let { connectedUserData } = useContext(UserDataContext);
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (connectedUserData == null) navigate("/login");
+    console.log(connectedUserData);
+  }, []);
   
   const handleAdd = async (e) => {
     e.preventDefault();
-    var data = JSON.stringify({
-      date: date,
-      mode: mode,
-      position: position,
-    })
-    var config = {
-      method: 'post',
-      url: 'http://127.0.0.1:8000/api/membre/requests/create',
-      headers: { 
-        'Accept': 'application/json', 
-        'Authorization': 'Bearer 1|YuWQCza1e69SJZcfnPpFdVBYquP0KlKlEHVTvmgY', 
-        data
-      },
-      data : data
-    };
-    axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    if(mode === "" || position=== "") {
+      setErr("some field is empty");
+    }else {
+      var data = ({
+        date: date,
+        type_id: mode,
+        position_id: position,
+      })
+      var config = {
+        method: 'post',
+        url: 'http://127.0.0.1:8000/api/membre/requests/create',
+        headers: { 
+          'Accept': 'application/json', 
+          'Authorization': 'Bearer ' + connectedUserData.token, 
+          data
+        },
+        data : data
+      };
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        // Object.values()
+        console.log(data);
+        console.log(error);
+      });
+    }
     // try {
     //   let res = await fetch("https://httpbin.org/post", {
     //     method: "POST",
@@ -80,6 +97,15 @@ export default function Modal({ visible, showMethod }) {
           <h2 className="px-2 pb-3 font-bold">Créé une nouvelle demande</h2>
         </div>
         <div className=" p-5 ">
+          <div class="alert alert-error shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Error! Task failed successfully.</span>
+          </div>
+        </div>
+          { err ? 
+          (<span class="alert alert-error shadow-lg"> {err} </span>) 
+          : null}
           <form onSubmit={handleAdd}>
             <div class="flex flex-col p-2 items-center">
               <label htmlfor="Date de la demande" class="mb-2 font-semibold justify-items-start w-full max-w-lg ">Date de la demande</label>
@@ -88,19 +114,21 @@ export default function Modal({ visible, showMethod }) {
 
             <div class="flex flex-col p-2 items-center">
               <label htmlfor="text" class="mb-2 font-semibold w-full max-w-lg">Mode de travail</label>
-              <select id="mode" onChange={(e) => setMode(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
-                <option disabled>Mode de travail</option>
-                <option value="teletravail">Télétravail</option>
-                <option value="site">Sur site</option>
+              <select required id="mode" onChange={(e) => setMode(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
+                <option disabled selected>Select Mode de travail</option>
+                <option value="2">Télétravail</option>
+                <option value="1">Sur site</option>
               </select>
             </div>
 
             <div class="flex flex-col p-2 items-center">
               <label htmlfor="position" class="mb-2 font-semibold w-full max-w-lg">Position</label>
-              <select id="position" onChange={(e) => setPosition(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
-                <option disabled>Position</option>
-                <option value="teletravail">Télétravail</option>
-                <option value="site">Sur site</option>
+              <select required id="position" onChange={(e) => setPosition(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
+                <option disabled selected>Select Position</option>
+                <option value="1">Pos 1</option>
+                <option value="2">Pos 2</option>
+                <option value="3">Pos 3</option>
+                <option value="4">Pos 4</option>
               </select>
             </div>
             <div className="flex justify-around py-4">
@@ -112,7 +140,7 @@ export default function Modal({ visible, showMethod }) {
           >
             Annuler
           </button>
-          <button className="bg-cyan-600 text-white rounded-3xl p-1 px-10">
+          <button className="bg-cyan-600 text-white rounded-3xl p-1 px-10" type="submit">
             Confirmer
           </button>
         </div>
