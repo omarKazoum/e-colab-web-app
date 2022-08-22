@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Planning;
 use App\Models\Position;
+use App\Models\PresenceType;
 use App\Models\RequestStatus;
 use App\Models\RequestType;
 use App\Models\User;
+use App\Models\WorkMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +34,7 @@ class RequestsController extends Controller
         $validator=Validator::make($request->all(),
             ['type_id'=>"bail|required",
                 'position_id'=>'bail|required_if:type_id,1',
-                'date'=>'bail|required|date|after_or_equal:'.now()]);
+                'date'=>['bail','required','after_or_equal:'.now(),'regex:'.PlanningManagerController::DATE_REGEX]]);
             $validator->after(function($validator){
                     $validated=$validator->validated();
                     if(isset($validated['type_id']) AND !RequestType::all()->pluck('id')->contains($validated['type_id'])){
@@ -52,12 +54,13 @@ class RequestsController extends Controller
         $validator->validate();
         //if the data is valid let's create the request
         $planningRequest=new \App\Models\Request;
+        $planningRequest->date=$request->input('date');
         $planningRequest->created_at=now();
         $planningRequest->creator_id=auth()->user()->id;
         $planningRequest->type_id=$request->input('type_id');
         $planningRequest->position_id=$request->input('position_id');
         // let's make the newly created request in pending  for now
-        $planningRequest->request_status_id=2;
+        $planningRequest->request_status_id=1;
         $planningRequest->updated_at=now();
         //dd($request->input('type_id'));
         $planningRequest->save();
@@ -102,9 +105,9 @@ class RequestsController extends Controller
         if($teamMembersIds){
             $requests=\App\Models\Request::whereIn('creator_id',$teamMembersIds)->get();
         }
-        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->with(['type','status','creator:last_name,first_name'])->get();
+        $crossTeamRequests=\App\Models\Request::whereIn('position_id',auth()->user()->team->positions->pluck('id'))->with('type','status','creator')->get();
         $requests=$requests->merge($crossTeamRequests)->unique();
-        return response()->json([ $requests]);
+        return response()->json( $requests);
     }
 
     /**
@@ -166,4 +169,14 @@ class RequestsController extends Controller
             return response()->json(['message'=>'demande bien confirmée']);
         }
 
+    function membreGetCreateOptions($date){
+        $validator=Validator::make(['date'=>$date],['date'=>"regex:".PlanningManagerController::DATE_REGEX]);
+        $validator->validate();
+        $availablePositions=\auth()->user()->team->positions()->leftJoin('plannings',function($join) use($date){
+            $join->on('plannings.position_id','=','positions.id');
+            $join->where('plannings.date',$date);
+        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->with('team','openspace')->get();
+        $requestTypes=RequestType::all();
+        return response()->json( ['available_positions'=>$availablePositions,'request_types'=>$requestTypes]);
+    }
 }

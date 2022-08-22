@@ -35,7 +35,9 @@ import {useNavigate} from "react-router-dom";
 
           axios(config)
           .then(function (response) {
-              console.log(JSON.stringify(response.data));
+              console.log(response.data);
+              userData.is_present=true;
+              setUserData(userData)
               
           })
           .catch(function (error) {
@@ -50,6 +52,7 @@ import {useNavigate} from "react-router-dom";
       useEffect(()=>{
       if(connectedUserData==null)
           navigate("/login")
+          return
       })
     
       let[userData,setUserData]=useState(null);
@@ -72,7 +75,7 @@ import {useNavigate} from "react-router-dom";
                   let data=response.data[0];
                   data.is_present=response.data.is_present;
                   setUserData(data)
-                  console.log('from backend',data);
+                  console.log(data)
 
               })
               .catch(function (error) {
@@ -87,10 +90,10 @@ import {useNavigate} from "react-router-dom";
       <div className="bg-blue-page sm:w-full lg:w-10/12">
       <Card className="bg-gradient-to-r from-blue-principale to-blue-grad mx-5 w-10/12 h-2/6 mt-5">
         <CardBody className="text-center text-white flex sm:flex-col lg:flex-row lg:h-full">
-          <div className="w-2/6">
+          <div className="w-1/6">
             <div className="w-24 h-24 bg-black rounded-full "></div>
           </div>  
-         <div className="flex flex-col justify-items-center items-center w-2/6">  
+         <div className="flex flex-col justify-items-center items-start w-2/6 gap-2">
          <Typography variant="h4" color="black" className="mb-2 font-sans">
                 {userData!=null?userData.first_name+' '+userData.last_name:'---'}
               </Typography>
@@ -107,7 +110,7 @@ import {useNavigate} from "react-router-dom";
           </div>
           <div className="flex">
             <Icon icon="akar-icons:people-group" width="25" />
-            <p>{userData!=null?userData.team.buisness_unit.label:'---'}</p>
+            <p>{userData!=null?userData.role.label:'---'}</p>
           </div>
           </div>
           {(userData==null||userData.is_present.id==1)&&<button onClick={()=>{

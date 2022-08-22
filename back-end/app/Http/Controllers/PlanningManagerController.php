@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OpenSpace;
 use App\Models\Planning;
 use App\Models\Position;
+use App\Models\Team;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class PlanningManagerController extends Controller
         $validator->validate();
         //teamMembersData
         $response['team_members']=User::where('team_id',auth()->user()->team->id)->get();
-        $response['plannings']=Planning::whereBetween('date',[Carbon::createFromFormat('Y-m-d',$fromDate),Carbon::createFromFormat('Y-m-d',$toDate)])->whereIn('user_id',$response['team_members']->pluck('id'))->with('position','user:first_name,last_name,id,email','jobType')->get();
+        $response['plannings']=Planning::whereBetween('date',[Carbon::createFromFormat('Y-m-d',$fromDate),Carbon::createFromFormat('Y-m-d',$toDate)])->whereIn('user_id',$response['team_members']->pluck('id'))->with('position','user:first_name,last_name,id,email')->get();
         return response()->json($response);
     }
 
@@ -42,9 +43,18 @@ class PlanningManagerController extends Controller
 
         $validator->validate();
         $openSpace=OpenSpace::find($openSpaceId);
-        $planning=Planning::where('date',$date)->whereIn('position_id',$openSpace->positions->pluck('id'))->with(['workMode','position','presenceType','user:id,first_name,last_name,email,role_id'])->get();
+
+        //$planning=Planning::where('date',$date)->whereIn('position_id',$openSpace->positions->pluck('id'))->with(['workMode','position','presenceType','user:id,first_name,last_name,email,role_id'])->get();
         $response['open_space']=$openSpace;
-        $response['plannings']=$planning;
+
+        $response['plannings']=$openSpace->positions()->leftJoin('plannings',function($join) use($date){
+            $join->on('plannings.position_id','=','positions.id');
+            $join->where('plannings.date','=',$date);
+            $join->leftJoin('users',function($join2){
+                $join2->on('plannings.user_id','=','users.id');
+            });
+        })->get();
+
         return response()->json($response);
 
     }
