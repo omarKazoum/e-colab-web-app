@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 // const handleAdd = async (e) => {
 //   e.preventDefault();
@@ -16,36 +17,63 @@ import { useState } from "react";
   // }
 // } 
 
-let handleAdd = async (e) => {
-  // e.preventDefault();
-  // try {
+export default function Modal({ visible, showMethod }) {
+  
+  const [date, setDate] = useState("");
+  const [mode, setMode] = useState("");
+  const [position, setPosition] = useState("");
+  
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    var data = JSON.stringify({
+      date: date,
+      mode: mode,
+      position: position,
+    })
+    var config = {
+      method: 'post',
+      url: 'http://127.0.0.1:8000/api/membre/requests/create',
+      headers: { 
+        'Accept': 'application/json', 
+        'Authorization': 'Bearer 1|YuWQCza1e69SJZcfnPpFdVBYquP0KlKlEHVTvmgY', 
+        data
+      },
+      data : data
+    };
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    // try {
     //   let res = await fetch("https://httpbin.org/post", {
-      //     method: "POST",
-      body= JSON.stringify({
-        date: date,
-        mode: mode,
-        position: position,
-      })
-//       ,
-//     });
-//     let resJson = await res.json();
-//     if (res.status === 200) {
-  //       setName("");
-  //       setEmail("");
-//       setMessage("User created successfully");
-//     } else {
-  //       setMessage("Some error occured");
-  //     }
-  //   } catch (err) {
-    //     console.log(err);
+    //     method: "POST",
+    //     body: 
+    //     // console.log(
+    //        JSON.stringify({
+    //       date: date,
+    //       mode: mode,
+    //       position: position,
+    //     })
+    //     // );
+    //     ,
+    //   });
+    //   let resJson = await res.json();
+    //   if (res.status === 200) {
+    //     setName("");
+    //     setEmail("");
+    //     setMessage("User created successfully");
+    //   } else {
+    //     setMessage("Some error occured");
     //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
   
-  export default function Modal({ visible, showMethod }) {
-    const [date, setDate] = useState("");
-    const [mode, setMode] = useState("");
-    const [position, setPosition] = useState("");
-    let content = (
+  let content = (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
       <div className="bg-white lg:w-2/4 divide-y-4 divide-cyan-600 rounded">
         <div className=" pt-5 px-5">
@@ -60,8 +88,8 @@ let handleAdd = async (e) => {
 
             <div class="flex flex-col p-2 items-center">
               <label htmlfor="text" class="mb-2 font-semibold w-full max-w-lg">Mode de travail</label>
-              <select id="mode" value={mode} onChange={(e) => setMode(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
-                <option value="">Mode de travail</option>
+              <select id="mode" onChange={(e) => setMode(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
+                <option disabled>Mode de travail</option>
                 <option value="teletravail">Télétravail</option>
                 <option value="site">Sur site</option>
               </select>
@@ -69,15 +97,13 @@ let handleAdd = async (e) => {
 
             <div class="flex flex-col p-2 items-center">
               <label htmlfor="position" class="mb-2 font-semibold w-full max-w-lg">Position</label>
-              <select id="position" value={position} onChange={(e) => setPosition(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
-                <option value="">Position</option>
+              <select id="position" onChange={(e) => setPosition(e.target.value)} class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40" >
+                <option disabled>Position</option>
                 <option value="teletravail">Télétravail</option>
                 <option value="site">Sur site</option>
               </select>
             </div>
-          </form>
-
-        <div className="flex justify-around py-4">
+            <div className="flex justify-around py-4">
           <button
             className="bg-gray-500 text-white text-sm rounded-3xl p-1 px-10"
             onClick={() => {
@@ -90,6 +116,9 @@ let handleAdd = async (e) => {
             Confirmer
           </button>
         </div>
+          </form>
+
+        
         </div>
       </div>
     </div>
