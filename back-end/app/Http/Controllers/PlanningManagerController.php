@@ -47,12 +47,11 @@ class PlanningManagerController extends Controller
         //$planning=Planning::where('date',$date)->whereIn('position_id',$openSpace->positions->pluck('id'))->with(['workMode','position','presenceType','user:id,first_name,last_name,email,role_id'])->get();
         $response['open_space']=$openSpace;
 
-        $response['plannings']=$openSpace->positions()->leftJoin('plannings',function($join){
+        $response['plannings']=$openSpace->positions()->leftJoin('plannings',function($join) use($date){
             $join->on('plannings.position_id','=','positions.id');
-            $join->where('plannings.position_id','!=',NULL);
-            $join->whereNull('plannings.position_id');
+            $join->where('plannings.date','=',$date);
 
-        })->where('plannings.date','=',"2022-08-22")->count();
+        })->get();
 
         return response()->json($response);
 
