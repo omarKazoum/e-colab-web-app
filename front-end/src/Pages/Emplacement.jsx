@@ -24,12 +24,6 @@ function dateToFormat(date,format){
     return  format;
 
 }
-const MEMBRE_ROLE_ID=1;
-const MANAGER_ROLE_ID=2;
-const RH_ROLE_ID=3;
-const CHEF_BU_ROLE_ID=4;
-
-
 
 export default function Emplacement() {
     //use satae to hold the open space data from the server for the date selected
