@@ -26,7 +26,7 @@ let navigation = [
   { name: 'Profil', href: '/', icon: UserIcon, current: true },
   { name: 'Demandes', href: '/demandes', icon: PencilAltIcon, current: false },
   { name: 'Planning', href: '/calendar', icon: CalendarIcon, current: false },
-    { name: 'Statistiques', href: '/statistiques', icon: CalendarIcon, current: false },
+    {name: 'Statistiques', href: '/statistiques', icon: CalendarIcon, current: false },
 
   // { name: 'Dashboard', href: '#', icon: LogoutIcon, current: false },
   // { name: 'Team', href: '#', icon: UsersIcon, current: false },
@@ -47,9 +47,18 @@ export default function Sidebar({userRole}) {
     let {connectedUserData,setUserData}=useContext(UserDataContext);
     const navigate=useNavigate();
     console.log('user role from sidebar',userRole)
-  //   if(! userRole in [RH_ROLE_ID,CHEF_BU_ROLE_ID])
-  //           navigation=navigation.filter(item=>item.name!=)
-            return (
+    //if the user does not have the role rh or head of bu we remove stats from the menu
+
+    if([RH_ROLE_ID,CHEF_BU_ROLE_ID].includes(userRole)) {
+        //rh
+        navigation.splice(1, 2)
+        console.log('the user is a rh ')
+    }
+    else{
+        //membre or manager
+        navigation.splice(3,1)
+        console.log('the user is a membre ');}
+    return (
 
       <div className="hidden md:flex md:w-24 md:flex-col md:fixed md:inset-y-0">
         {/* Sidebar component, swap this element with another sidebar if you like */}
