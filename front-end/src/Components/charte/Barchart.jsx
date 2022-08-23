@@ -35,7 +35,7 @@ const BarChart = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className="w-2/3 mt-10" >
+      <div className="w-2/3 mt-20 h-4/6" >
         <Bar options={{ maintainAspectRatio: false }} data={data} />
       </div>
     </div>
