@@ -48,12 +48,11 @@ export default function Example(props) {
     if(connectedUserData==null)
        navigate("/login")
   })
-
   return (
     <>
       <div>
         {/* --------------- Static sidebar for desktop ---------------*/}
-            <Sidebar />
+            <Sidebar userRole={connectedUserData!=null?connectedUserData.user.role_id:null} />
 
         {/*--------------- content space --------------- */}
         <div className="md:pl-24 flex flex-col flex-1">
@@ -62,7 +61,6 @@ export default function Example(props) {
                 {props.calendar}
                 {props.demande}
                 {props.Home}
-
                 {props.Emplacement}
                 {/* /End replace */}
 

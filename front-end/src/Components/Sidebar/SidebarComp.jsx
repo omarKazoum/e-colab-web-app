@@ -22,45 +22,40 @@ import {
 import {UserDataContext} from "../../App";
 import {useNavigate} from "react-router-dom";
 
-const navigation = [
+let navigation = [
   { name: 'Profil', href: '/', icon: UserIcon, current: true },
   { name: 'Demandes', href: '/demandes', icon: PencilAltIcon, current: false },
   { name: 'Planning', href: '/calendar', icon: CalendarIcon, current: false },
+    { name: 'Statistiques', href: '/statistiques', icon: CalendarIcon, current: false },
+
   // { name: 'Dashboard', href: '#', icon: LogoutIcon, current: false },
   // { name: 'Team', href: '#', icon: UsersIcon, current: false },
   // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   // { name: 'Documents', href: '#', icon: InboxIcon, current: false },
   // { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ]
+const MEMBRE_ROLE_ID=1;
+const MANAGER_ROLE_ID=2;
+const RH_ROLE_ID=3;
+const CHEF_BU_ROLE_ID=4;
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Sidebar() {
-  let {connectedUserData,setUserData}=useContext(UserDataContext);
-  const navigate=useNavigate();
+export default function Sidebar({userRole}) {
+    let {connectedUserData,setUserData}=useContext(UserDataContext);
+    const navigate=useNavigate();
+    console.log('user role from sidebar',userRole)
+  //   if(! userRole in [RH_ROLE_ID,CHEF_BU_ROLE_ID])
+  //           navigation=navigation.filter(item=>item.name!=)
+            return (
 
-  return (
-    <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html className="h-full bg-gray-100">
-        <body className="h-full">
-        ```
-      */}
       <div className="hidden md:flex md:w-24 md:flex-col md:fixed md:inset-y-0">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 my-3 px-4">
-              {/* <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                alt="Workflow"
-              /> */}
               <Link to="#" className="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
                 <span className="text-l font-black leading-none text-blue-700 select-none logo whitespace-nowrap ">E-Collab</span>
               </Link>
@@ -122,6 +117,5 @@ export default function Sidebar() {
           </div>
         </div>
       </div>      
-    </>
   )
 }
