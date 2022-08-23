@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
 import Callendar from './Components/Planning/PlaningComp'
-import Test from './Components/Planning/Test'
 import Emplacement from './Pages/Emplacement';
 import Table from './Components/Table/TableDemandes'
 
@@ -41,14 +40,13 @@ function App() {
           <Route path="/calendar" element={<Dashboard calendar={<Callendar />} />}/>
           <Route path="/Demandes" element={<Dashboard demande={<Table />} />}/>
           <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
-          <Route path="/Test" element={<Dashboard Emplacement={<Test />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
           <Route path="/Planning" element={<Callendar />} />
           <Route path="/statistiques" element={<Statistiques />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/Down" element={<DownNavbar />} />
-          
+
           {/* page not found */}
           <Route path='*' element={<div  style={{color:"red"}}>page not found</div>} />
 
