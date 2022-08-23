@@ -23,7 +23,7 @@ export default function CharteStatistique1() {
     )
  
     return(
-        <div className=' h-1/4 px-6 py-2'>
+        <div className='bg-white h-full  rounded-lg px-6 py-2'>
             <h1 className='text-xl px-6'>taux de presence ce mois</h1>
             <Line data={data} >Hello</Line>
         </div>
