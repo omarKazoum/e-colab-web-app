@@ -3,6 +3,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import "./../index.css"
 import Sidebar from './../Components/Sidebar/SidebarComp'
+// import Callendar from '../Me/PlaningComp3'
+import Statistiques from './Statistiques'
 
 import {
   CalendarIcon,
@@ -48,21 +50,21 @@ export default function Example(props) {
     if(connectedUserData==null)
        navigate("/login")
   })
-
   return (
     <>
       <div>
         {/* --------------- Static sidebar for desktop ---------------*/}
-            <Sidebar />
+            <Sidebar userRole={connectedUserData!=null?connectedUserData.user.role_id:null} />
 
         {/*--------------- content space --------------- */}
         <div className="md:pl-24 flex flex-col flex-1">
           <main className="flex-1">
 
-                {props.calendar}
-                {props.demande}
+                {/* Replace with your content */}
+                
+                {props.cal1}
+                {props.cal2}
                 {props.Home}
-
                 {props.Emplacement}
                 {/* /End replace */}
 

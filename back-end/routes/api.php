@@ -29,8 +29,8 @@ Route::group(['middleware' => ['auth:sanctum',]], function () {
 
 //for team members only
 Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
-
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
+    
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/getCreateOptions/{date}',[RequestsController::class,'membreGetCreateOptions']);
 
@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     // for managing requests
+    
     Route::get('/manager/requests/',[RequestsController::class, 'managerGetAll']);
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
@@ -56,13 +57,12 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 //for rh or head of bu only
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
     Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
-
+    Route::get('/statistiques/managerCount',[StatistiquesController::class,'managerCount']);
+    Route::get('/statistiques/equipesCount',[StatistiquesController::class,'equipesCount']);
+    Route::get('/statistiques/chartMethode',[StatistiquesController::class,'chartMethode']);
 });
 //partie profile
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){
     Route::post("/profile",[ProfileController::class, 'profileInfo']);
     Route::get('/signalerPresence',[ProfileController::class,'signalerPresence']);
-});
-Route::get('/test/',function(){
-   return ['message'=>'this is a test message!'];
 });
