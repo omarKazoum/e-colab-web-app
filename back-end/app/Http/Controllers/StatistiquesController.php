@@ -13,4 +13,6 @@ class StatistiquesController extends Controller
         return response()->json([]);
     }
 
+    
+
 }
