@@ -61,9 +61,9 @@ export default function Example(props) {
           <main className="flex-1">
 
                 {/* Replace with your content */}
-                
-                {props.cal1}
-                {props.cal2}
+
+                {props.calendar}
+                {props.demande}
                 {props.Home}
                 {props.Emplacement}
                 {/* /End replace */}
