@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 // import { Dialog, Transition } from '@headlessui/react'
 import "./../../index.css"
 import {
@@ -22,9 +23,9 @@ import {UserDataContext} from "../../App";
 import {useNavigate} from "react-router-dom";
 
 const navigation = [
-  { name: 'Profil', href: '#', icon: UserIcon, current: true },
-  { name: 'Demandes', href: '#', icon: PencilAltIcon, current: false },
-  { name: 'Planning', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Profil', href: '/', icon: UserIcon, current: true },
+  { name: 'Demandes', href: '/demandes', icon: PencilAltIcon, current: false },
+  { name: 'Planning', href: '/calendar', icon: CalendarIcon, current: false },
   // { name: 'Dashboard', href: '#', icon: LogoutIcon, current: false },
   // { name: 'Team', href: '#', icon: UsersIcon, current: false },
   // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
@@ -60,16 +61,16 @@ export default function Sidebar() {
                 src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
                 alt="Workflow"
               /> */}
-              <a href="#" className="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
+              <Link to="#" className="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
                 <span className="text-l font-black leading-none text-blue-700 select-none logo whitespace-nowrap ">E-Collab</span>
-              </a>
+              </Link>
               {/* logo space */}
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
                     item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                     'group flex flex-col items-center px-2 py-2 text-sm font-medium rounded-md'
@@ -83,7 +84,7 @@ export default function Sidebar() {
                     aria-hidden="true"
                   />
                   {item.name}    
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -92,8 +93,8 @@ export default function Sidebar() {
                 <div>
                   <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
                     
-                      <a
-                        href="#"
+                      
+                      <div
                         className={classNames(
                           // item.current ? 'bg-gray-100 text-gray-900' :
                             'text-red-500 hover:bg-grey-500 hover:text-red-600',
@@ -113,19 +114,10 @@ export default function Sidebar() {
                           aria-hidden="true"
                         />
                         Logout
-                      </a>
+                      </div>
                     
                   </nav>
                   </div>
-                  {/* <img
-                    className="inline-block h-9 w-9 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                </div> */}
             </a>
           </div>
         </div>

@@ -14,7 +14,7 @@ class PresenceTypesSeeder extends Seeder
      */
     public function run()
     {
-        $pts=['présent','absent'];
+        $pts=['non signalé','présent','absent'];
         foreach ($pts as $ptn){
             $pt=new PresenceType();
             $pt->label=$ptn;

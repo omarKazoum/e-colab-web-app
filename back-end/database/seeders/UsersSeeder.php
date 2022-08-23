@@ -19,18 +19,6 @@ class UsersSeeder extends Seeder
     public function run()
     {
         //TODO:: continue this
-        //a membre user
-        $u1=new User();
-        $u1->role_id=Role::where('label','membre')->first()->id;
-        $u1->team_id=Team::first()->id;
-        $u1->first_name="omar";
-        $u1->last_name="kazoum";
-        $u1->email="omar.kazoum@cegedim.com";
-        $u1->password_hash=Hash::make('12345');
-        $u1->remember_token='';
-        $u1->remember_token_created_at=now();
-        $u1->job_type_id=JobType::first()->id;
-        $u1->save();
         //a manager user
         $u1=new User();
         $u1->role_id=Role::where('label','manager')->first()->id;
@@ -55,8 +43,28 @@ class UsersSeeder extends Seeder
         $u1->remember_token_created_at=now();
         $u1->job_type_id=JobType::first()->id;
         $u1->save();
-
-
+        $devGeeks[]=['first_name'=>'omar', 'last_name'=>'kazoum'];
+        $devGeeks[]=['first_name'=>'safae', 'last_name'=>'balha'];
+        $devGeeks[]=['first_name'=>'badereddine', 'last_name'=>'abourial'];
+        $devGeeks[]=['first_name'=>'wassim', 'last_name'=>'lhlali'];
+        $devGeeks[]=['first_name'=>'ibrahim', 'last_name'=>'benjermoun'];
+        // devGeeks members
+        for($i=0;$i<count($devGeeks) ;$i++){
+            $membre=$devGeeks[$i];
+            /*echo($membre['last_name']);
+            continue;*/
+            $u=new User();
+            $u->role_id=Role::where('label','membre')->first()->id;
+            $u->team_id=Team::first()->id;
+            $u->first_name=$membre['first_name'];
+            $u->last_name=$membre['last_name'];
+            $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
+            $u->password_hash=Hash::make('12345');
+            $u->remember_token='';
+            $u->remember_token_created_at=now();
+            $u->job_type_id=JobType::first()->id;
+            $u->save();
+        }
 
     }
 }
