@@ -29,7 +29,6 @@ Route::group(['middleware' => ['auth:sanctum',]], function () {
 
 //for team members only
 Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
-
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
     
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
@@ -66,7 +65,4 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){
     Route::post("/profile",[ProfileController::class, 'profileInfo']);
     Route::get('/signalerPresence',[ProfileController::class,'signalerPresence']);
-});
-Route::get('/test/',function(){
-   return ['message'=>'this is a test message!'];
 });
