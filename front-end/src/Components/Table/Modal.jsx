@@ -5,25 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../../App";
 import { useRef } from "react";
 
-// const handleAdd = async (e) => {
-//   e.preventDefault();
-//   console.log(formData);
-// try {
-//   const res = await axios.post("http://127.0.0.1:8000/api/login", formData);
-//   //login success
-//   setUserData(res.data);
-//   console.log(res.data);
-// }catch(er){
-//   //login failed
-//   console.log(er)
-//   setError(er.response.data.message);
-// }
-// }
-
 export default function Modal({ visible, showMethod, refreshParent }) {
   const [date, setDate] = useState("");
   const [mode, setMode] = useState("");
-  const [position, setPosition] = useState("");
+  const [position, setPosition] = useState("1");
   const [err, setErr] = useState(null);
   const [displayDiv, setDisplayDiv] = useState(false);
 
@@ -34,6 +19,11 @@ export default function Modal({ visible, showMethod, refreshParent }) {
     console.log(connectedUserData);
   }, []);
 
+function dateFormat(date){
+    var date = "03-11-2014";
+    var datef = date.split("-").reverse().join("-");
+  return  datef;
+};
   const handleAdd = async (e) => {
     e.preventDefault();
     if (mode === "" ) {
@@ -66,6 +56,35 @@ export default function Modal({ visible, showMethod, refreshParent }) {
           console.log(error);
         });
     }
+  };
+
+  const handleAvailable = async (e) => {
+    e.preventDefault();
+      // var data = {
+      //   date: date,
+      //   type_id: mode,
+      //   position_id: position,
+      // };
+      var config = {
+        method: "post",
+        url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/"+date,
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + connectedUserData.token,
+        },
+      };
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          refreshParent();
+          showMethod(false);
+        })
+        .catch(function (error) {
+          // Object.values()
+          // console.log(data);
+          console.log(error);
+        });
+    
   };
 
   let content = (

@@ -195,15 +195,15 @@ export default function Example() {
                   </time>
                 </button>
 
-                      <div className="w-1 h-1 mx-auto mt-1">
-                        {meetings.some((meeting) =>
-                          isSameDay(parseISO(meeting.startDatetime), day)
+                <div className="w-1 h-1 mx-auto mt-1">
+                  {meetings.some((meeting) =>
+                    isSameDay(parseISO(meeting.startDatetime), day)
                   ) && <div className="w-1 h-1 rounded-full bg-sky-500"></div>}
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
         <Members selectedDay1={selectedDayMeetings} />
       </div>
     </div>
