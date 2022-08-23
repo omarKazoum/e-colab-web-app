@@ -2,7 +2,7 @@ import React, {createContext, useContext, useEffect, useState} from 'react'
 import { Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard'
 import Sidebar from './Components/Sidebar/SidebarComp'
-import Calendar from './Components/Planning/PlaningComp'
+import Callendar from './Components/Planning/PlaningComp'
 import Emplacement from './Pages/Emplacement';
 import Table from './Components/Table/TableDemandes'
 
@@ -37,13 +37,13 @@ function App() {
           {/* <Route path="/" element={<Dashboard  />}/> */}
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
           <Route path="/" element={<Dashboard Home={<Home />} />}/>
-          <Route path="/calendar" element={<Dashboard calendar={<Calendar />} />}/>
+          <Route path="/calendar" element={<Dashboard calendar={<Callendar />} />}/>
           <Route path="/Demandes" element={<Dashboard demande={<Table />} />}/>
           <Route path="/emplacement" element={<Dashboard Emplacement={<Emplacement />} />}/>
 
           <Route path="/Login" element={<LoginForm />}/>
           <Route path="/Planning" element={<Callendar />} />
-        <Route path="/statistiques" element={<Statistiques />} />
+          <Route path="/statistiques" element={<Statistiques />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/Down" element={<DownNavbar />} />
 
