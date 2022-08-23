@@ -91,7 +91,7 @@ class PlanningController extends Controller
             if(!Position::where('id',$validated['position_id'])->count()>0){
                 $validator->errors()->add('position_id','invalid position id !');
             }else{
-                $planningForthisDayForThisPosition=Planning::where('date',)
+                $planningForthisDayForThisPosition=Planning::where('date',);
             }
         });
         $validator->validate();

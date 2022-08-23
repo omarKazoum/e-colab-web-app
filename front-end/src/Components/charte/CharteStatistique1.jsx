@@ -11,7 +11,7 @@ export default function CharteStatistique1() {
         datasets:[
             {
                 label:"Fdataset",
-                data:[12, 5, 26, 23, 1,5,7,8,6,2,4],
+                data:[12, 5, 26, 23, 1,5,7,8,6,2,4],   //:{ $nbrPresence}
                 backgroundColor:'gray',
                 borderColor:'blue',
                 tension:'0.4',

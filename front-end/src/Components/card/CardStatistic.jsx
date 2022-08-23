@@ -9,7 +9,7 @@ export default function CardStatistic() {
            <div className=" flex flex-col gap-10">
             <UserIcon className="w-10 h-10" aria-hidden="true" />
               <h3 className=''>Collaborateurs</h3>
-              <p className="text-5xl text-gray-100">1000</p>
+              <p className="text-5xl text-gray-100">numbers</p>
            </div>
            
         </div>

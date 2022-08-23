@@ -28,12 +28,14 @@ Route::group(['middleware' => ['auth:sanctum',]], function () {
 Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
 
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
+    
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
 });
 // for team managers only
 Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     // for managing requests
+    
     Route::get('/manager/requests/',[RequestsController::class, 'managerGetAll']);
     Route::get('/manager/requests/reject/{requestId}',[RequestsController::class,'managerRejectRequest']);
     Route::get('/manager/requests/confirm/{requestId}',[RequestsController::class,'managerConfirmRequest']);
@@ -52,5 +54,5 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
     Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
     Route::get('/statistiques/managerCount',[StatistiquesController::class,'managerCount']);
     Route::get('/statistiques/equipesCount',[StatistiquesController::class,'equipesCount']);
-
+    Route::get('/statistiques/chartMethode',[StatistiquesController::class,'chartMethode']);
 });

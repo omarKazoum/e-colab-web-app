@@ -25,11 +25,11 @@ class StatistiquesController extends Controller
         return response()->json($equipeNumber);
         
     }
-    function chartMethode(){
-       $nbrPresence = planning::where('presence_type_id',1)->count()
-       ->whereYear("created_at",date('Y'))
-       ->groypBy(DB::raw("Month(created_at)"))
-       ->pluckk('count',compact('userData'));
-    }
+    // function chartMethode(){
+    //    $nbrPresence = planning::where('presence_type_id',1)->count()
+    //    ->whereYear("date",date('Y'))
+    //    ->groypBy(DB::raw("Month(date)"))
+    //    ->pluckk('count',compact('userData'));
+    // }
 
 }
