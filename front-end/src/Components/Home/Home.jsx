@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useEffect,useContext } from "react";
 import {UserDataContext} from "../../App";
 import {useNavigate} from "react-router-dom";
-
+import Header from '../Header/Header.jsx';
  
 
   export default function Home() {
@@ -88,6 +88,7 @@ import {useNavigate} from "react-router-dom";
       <section className="width-screen" >
     <div className="flex sm:flex-col md:flex-row">
       <div className="bg-blue-page sm:w-full lg:w-10/12">
+        <Header/>
       <Card className="bg-gradient-to-r from-blue-principale to-blue-grad mx-5 w-10/12 h-2/6 mt-5">
         <CardBody className="text-center text-white flex sm:flex-col lg:flex-row lg:h-full">
           <div className="w-1/6">
