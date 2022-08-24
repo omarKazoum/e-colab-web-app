@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 import CardStatistic from "../Components/card/CardStatistic";
 import CharteStatistique1 from "../Components/charte/CharteStatistique1";
@@ -54,3 +54,4 @@ function Statistiques() {
   );
 }
 export default Statistiques;
+*/
