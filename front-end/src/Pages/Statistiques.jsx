@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 
 import CardStatistic from "../Components/card/CardStatistic";
 import CharteStatistique1 from "../Components/charte/CharteStatistique1";
@@ -10,50 +10,23 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 function Statistiques() {
-  const [numbers, setNumbers] = useState(0);
-  const user = JSON.parse(sessionStorage.getItem("connectedUserData"));
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${user.token}`,
-    },
-  };
-
-  const chartPresence = async () => {
-    // e.preventDefault();
-    console.log(user);
-    
-    try {
-      const res = await axios.get(
-        "http://127.0.0.1:8000/api/statistiques/emloyeesCount", headers
-      );
-      console.log(res);
-      setNumbers(res.data);    
-     
-    } catch (er) {
-      console.log(er);
-    }
-  };
- 
-  useEffect(() => {
-    chartPresence();
-  }, []);
 
   return (
+  <div className="bg-blue-quarter h-screen" >
+             <Sidebar />
+              
     <div>
-      <Sidebar />
-      <h2>statistiques</h2>
-      <CardStatistic />
-      <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 px-8 gap-8  ">
-        <CharteStatistique1 />
-        <CharteStatistique2 />
+      
+          <CardStatistic />
+        <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 mt-10 gap-8  ">
+               <CharteStatistique1 />
+                <CharteStatistique2 />
+        </div>
+         <div>
+                <BarChart />
+        </div>
       </div>
-      <div>
-        <BarChart />
-      </div>
-    </div>
+  </div>
   );
 }
 export default Statistiques;
-
-
-
