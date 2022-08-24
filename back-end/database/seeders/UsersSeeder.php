@@ -45,7 +45,7 @@ class UsersSeeder extends Seeder
         // $u1->remember_token_created_at=now();
         // $u1->job_type_id=JobType::first()->id;
         // $u1->save();
-
+        $managers=['kazoum','barakat','maani','lamzoudi'];
                 // devGeeks members
         $devGeeks[]=['first_name'=>'omar', 'last_name'=>'kazoum'];
         $devGeeks[]=['first_name'=>'safae', 'last_name'=>'balha'];
@@ -57,16 +57,18 @@ class UsersSeeder extends Seeder
         $roleId=Role::where('label','membre')->first()->id;
         foreach($devGeeks as $membre){
             $u=new User();
-            $u->role_id=$roleId;
-            $u->team_id=  $teamId;
-            $u->first_name=$membre['first_name'];
-            $u->last_name=$membre['last_name'];
-            $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
-            $u->password_hash=Hash::make('12345');
-            $u->remember_token='';
-            $u->remember_token_created_at=now();
-            $u->job_type_id=JobType::first()->id;
-            $u->save();
+           if(in_array($membre['last_name'],$managers))
+             { $u->role_id="2";
+               }else $u->role_id=$roleId;
+                $u->team_id=  $teamId;
+                $u->first_name=$membre['first_name'];
+                $u->last_name=$membre['last_name'];
+                $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
+                $u->password_hash=Hash::make('12345');
+                $u->remember_token='';
+                $u->remember_token_created_at=now();
+                $u->job_type_id=JobType::first()->id;
+                $u->save();
         }
         //    les sentinel members
         $sentinel[]=['first_name'=>'saida', 'last_name'=>'barakat'];
@@ -78,7 +80,9 @@ class UsersSeeder extends Seeder
         $roleId=Role::where('label','membre')->first()->id;
         foreach($sentinel as $membre){
             $u=new User();
-            $u->role_id=$roleId;
+            if(in_array($membre['last_name'],$managers))
+             { $u->role_id="2";
+               }else $u->role_id=$roleId;
             $u->team_id=$teamId;
             $u->first_name=$membre['first_name'];
             $u->last_name=$membre['last_name'];
@@ -100,7 +104,9 @@ class UsersSeeder extends Seeder
         $roleId=Role::where('label','membre')->first()->id;
         foreach($inTheloop as $membre){
             $u=new User();
-            $u->role_id=$roleId;
+            if(in_array($membre['last_name'],$managers))
+             { $u->role_id="2";
+               }else $u->role_id=$roleId;
             $u->team_id=$teamId;
             $u->first_name=$membre['first_name'];
             $u->last_name=$membre['last_name'];
@@ -122,7 +128,9 @@ class UsersSeeder extends Seeder
         $roleId=Role::where('label','membre')->first()->id;
         foreach($allForOne as $membre){
             $u=new User();
-            $u->role_id=$roleId;
+            if(in_array($membre['last_name'],$managers))
+             { $u->role_id="2";
+               }else $u->role_id=$roleId;
             $u->team_id=$teamId;
             $u->first_name=$membre['first_name'];
             $u->last_name=$membre['last_name'];
