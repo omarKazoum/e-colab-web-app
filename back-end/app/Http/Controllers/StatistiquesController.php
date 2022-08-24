@@ -42,10 +42,11 @@ class StatistiquesController extends Controller
             $period = CarbonPeriod::create($start_of_month, $end_of_month);
             $presenceForMonth=[];
             foreach ($period as $day){
+                $date=$day->format("y-m-d");
                 //presence
-                $present=Planning::whereBetween('date', [ $start_of_month,$end_of_month])->where('presence_type_id', 2)->count();
+                $present=Planning::where('date',$date )->where('presence_type_id', 2)->count();
                 //absence
-                $absent=Planning::whereBetween('date', [$start_of_month,$end_of_month])->where('presence_type_id', 3)->count();
+                $absent=Planning::where('date', $date)->where('presence_type_id', 3)->count();
                 $total=($absent+$present);
                 if($total<=0){
                     $tauxPresence=0;
@@ -67,17 +68,9 @@ class StatistiquesController extends Controller
         $positionsCount=Position::all()->count();
         $occupationForMonth=[];
         foreach ($period as $day){
-            //presence
-            $present=Planning::whereBetween('date', [ $start_of_month,$end_of_month])->where('presence_type_id', 2)->count();
-            //absence
-            $absent=Planning::whereBetween('date', [$start_of_month,$end_of_month])->where('presence_type_id', 3)->count();
-            $total=($absent+$present);
-            if($total<=0){
-                $tauxPresence=0;
-            }else{
-                $tauxPresence=round(($present/$total)*100,2);
-            }
-            $occupationForMonth[$day->format('d')]=$tauxPresence;
+            //calculate porcentage of occupied positions for this day $day
+            $tauxOccupationForToday=0;
+            $occupationForMonth[$day->format('d')]=round($tauxOccupationForToday,2);
         }
         // taux de presence du mois data
         $data['taux_de_presence']=$occupationForMonth;
