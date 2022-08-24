@@ -164,10 +164,11 @@ export default function Home() {
           </div>
         </div>
         <div className="lg:w-1/5 sm:w-full lg:h-screen sm:h-full  bg-blue-quarter">
-          <div className="mx-4 my-5 bg-white">
-            <div className="w-max">
-              <h2 className="text-center pb-3 text-grey-font font-bold text-xl">Cette semaine</h2>
+          <div className="mx-4 my-10 rounded-lg bg-white">
+            <div className=" h-max">
+              <h2 className="text-center  py-4  text-grey-font font-bold text-xl">Cette semaine</h2>
               <hr />
+              <div className="p-4">
               <ul className="flex justify-between mt-2">
                 <li className="font-semibold">Lun</li>
                 <li className="font-semibold">Mar</li>
@@ -186,6 +187,7 @@ export default function Home() {
                 <li className=" font-bold">-</li>
                 <li className=" font-bold">-</li>
               </ul>
+              </div>
             </div>
           </div>
           <Card className="mt-4 mb-5 mx-4 pb-5">
