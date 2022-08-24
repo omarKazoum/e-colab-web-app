@@ -66,7 +66,7 @@ export default function Modal({ visible, showMethod, refreshParent }) {
       url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/" + date,
       headers: {
         accept: "application/json",
-        Authorization: "Bearer 15|QYrhpuTfEqZ1t2nGo3KSvXPsCWvsoNqmT1b9sCh8",
+        Authorization: "Bearer " + connectedUserData.token,
       },
     };
 

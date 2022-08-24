@@ -186,8 +186,8 @@ export default function TableDemandes() {
     // console.log(link);
     const res = await axios.get(link, headers);
     try {
-      setDataTable(res.data);
       console.log(res.data);
+      setDataTable(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -327,29 +327,29 @@ export default function TableDemandes() {
                             : "text-gray-900"
                         )}
                       >
-                        {request.id}
+                        {request?.id}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.creator.first_name}
+                        {request?.creator?.first_name}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.position_id}
+                        {request?.position_id}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.date}
+                        {request?.date}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <Badge statusId={request.status.id}>
-                          {request.status.label}
+                        <Badge statusId={request?.status?.id}>
+                          {request?.status?.label}
                         </Badge>
                       </td>
-                      {/* {console.log(request)} */}
+                      {/* {console.log(request?)} */}
 
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {getButton(
                           String(connectedUserData.user.role_id),
-                          request.id,
-                          request.status.id
+                          request?.id,
+                          request?.status?.id
                         )}
                       </td>
                     </tr>
