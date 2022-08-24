@@ -32,7 +32,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:membre']],function(){
     Route::get('/membre/requests/',[RequestsController::class, 'memberGetAll']);
 
     Route::post('/membre/requests/create',[RequestsController::class,'membreCreateRequest']);
-    Route::get('/membre/requests/getCreateOptions/{date}',[RequestsController::class,'membreGetCreateOptions']);
+    Route::get('/colab/requests/getCreateOptions/{date}',[RequestsController::class, 'getRequestCreateOptions']);
 
     Route::get('/membre/requests/cancel/{requestId}',[RequestsController::class,'membreCancelRequest']);
     //for manager planning
@@ -51,6 +51,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
     Route::get('/manager/planning/openSpaces/{openspaceId}/{date}',[PlanningManagerController::class,'managerGetOpenSpaceDataInDate']);
     Route::get('/manager/planning/makeRemote/{membreId}/{date}',[PlanningManagerController::class, 'managerMakeMemberRemoteInDate']);
     Route::get('/manager/planning/makeInOffice/{membreId}/{date}/{positionId}',[PlanningManagerController::class, 'managerMakeMemberInOfficeInDate']);
+    Route::get('/colab/requests/getCreateOptions/{date}',[RequestsController::class, 'getRequestCreateOptions']);
 
 });
 
