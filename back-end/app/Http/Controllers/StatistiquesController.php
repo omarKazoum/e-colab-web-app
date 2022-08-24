@@ -68,12 +68,10 @@ class StatistiquesController extends Controller
         $occupationForMonth=[];
         foreach ($period as $day){
             //calculate porcentage of occupied positions for this day $day
-            $date=$day->format("y-m-d");
-            $tauxOccupationForToday=Planning::where('date',$date )->where('work_mode_id', 1)->count();
-            $occupationForMonth[$day->format('d')]=round($tauxOccupationForToday,2);
+            $data=Planning::where('date',"2022-08-24");
+
         }
-        // taux de presence du mois data
-        $data['taux_de_presence']=$occupationForMonth;
+
         return response()->json($data);
     }
 

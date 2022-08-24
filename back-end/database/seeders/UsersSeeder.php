@@ -116,7 +116,7 @@ class UsersSeeder extends Seeder
     }
 
      // rh
-     $responsableRh[]=['first_name'=>'loubna', 'last_name'=>'marrakchi'];
+     $responsableRh[]=['first_name'=>'loubna', 'last_name'=>'merrakchi'];
      $teamId=Team::where('name','rh')->first()->id;
      $roleId=Role::where('label','rh')->first()->id;
      foreach($responsableRh as $membre){
