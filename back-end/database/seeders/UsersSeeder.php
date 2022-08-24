@@ -34,6 +34,7 @@ class UsersSeeder extends Seeder
         // $u1->job_type_id=JobType::first()->id;
         // $u1->save();
         // //a rh user
+
         // $u1=new User();
         // $u1->role_id=Role::where('label','rh')->first()->id;
         // $u1->team_id=Team::first()->id;
@@ -141,6 +142,7 @@ class UsersSeeder extends Seeder
             $u->job_type_id=JobType::first()->id;
             $u->save();
     }
+
      // rh
      $responsableRh[]=['first_name'=>'loubna', 'last_name'=>'marrakchi'];
      $teamId=Team::where('name','rh')->first()->id;
@@ -178,7 +180,8 @@ class UsersSeeder extends Seeder
         
 
 
-       
+
+
 
     }
 }
