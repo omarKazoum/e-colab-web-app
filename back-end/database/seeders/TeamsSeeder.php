@@ -15,7 +15,7 @@ class TeamsSeeder extends Seeder
      */
     public function run()
     {
-        $teamsNames=['devGeeks','inThePool','allForOne','les sentinel'];
+        $teamsNames=['devGeeks','inTheloop','allForOne','les sentinel'];
         foreach ($teamsNames as $k => $name){
             $t=new Team();
             $t->name=$name;

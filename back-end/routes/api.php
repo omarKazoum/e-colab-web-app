@@ -59,7 +59,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
     Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
     Route::get('/statistiques/managerCount',[StatistiquesController::class,'managerCount']);
     Route::get('/statistiques/equipesCount',[StatistiquesController::class,'equipesCount']);
-    Route::get('/statistiques/chartMethode',[StatistiquesController::class,'chartMethode']);
+    Route::post('/statistiques/chartMethode',[StatistiquesController::class,'chartMethode']);
 });
 //partie profile
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){

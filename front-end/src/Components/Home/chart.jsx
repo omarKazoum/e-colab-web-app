@@ -17,7 +17,7 @@ export default class Example extends PureComponent {
         <Pie
           data={data}
           cx={190}
-          cy={180}
+          cy={120}
           innerRadius={60}
           outerRadius={80}
           fill="#8884d8"
