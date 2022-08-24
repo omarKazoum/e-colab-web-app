@@ -141,7 +141,7 @@ class UsersSeeder extends Seeder
             $u->job_type_id=JobType::first()->id;
             $u->save();
     }
-     // allForOne
+     // rh
      $responsableRh[]=['first_name'=>'loubna', 'last_name'=>'marrakchi'];
      $teamId=Team::where('name','rh')->first()->id;
      $roleId=Role::where('label','rh')->first()->id;
@@ -158,6 +158,23 @@ class UsersSeeder extends Seeder
          $u->job_type_id=JobType::first()->id;
          $u->save();
  }
+  // rh
+  $directeur_bu[]=['first_name'=>'directeur', 'last_name'=>'bu'];
+  $teamId=Team::where('name','directeur_bu')->first()->id;
+  $roleId=Role::where('label','chef_bu')->first()->id;
+  foreach($directeur_bu as $membre){
+      $u=new User();
+      $u->role_id=$roleId;
+      $u->team_id=$teamId;
+      $u->first_name=$membre['first_name'];
+      $u->last_name=$membre['last_name'];
+      $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
+      $u->password_hash=Hash::make('12345');
+      $u->remember_token='';
+      $u->remember_token_created_at=now();
+      $u->job_type_id=JobType::first()->id;
+      $u->save();
+}
         
 
 
