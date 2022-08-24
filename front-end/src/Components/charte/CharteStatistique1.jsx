@@ -6,7 +6,7 @@ ChartJS.register(
     Title ,Tooltip, LineElement,Legend,CategoryScale,LinearScale,PointElement
 )
 export default function CharteStatistique1() {
-    const [data, setData]=useState({
+    let [data, setData]=useState({
         labels:["1","2","3","4","5","6","7","8","9","10"],
         datasets:[
             {
@@ -17,11 +17,9 @@ export default function CharteStatistique1() {
                 tension:'0.4',
                 pointStyle:'rect'
             }
-            
         ]
-    },
-    )
- 
+    })
+
     return(
         <div className='bg-white h-full  rounded-lg px-6 py-2'>
             <h1 className='text-xl px-6'>taux de presence ce mois</h1>

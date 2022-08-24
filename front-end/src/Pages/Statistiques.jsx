@@ -10,33 +10,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 function Statistiques() {
-  const [numbers, setNumbers] = useState(0);
-  const user = JSON.parse(sessionStorage.getItem("connectedUserData"));
-
-  var axios = require('axios');
-var data = '';
-
-var config = {
-  method: 'get',
-  url: 'http://127.0.0.1:8000/api/statistiques/chartMethode',
-  headers: { 
-    'Accept': 'application/json', 
-    'Authorization': 'Bearer 6|CpNaAW4NMEzXWQPDxQIXd2jThq82DVv1jvvHPybT'
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
- 
-  useEffect(() => {
-    chartPresence();
-  }, []);
 
   return (
   <div className="bg-blue-quarter h-screen" >
