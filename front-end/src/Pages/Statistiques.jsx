@@ -1,4 +1,4 @@
-/* import React from "react";
+ import React from "react";
 
 import CardStatistic from "../Components/card/CardStatistic";
 import CharteStatistique1 from "../Components/charte/CharteStatistique1";
@@ -10,33 +10,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 function Statistiques() {
-  const [numbers, setNumbers] = useState(0);
-  const user = JSON.parse(sessionStorage.getItem("connectedUserData"));
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${user.token}`,
-    },
-  };
-
-  const chartPresence = async () => {
-    // e.preventDefault();
-    console.log(user);
-    
-    try {
-      const res = await axios.get(
-        "http://127.0.0.1:8000/api/statistiques/emloyeesCount", headers
-      );
-      console.log(res);
-      setNumbers(res.data);    
-     
-    } catch (er) {
-      console.log(er);
-    }
-  };
- 
-  useEffect(() => {
-    chartPresence();
-  }, []);
 
   return (
     <div>
@@ -54,4 +27,3 @@ function Statistiques() {
   );
 }
 export default Statistiques;
-*/
