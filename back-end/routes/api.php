@@ -59,6 +59,7 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
 
     Route::get('/statistiques/cardsCounts',[StatistiquesController::class,'getCardCounts']);
     Route::get('/statistiques/getPresenceChartData',[StatistiquesController::class, 'getPresenceChartData']);
+    Route::get('/statistiques/getOccupationChartData',[StatistiquesController::class, 'getOccupationChartData']);
 
 });
 //partie profile
