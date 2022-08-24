@@ -53,12 +53,14 @@ class UsersSeeder extends Seeder
         $devGeeks[]=['first_name'=>'mohammed', 'last_name'=>'wanir'];
         $devGeeks[]=['first_name'=>'wassim', 'last_name'=>'lhlali'];
         $devGeeks[]=['first_name'=>'ibrahim', 'last_name'=>'benjermoun'];
+        $teamId=Team::where('name','devGeeks')->first()->id;
+        $roleId=Role::where('label','membre')->first()->id;
         foreach($devGeeks as $membre){
             /*echo($membre['last_name']);
             continue;*/
             $u=new User();
-            $u->role_id=Role::where('label','membre')->first()->id;
-            $u->team_id=Team::first()->id;
+            $u->role_id=$roleId;
+            $u->team_id=  $teamId;
             $u->first_name=$membre['first_name'];
             $u->last_name=$membre['last_name'];
             $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
@@ -68,27 +70,29 @@ class UsersSeeder extends Seeder
             $u->job_type_id=JobType::first()->id;
             $u->save();
         }
-        // //    les sentinel members
-        // $sentinel[]=['first_name'=>'saida', 'last_name'=>'barakat'];
-        // $sentinel[]=['first_name'=>'abdelaziz', 'last_name'=>'afrakla'];
-        // $sentinel[]=['first_name'=>'el mehdi', 'last_name'=>'bairouk'];
-        // $sentinel[]=['first_name'=>'mouhcine', 'last_name'=>'daali'];
-        // $sentinel[]=['first_name'=>'el hassan', 'last_name'=>'touza'];
-        // foreach($sentinel as $membre){
-        //     /*echo($membre['last_name']);
-        //     continue;*/
-        //     $u=new User();
-        //     $u->role_id=Role::where('label','membre')->first()->id;
-        //     $u->team_id=Team::first()->id;
-        //     $u->first_name=$membre['first_name'];
-        //     $u->last_name=$membre['last_name'];
-        //     $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
-        //     $u->password_hash=Hash::make('12345');
-        //     $u->remember_token='';
-        //     $u->remember_token_created_at=now();
-        //     $u->job_type_id=JobType::first()->id;
-        //     $u->save();
-        // }
+        //    les sentinel members
+        $sentinel[]=['first_name'=>'saida', 'last_name'=>'barakat'];
+        $sentinel[]=['first_name'=>'abdelaziz', 'last_name'=>'afrakla'];
+        $sentinel[]=['first_name'=>'el mehdi', 'last_name'=>'bairouk'];
+        $sentinel[]=['first_name'=>'mouhcine', 'last_name'=>'daali'];
+        $sentinel[]=['first_name'=>'el hassan', 'last_name'=>'touza'];
+        $teamId=Team::where('name','les sentinel')->first()->id;
+        $roleId=Role::where('label','membre')->first()->id;
+        foreach($sentinel as $membre){
+            /*echo($membre['last_name']);
+            continue;*/
+            $u=new User();
+            $u->role_id=$roleId;
+            $u->team_id=$teamId;
+            $u->first_name=$membre['first_name'];
+            $u->last_name=$membre['last_name'];
+            $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
+            $u->password_hash=Hash::make('12345');
+            $u->remember_token='';
+            $u->remember_token_created_at=now();
+            $u->job_type_id=JobType::first()->id;
+            $u->save();
+        }
 
        
 
