@@ -4,11 +4,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserDataContext } from "../../App";
 import { useRef } from "react";
+import { set } from "date-fns";
 
 export default function Modal({ visible, showMethod, refreshParent }) {
   const [date, setDate] = useState("");
   const [mode, setMode] = useState("");
   const [position, setPosition] = useState("1");
+  const [positions, setPositions] = useState();
   const [err, setErr] = useState(null);
   const [displayDiv, setDisplayDiv] = useState(false);
 
@@ -19,14 +21,14 @@ export default function Modal({ visible, showMethod, refreshParent }) {
     console.log(connectedUserData);
   }, []);
 
-function dateFormat(date){
+  function dateFormat(date) {
     var date = "03-11-2014";
     var datef = date.split("-").reverse().join("-");
-  return  datef;
-};
+    return datef;
+  }
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (mode === "" ) {
+    if (mode === "") {
       setErr("some field is empty");
     } else {
       var data = {
@@ -58,33 +60,24 @@ function dateFormat(date){
     }
   };
 
-  const handleAvailable = async (e) => {
-    e.preventDefault();
-      // var data = {
-      //   date: date,
-      //   type_id: mode,
-      //   position_id: position,
-      // };
-      var config = {
-        method: "post",
-        url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/"+date,
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + connectedUserData.token,
-        },
-      };
-      axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          refreshParent();
-          showMethod(false);
-        })
-        .catch(function (error) {
-          // Object.values()
-          // console.log(data);
-          console.log(error);
-        });
-    
+  const handleAvailable = async (date) => {
+    var config = {
+      method: "get",
+      url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/" + date,
+      headers: {
+        accept: "application/json",
+        Authorization: "Bearer 15|QYrhpuTfEqZ1t2nGo3KSvXPsCWvsoNqmT1b9sCh8",
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.available_positions);
+        setPositions(response.data.available_positions);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   let content = (
@@ -94,12 +87,6 @@ function dateFormat(date){
           <h2 className="px-2 pb-3 font-bold">Créé une nouvelle demande</h2>
         </div>
         <div className=" p-5 ">
-          {/* <div className="alert alert-error shadow-lg">
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span>Error! Task failed successfully.</span>
-            </div>
-          </div> */}
           {err ? (
             <span className="alert alert-error shadow-lg"> {err} </span>
           ) : null}
@@ -114,7 +101,10 @@ function dateFormat(date){
               <input
                 type="date"
                 value={date}
-                onChange={(e) => setDate(e.target.value)}
+                onChange={(e) => [
+                  setDate(e.target.value),
+                  handleAvailable(e.target.value),
+                ]}
                 id="date"
                 className="w-full max-w-lg rounded-lg border  border-slate-200 px-2 py-1 hover:border-blue-500 focus:outline-none focus:ring focus:ring-blue-500/40 active:ring active:ring-blue-500/40"
               />
@@ -156,10 +146,9 @@ function dateFormat(date){
                   <option disabled selected>
                     Select Position
                   </option>
-                  <option value="1">Pos 1</option>
-                  <option value="2">Pos 2</option>
-                  <option value="3">Pos 3</option>
-                  <option value="4">Pos 4</option>
+                  {positions?.map((pos) => {
+                    return <option value={pos.id}>Position: {pos.id}</option>;
+                  })}
                 </select>
               </div>
             ) : null}
