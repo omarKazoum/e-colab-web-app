@@ -158,7 +158,7 @@ class UsersSeeder extends Seeder
          $u->job_type_id=JobType::first()->id;
          $u->save();
  }
-  // rh
+  // directeur_bu
   $directeur_bu[]=['first_name'=>'directeur', 'last_name'=>'bu'];
   $teamId=Team::where('name','directeur_bu')->first()->id;
   $roleId=Role::where('label','chef_bu')->first()->id;
