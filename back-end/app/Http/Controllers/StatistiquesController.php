@@ -51,7 +51,7 @@ class StatistiquesController extends Controller
                 }else{
                     $tauxPresence=round(($present/$total)*100,2);
                 }
-                $presenceForMonth[$day->format('Y-m-d')]=$tauxPresence;
+                $presenceForMonth[$day->format('d')]=$tauxPresence;
             }
             // taux de presence du mois data
             $data['taux_de_presence']=$presenceForMonth;

@@ -5,6 +5,7 @@ ChartJS.register(
     Title ,Tooltip, LineElement,Legend,CategoryScale,LinearScale,PointElement
 )
 export default function CharteStatistique2() {
+
     const [data, setData]=useState({
         labels:["1","2","3","4","5","6","7","8","9","10"],
         datasets:[
@@ -16,7 +17,7 @@ export default function CharteStatistique2() {
                 tension:'0.4',
                 pointStyle:'rect'
             }
-            
+
         ]
     },
     )
