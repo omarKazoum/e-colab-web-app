@@ -6,8 +6,10 @@ ChartJS.register(
     Title ,Tooltip, LineElement,Legend,CategoryScale,LinearScale,PointElement
 )
 export default function CharteStatistique1() {
-    let [data, setData]=useState({
-        labels:["1","2","3","4","5","6","7","8","9","10"],
+    /*
+
+    {
+        labels:["1","2","3","4","5","6","7","8","9","10","11","12","3","4","5","6","7","8","9","10"],
         datasets:[
             {
                 label:"Fdataset",
@@ -18,7 +20,11 @@ export default function CharteStatistique1() {
                 pointStyle:'rect'
             }
         ]
-    })
+    }
+
+     */
+
+    let [data, setData]=useState(null)
 
     return(
         <div className='bg-white h-full  rounded-lg px-6 py-2'>
