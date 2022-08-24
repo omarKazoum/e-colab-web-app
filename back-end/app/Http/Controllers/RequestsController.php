@@ -170,12 +170,16 @@ class RequestsController extends Controller
         }
 
     function membreGetCreateOptions($date){
+        //validation
         $validator=Validator::make(['date'=>$date],['date'=>"regex:".PlanningManagerController::DATE_REGEX]);
         $validator->validate();
-        $availablePositions=\auth()->user()->team->positions()->leftJoin('plannings',function($join) use($date){
-            $join->on('plannings.position_id','=','positions.id');
-            $join->where('plannings.date',$date);
-        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->with('team','openspace')->get();
+
+        $availablePositions=\auth()->user()->team->positions()->leftJoin('plannings',function($joinPlannings) use($date){
+            $joinPlannings->on('plannings.position_id','=','positions.id');
+            $joinPlannings->where('plannings.date',$date);
+        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->orWhere('plannings.work_mode_id','=',null)->leftJoin('requests',function($joinDemandes){
+            $joinDemandes->on('requests.position_id','=','positions.id');
+        })->with('team','openspace')->get();
         $requestTypes=RequestType::all();
         return response()->json( ['available_positions'=>$availablePositions,'request_types'=>$requestTypes]);
     }
