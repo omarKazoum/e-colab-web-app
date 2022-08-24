@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {UserIcon,ChevronRightIcon} from '@heroicons/react/solid'
-import { useState } from 'react';
+import {useContext, useState} from 'react';
 import { useEffect } from 'react';
 import axios from 'axios'
+import {UserDataContext} from "../../App";
 
 
 
@@ -13,35 +14,32 @@ export default function CardStatistic() {
    //get connected user data
    let {connectedUserData}=useContext(UserDataContext);
    //use states for cards
-   let [employesCount,setEmployeesCount]=useState(null);
-   let [managersCount,setManagersCount]=useState(null);
-   let [teamsCount,setTeamsCount]=useState(null);
+   let [topCardsData,setTopCardsData]=useState(null);
 
-   //loading emplyees count
+
+   //loading employees count
       useEffect(()=>{
-         let Bearer=connectedUserData.token;
-         let link='http://127.0.0.1:8000/api/statistiques/chartMethode'
-         let axios = require('axios');
-         let data = '';
 
-         let config = {
-         method: 'get',
-         url: link,
-         headers: { 
-            'Accept': 'application/json', 
-            'Authorization': 'Bearer '+Bearer
-         },
-         data : data
-         };
 
-         axios(config)
-         .then(function (response) {
-            console.log(JSON.stringify(response.data));
-         })
-         .catch(function (error) {
-            console.log(error);
-         });
-      },[])
+          let config = {
+              method: 'get',
+              url: 'http://127.0.0.1:8000/api/statistiques/cardsCounts',
+              headers: {
+                  'Authorization': 'Bearer '+connectedUserData.token
+              }
+          };
+
+          axios(config)
+              .then(function (response) {
+                  setTopCardsData(response.data)
+                  console.log('datat from back cards',response.data);
+
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });
+
+      },[connectedUserData])
 
    
 
@@ -52,7 +50,7 @@ export default function CardStatistic() {
            <div className=" flex flex-col gap-10">
             <UserIcon className="w-10 h-10" aria-hidden="true" />
               <h3 className=''>Collaborateurs</h3>
-              <p className="text-5xl text-gray-100">{employesCount||'---'}</p>
+              <p className="text-5xl text-gray-100">{topCardsData!=null? topCardsData.emloyeesCount:'---'}</p>
            </div>
            
         </div>
@@ -60,7 +58,7 @@ export default function CardStatistic() {
            <div className=" flex flex-col gap-10">
             <UserIcon className="w-10 h-10" aria-hidden="true" />
               <h3 className=''>Manager</h3>
-              <p className="text-5xl text-gray-100">{managersCount||'---'}</p>
+              <p className="text-5xl text-gray-100">{topCardsData!=null? topCardsData.managerCount:'---'}</p>
            </div>
            
         </div>
@@ -68,7 +66,7 @@ export default function CardStatistic() {
            <div className=" flex flex-col gap-10">
             <UserIcon className="w-10 h-10" aria-hidden="true" />
               <h3 className=''>équipe</h3>
-              <p className="text-5xl text-gray-100">{teamsCount||'---'}</p>
+              <p className="text-5xl text-gray-100">{topCardsData!=null? topCardsData.equipesCount:'---'}</p>
            </div>
            
         </div>
