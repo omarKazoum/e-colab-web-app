@@ -44,7 +44,7 @@ function App() {
 
           <Route path="/Login" element={<LoginForm />}/>
           <Route path="/Planning" element={<Callendar />} />
-          <Route path="/statistiques" element={<Statistiques />} />
+          <Route path="/statistiques" element={<Dashboard demande={<Statistiques />} />}/>
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/Down" element={<DownNavbar />} />
 

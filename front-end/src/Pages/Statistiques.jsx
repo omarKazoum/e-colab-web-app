@@ -13,10 +13,8 @@ function Statistiques() {
 
   return (
   <div className="bg-blue-quarter h-screen" >
-             <Sidebar />
-              
+
     <div>
-      
           <CardStatistic />
         <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 mt-10 gap-8  ">
                <CharteStatistique1 />
