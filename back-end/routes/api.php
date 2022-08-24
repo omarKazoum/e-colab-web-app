@@ -56,11 +56,10 @@ Route::group(['middleware'=>['auth:sanctum','hasRole:manager']],function(){
 
 //for rh or head of bu only
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu']],function(){
-    /*Route::get('/statistiques/emloyeesCount',[StatistiquesController::class,'emloyeesCount']);
-    Route::get('/statistiques/managerCount',[StatistiquesController::class,'managerCount']);
-    Route::get('/statistiques/equipesCount',[StatistiquesController::class,'equipesCount']);*/
+
     Route::get('/statistiques/cardsCounts',[StatistiquesController::class,'getCardCounts']);
-    Route::get('/statistiques/chartMethode',[StatistiquesController::class,'chartMethode']);
+    Route::get('/statistiques/getPresenceChartData',[StatistiquesController::class, 'getPresenceChartData']);
+
 });
 //partie profile
 Route::group(['middleware'=>['auth:sanctum','hasRole:rh,chef_bu,manager,membre']],function(){

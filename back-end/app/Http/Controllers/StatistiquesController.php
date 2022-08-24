@@ -34,7 +34,7 @@ class StatistiquesController extends Controller
         $response['equipesCount']=$this->equipesCount();
         return response()->json($response);
     }
-    function chartMethode(){
+    function getPresenceChartData(){
             $start_of_month= Carbon::now()->startOfMonth()->format('Y-m-d');
             $end_of_month=  Carbon::now()->endOfMonth()->format('Y-m-d');
 

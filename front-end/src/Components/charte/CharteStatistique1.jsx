@@ -33,7 +33,7 @@ export default function CharteStatistique1() {
     useEffect(()=>{
         let config = {
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/statistiques/chartMethode',
+            url: 'http://127.0.0.1:8000/api/statistiques/getPresenceChartData',
             headers: {
                 'Authorization': 'Bearer '+connectedUserData.token
             }
