@@ -56,8 +56,6 @@ class UsersSeeder extends Seeder
         $teamId=Team::where('name','devGeeks')->first()->id;
         $roleId=Role::where('label','membre')->first()->id;
         foreach($devGeeks as $membre){
-            /*echo($membre['last_name']);
-            continue;*/
             $u=new User();
             $u->role_id=$roleId;
             $u->team_id=  $teamId;
@@ -79,8 +77,6 @@ class UsersSeeder extends Seeder
         $teamId=Team::where('name','les sentinel')->first()->id;
         $roleId=Role::where('label','membre')->first()->id;
         foreach($sentinel as $membre){
-            /*echo($membre['last_name']);
-            continue;*/
             $u=new User();
             $u->role_id=$roleId;
             $u->team_id=$teamId;
@@ -93,6 +89,29 @@ class UsersSeeder extends Seeder
             $u->job_type_id=JobType::first()->id;
             $u->save();
         }
+        // inTheloop members
+        $inTheloop[]=['first_name'=>'abdelghafour', 'last_name'=>'belkhoukh'];
+        $inTheloop[]=['first_name'=>'el mahdi', 'last_name'=>'gliouin'];
+        $inTheloop[]=['first_name'=>'jawad', 'last_name'=>'doufare'];
+        $inTheloop[]=['first_name'=>'khalil', 'last_name'=>'el kadih'];
+        $inTheloop[]=['first_name'=>'mohamed', 'last_name'=>'balizi'];
+        $inTheloop[]=['first_name'=>'safia', 'last_name'=>'maani'];
+        $teamId=Team::where('name','inTheloop')->first()->id;
+        $roleId=Role::where('label','membre')->first()->id;
+        foreach($inTheloop as $membre){
+            $u=new User();
+            $u->role_id=$roleId;
+            $u->team_id=$teamId;
+            $u->first_name=$membre['first_name'];
+            $u->last_name=$membre['last_name'];
+            $u->email=$membre['first_name'].'.'.$membre['last_name']."@cegedim.com";
+            $u->password_hash=Hash::make('12345');
+            $u->remember_token='';
+            $u->remember_token_created_at=now();
+            $u->job_type_id=JobType::first()->id;
+            $u->save();
+        }
+
 
        
 
