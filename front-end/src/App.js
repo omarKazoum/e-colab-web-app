@@ -14,7 +14,7 @@ import '../src/App.css'
 
 import Home from './Components/Home/Home'
 import Header from "./Components/Emplacement/Header";
-import Error from './Pages/Error404';
+import Error404 from "./Pages/Error404";
 
 const roles = {
   superAdmin: "superAdmin",
@@ -44,12 +44,12 @@ function App() {
 
           <Route path="/Login" element={<LoginForm />}/>
           <Route path="/Planning" element={<Callendar />} />
-          <Route path="/statistiques" element={<Statistiques />} />
+          <Route path="/statistiques" element={<Dashboard demande={<Statistiques />} />}/>
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/Down" element={<DownNavbar />} />
 
           {/* page not found */}
-          <Route path='*' element={<Error />} />
+          <Route path='*' element={<Error404/>} />
 
            {/*Home*/ }
            <Route path='/Home' element={<Home />}/>
