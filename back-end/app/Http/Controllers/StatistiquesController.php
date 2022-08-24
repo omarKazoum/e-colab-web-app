@@ -63,13 +63,13 @@ class StatistiquesController extends Controller
         //getting the start and end of the month
         $start_of_month= Carbon::now()->startOfMonth()->format('Y-m-d');
         $end_of_month=  Carbon::now()->endOfMonth()->format('Y-m-d');
-
         $period = CarbonPeriod::create($start_of_month, $end_of_month);
         $positionsCount=Position::all()->count();
         $occupationForMonth=[];
         foreach ($period as $day){
             //calculate porcentage of occupied positions for this day $day
-            $tauxOccupationForToday=0;
+            $date=$day->format("y-m-d");
+            $tauxOccupationForToday=Planning::where('date',$date )->where('work_mode_id', 1)->count();
             $occupationForMonth[$day->format('d')]=round($tauxOccupationForToday,2);
         }
         // taux de presence du mois data
