@@ -360,7 +360,7 @@ export default function TableDemandes() {
           </div>
         </div>
       </div>
-      <Modal visible={visible} showMethod={setShowModal} />
+      <Modal visible={visible} showMethod={setShowModal} refreshParent={getUsers} />
     </div>
   );
 }

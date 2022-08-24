@@ -177,9 +177,9 @@ class RequestsController extends Controller
         $availablePositions=\auth()->user()->team->positions()->leftJoin('plannings',function($joinPlannings) use($date){
             $joinPlannings->on('plannings.position_id','=','positions.id');
             $joinPlannings->where('plannings.date',$date);
-        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->leftJoin('requests',function($joinDemandes){
+        })->where('plannings.work_mode_id','<>',WorkMode::PRESENCE_TYPE_IN_OFFICE)->orWhere('plannings.work_mode_id','=',null)->leftJoin('requests',function($joinDemandes){
             $joinDemandes->on('requests.position_id','=','positions.id');
-        })->where('requests.date',$date)->with('team','openspace')->get();
+        })->with('team','openspace')->get();
         $requestTypes=RequestType::all();
         return response()->json( ['available_positions'=>$availablePositions,'request_types'=>$requestTypes]);
     }
