@@ -159,9 +159,9 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <div className="w-5/12 bg-white pb-10 text-2xl  rounded-lg">
+            <div className="w-5/12 bg-white pb-10 text-2xl rounded-lg">
               <div className=" flex flex-col items-center">
-                <h3 className="font-bold text-grey-big  ">Mes statistique</h3>
+                <h3 className="font-bold text-grey-big py-5 ">Mes statistique</h3>
                 <PieChart className="justify-center"></PieChart>
               </div>
             </div>

@@ -16,8 +16,8 @@ export default class Example extends PureComponent {
       <PieChart width={400} height={300} onMouseEnter={this.onPieEnter}>
         <Pie
           data={data}
-          cx={120}
-          cy={200}
+          cx={190}
+          cy={180}
           innerRadius={60}
           outerRadius={80}
           fill="#8884d8"
