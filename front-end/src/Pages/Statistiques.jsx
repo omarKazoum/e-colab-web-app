@@ -1,4 +1,3 @@
- import React from "react";
 
 import CardStatistic from "../Components/card/CardStatistic";
 import CharteStatistique1 from "../Components/charte/CharteStatistique1";
@@ -12,18 +11,21 @@ import { useContext, useEffect, useState } from "react";
 function Statistiques() {
 
   return (
+  <div className="bg-blue-quarter h-screen" >
+             <Sidebar />
+
     <div>
-      <Sidebar />
-      <h2>statistiques</h2>
-      <CardStatistic />
-      <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 px-8 gap-8  ">
-        <CharteStatistique1 />
-        <CharteStatistique2 />
+
+          <CardStatistic />
+        <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 mt-10 gap-8  ">
+               <CharteStatistique1 />
+                <CharteStatistique2 />
+        </div>
+         <div>
+                <BarChart />
+        </div>
       </div>
-      <div>
-        <BarChart />
-      </div>
-    </div>
+  </div>
   );
 }
 export default Statistiques;

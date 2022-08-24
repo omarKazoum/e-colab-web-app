@@ -45,7 +45,7 @@ class UsersSeeder extends Seeder
         // $u1->remember_token_created_at=now();
         // $u1->job_type_id=JobType::first()->id;
         // $u1->save();
-        $managers=['kazoum','barakat','maani','lamzoudi'];
+
                 // devGeeks members
         $devGeeks[]=['first_name'=>'omar', 'last_name'=>'kazoum'];
         $devGeeks[]=['first_name'=>'safae', 'last_name'=>'balha'];
@@ -175,10 +175,10 @@ class UsersSeeder extends Seeder
       $u->job_type_id=JobType::first()->id;
       $u->save();
 }
-        
 
 
-       
+
+
 
     }
 }
