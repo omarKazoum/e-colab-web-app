@@ -12,27 +12,27 @@ import { useContext, useEffect, useState } from "react";
 function Statistiques() {
   const [numbers, setNumbers] = useState(0);
   const user = JSON.parse(sessionStorage.getItem("connectedUserData"));
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${user.token}`,
-    },
-  };
 
-  const chartPresence = async () => {
-    // e.preventDefault();
-    console.log(user);
-    
-    try {
-      const res = await axios.get(
-        "http://127.0.0.1:8000/api/statistiques/emloyeesCount", headers
-      );
-      console.log(res);
-      setNumbers(res.data);    
-     
-    } catch (er) {
-      console.log(er);
-    }
-  };
+  var axios = require('axios');
+var data = '';
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:8000/api/statistiques/chartMethode',
+  headers: { 
+    'Accept': 'application/json', 
+    'Authorization': 'Bearer 6|CpNaAW4NMEzXWQPDxQIXd2jThq82DVv1jvvHPybT'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
  
   useEffect(() => {
     chartPresence();
@@ -43,10 +43,7 @@ function Statistiques() {
              <Sidebar />
               
     <div>
-      <div className=" grid  place-items-center">
-        <h3>{chartPresence} Wassim</h3>
-        <h1>Bienvenu a E_collab,Cegedim</h1>
-      </div>
+      
           <CardStatistic />
         <div className="grid grid-cols-1 w-4/5 mx-auto sm:grid-col-2 lg:grid-cols-2 py-3 mt-10 gap-8  ">
                <CharteStatistique1 />
