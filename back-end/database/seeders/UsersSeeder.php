@@ -132,7 +132,7 @@ class UsersSeeder extends Seeder
             $u->remember_token_created_at=now();
             $u->job_type_id=JobType::first()->id;
             $u->save();
-        }
+    }
         
 
 
