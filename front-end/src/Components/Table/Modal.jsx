@@ -63,7 +63,7 @@ export default function Modal({ visible, showMethod, refreshParent }) {
   const handleAvailable = async (date) => {
     var config = {
       method: "get",
-      url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/" + date,
+      url: "http://127.0.0.1:8000/api/colab/requests/getCreateOptions/" + date,
       headers: {
         accept: "application/json",
         Authorization: "Bearer " + connectedUserData.token,
