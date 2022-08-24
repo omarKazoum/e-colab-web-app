@@ -89,12 +89,12 @@ export default function Home() {
         <div className=" md:flex">
         <div className="bg-blue-page sm:w-full h-screen lg:w-10/12">
           <Header />
-            <div className="bg-gradient-to-r rounded-xl from-blue-principale to-blue-grad mx-auto w-11/12 h-2/6 mt-5">
-              <div className="text-center w-min text-white flex justify-between sm:flex-col lg:flex-row lg:h-full">
+            <div className="bg-gradient-to-r rounded-xl from-blue-principale relative to-blue-grad mx-auto w-11/12 h-2/6 mt-5">
+              <div className="text-center  text-white flex justify-between  lg:flex-row lg:h-full">
                 <div className="w-1/2 flex items-center">
-                  <img className="  mx-6  justify-center rounded-full " src="https://static.vecteezy.com/system/resources/previews/002/275/847/original/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg" />
+                  <img className=" w-1/2 mx-6  justify-center rounded-full " src="https://static.vecteezy.com/system/resources/previews/002/275/847/original/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg" />
               </div>
-                <div className="flex flex-col justify-items-center items-start w-1/3 ">
+                <div className="flex flex-col my-10 px-10 items-start  w-2/4  ">
   
                   {/* <Typography variant="h4" color="black" className="mb-6 font-sans text-4xl"> */}
                   <h4 className="mb-6 font-sans text-4xl">
@@ -122,10 +122,11 @@ export default function Home() {
                 </div>
               </div>
                 </div>
-                {/* {(userData==null||userData.is_present.id==1)&&<button onClick={()=>{
+                <div className="w-2/4 justify-self-end py-52">
+                {(true||userData.is_present.id==1)&&<button onClick={()=>{
                 signallerSaPresence(connectedUserData.token);
-            }} className="bg-blue-dark text-white px-3 rounded py-1 float-right h-10  w-2/6">Signalez Ma présence</button> } */}
-
+            }} className="bg-blue-dark text-white  rounded py-1  w-11/12 h-16 ">Signalez Ma présence</button> }
+            </div>
               </div>
             </div>
             <div className="flex flex-col space-y-4 ">
