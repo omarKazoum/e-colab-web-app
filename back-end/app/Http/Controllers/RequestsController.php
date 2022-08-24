@@ -169,7 +169,7 @@ class RequestsController extends Controller
             return response()->json(['message'=>'demande bien confirmée']);
         }
 
-    function membreGetCreateOptions($date){
+    function getRequestCreateOptions($date){
         //validation
         $validator=Validator::make(['date'=>$date],['date'=>"regex:".PlanningManagerController::DATE_REGEX]);
         $validator->validate();
