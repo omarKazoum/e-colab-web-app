@@ -88,9 +88,9 @@ export default function Home() {
     <section className="width-screen" >
       <div className=" md:flex">
         <div className="bg-blue-page sm:w-full lg:w-10/12">
-          <Card className="bg-gradient-to-r from-blue-principale to-blue-grad mx-auto w-11/12 h-2/6 mt-5">
-            <CardBody className="text-center w-min text-white flex justify-between sm:flex-col lg:flex-row lg:h-full">
-              <div className="w-1/3 flex items-center">
+          <div className="bg-gradient-to-r rounded-xl from-blue-principale to-blue-grad mx-auto w-11/12 h-2/6 mt-5">
+            <div className="text-center w-min text-white flex justify-between sm:flex-col lg:flex-row lg:h-full">
+              <div className="w-1/2 flex items-center">
                 <img className="  mx-6  justify-center rounded-full " src="https://static.vecteezy.com/system/resources/previews/002/275/847/original/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg" />
               </div>
               <div className="flex flex-col justify-items-center items-start w-1/3 ">
@@ -125,42 +125,47 @@ export default function Home() {
             signallerSaPresence(connectedUserData.token);
           }} className="bg-blue-dark text-white px-3 rounded py-1 float-right h-10  w-2/6">Signalez Ma présence</button> } */}
 
-            </CardBody>
-          </Card>
-
-          <div className="flex justify-around m-5">
-            <button className="bg-pink-hot text-white flex p-5 rounded-md">
-              <Icon icon="gridicons:create" width="25" style={{ 'marginRight': '10px' }} />
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4 ">
+          <div className="flex justify-around my-5 h-[10%] w-full">
+            <button className="bg-pink-hot text-2xl justify-center  text-white flex py-7 rounded-md w-5/12 ">
+              <Icon icon="gridicons:create" width="2rem" style={{ 'marginRight': '10px' }} />
               Crée une nouvelle demande
             </button>
-            <button className="flex bg-white text-blue-side p-5 rounded-md">
-              <Icon icon="akar-icons:calendar" width="25" style={{ 'marginRight': '10px' }} />
+            <button className="flex bg-white text-2xl justify-center p-7 text-blue-side rounded-md w-5/12 ">
+              <Icon icon="akar-icons:calendar" width="2rem" style={{ 'marginRight': '10px' }} />
               Consulter le planing
             </button>
           </div>
+
           <div className="flex justify-around w-full">
-            <Card className="pb-5 ml-5 w-5/12">
-              <CardBody className="flex flex-col items-center ">
-                <h3 className="font-bold text-grey-big text-xl">Mes demandes</h3>
-                <ul className="">
-                  <li className="mt-5">Demandes en Cours
+            <div className="pb-8 bg-white  text-2xl w-5/12  rounded-lg">
+              <div className="flex flex-col items-center ">
+                <h3 className="font-bold text-grey-big py-10">Mes demandes</h3>
+                <ul className="flex flex-col space-y-5 ">
+                  <li className="">
+                    <span className="w-10/12"> Demandes en Cours</span>
                     <span className="mx-5 border-2 border-blue-side px-2 text-blue-principale rounded-lg">3</span>
                   </li>
-                  <li className="my-4">Demandes Refusées
+                  <li className="">
+                    <span className="w-10/12"> Demandes Refusées</span>
                     <span className="mx-5 border-2 border-blue-side px-2 text-pink-hot rounded-lg">2</span>
                   </li>
-                  <li>Demande Acceptées
+                  <li>
+                    <span className="w-10/12">Demande Acceptées</span> 
                     <span className="mx-5 border-2 border-blue-side px-2 text-green-hot rounded-lg">7</span>
                   </li>
                 </ul>
-              </CardBody>
-            </Card>
-            <Card className="w-5/12">
-              <CardBody className=" flex flex-col items-center">
-                <h3 className="font-bold text-grey-big text-xl">Mes statistique</h3>
-                <PieChart className=""></PieChart>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
+            <div className="w-5/12 bg-white pb-10 text-2xl  rounded-lg">
+              <div className=" flex flex-col items-center">
+                <h3 className="font-bold text-grey-big  ">Mes statistique</h3>
+                <PieChart className="justify-center"></PieChart>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
         <div className="lg:w-1/5 sm:w-full lg:h-screen sm:h-full  bg-blue-quarter">
