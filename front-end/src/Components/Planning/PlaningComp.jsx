@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import Members from "./MembersComp";
+import Header from "../Header/Header";
 import {
   add,
   eachDayOfInterval,
@@ -123,7 +124,9 @@ export default function Example() {
         <div className="pt-16 md:h-full">
           <div className=" px-4 mx-auto  sm:px-6 md:px-8  h-full "> */}
       <div className="md:flex h-full md:divide-x md:divide-gray-200">
+        
         <div className="w-5/6 sm:px-7 mx-auto md-px-14 pt-14 pb-7 flex-1">
+        <Header  />
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900">
               {format(firstDayCurrentMonth, "MMMM yyyy")}

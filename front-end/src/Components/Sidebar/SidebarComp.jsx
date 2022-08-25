@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import Logo from '../Sidebar/logo-3.png'
 import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 // import { Dialog, Transition } from '@headlessui/react'
@@ -66,7 +67,7 @@ export default function Sidebar({userRole}) {
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 my-3 px-4">
               <Link to="#" className="flex items-center relative -mt-0.5 order-first font-medium text-gray-900 lg:order-none lg:w-auto title-font lg:items-center lg:justify-center">
-                <span className="text-l font-black leading-none text-blue-700 select-none logo whitespace-nowrap ">E-Collab</span>
+                <img  src={Logo} />
               </Link>
               {/* logo space */}
             </div>
