@@ -101,7 +101,6 @@ export default function Home() {
                   {userData != null ? userData.first_name + ' ' + userData.last_name : '---'}
                   </h4>
   
-                  {/* </Typography> */}
                   <div className="  space-y-4">
   
   

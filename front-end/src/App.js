@@ -35,7 +35,6 @@ function App() {
       <UserDataContext.Provider value={{connectedUserData,setUserData}}>
         <div>
         <Routes>
-          {/* <Route path="/" element={<Dashboard  />}/> */}
           <Route path="/Home" element={<Dashboard Home={<Home />} />}/>
           <Route path="/" element={<Dashboard Home={<Home />} />}/>
           <Route path="/calendar" element={<Dashboard calendar={<Callendar />} />}/>
@@ -51,8 +50,6 @@ function App() {
           {/* page not found */}
           <Route path='*' element={<Error404/>} />
 
-           {/*Home*/ }
-           <Route path='/Home' element={<Home />}/>
 
         </Routes>
       </div>
