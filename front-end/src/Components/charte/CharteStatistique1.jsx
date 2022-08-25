@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Title ,Tooltip, LineElement,Legend ,CategoryScale ,LinearScale ,PointElement} from 'chart.js';
 import {useContext, useEffect, useState} from 'react';
@@ -16,7 +15,7 @@ export default function CharteStatistique1() {
             datasets:[
                 {
                     label:"loading",
-                    data:[],   //:{ $nbrPresence}
+                    data:[],
                     backgroundColor:'gray',
                     borderColor:'blue',
                     tension:'0.4',

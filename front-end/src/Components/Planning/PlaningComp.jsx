@@ -120,9 +120,6 @@ export default function Example() {
 
   return (
     <div className=" bg-blue-page h-screen">
-      {/* <div className="mx-auto h-full px-4 sm:px-6 md:px-8">
-        <div className="pt-16 md:h-full">
-          <div className=" px-4 mx-auto  sm:px-6 md:px-8  h-full "> */}
       <div className="md:flex h-full md:divide-x md:divide-gray-200">
         
         <div className="w-5/6 sm:px-7 mx-auto md-px-14 pt-14 pb-7 flex-1">
@@ -176,7 +173,6 @@ export default function Example() {
                     "font-semibold",
                     isEqual(day, selectedDay) && "text-white",
                     (!isEqual(day, selectedDay) &&
-                      // isToday(day) && 'text-red-500',
                       !isEqual(day, selectedDay)) ||
                       (isToday(day) && "text-white"),
                     !isEqual(day, selectedDay) &&

@@ -53,7 +53,6 @@ export default function Modal({ visible, showMethod, refreshParent }) {
           showMethod(false);
         })
         .catch(function (error) {
-          // Object.values()
           console.log(data);
           console.log(error);
         });

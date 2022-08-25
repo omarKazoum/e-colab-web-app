@@ -7,7 +7,6 @@ import React from 'react'
     classes[1]='bg-yellow-100 text-yellow-800';
     classes[4]='bg-sky-100 text-sky-800';
 
-
   return (
     <div className={"px-3 leading-wide font-bold text-xs rounded-full shadow-sm text-center "+classes[statusId]} >{children}</div>
   )
