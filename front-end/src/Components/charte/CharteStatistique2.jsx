@@ -5,6 +5,7 @@ ChartJS.register(
     Title ,Tooltip, LineElement,Legend,CategoryScale,LinearScale,PointElement
 )
 export default function CharteStatistique2() {
+
     const [data, setData]=useState({
         labels:["1","2","3","4","5","6","7","8","9","10"],
         datasets:[
@@ -16,7 +17,7 @@ export default function CharteStatistique2() {
                 tension:'0.4',
                 pointStyle:'rect'
             }
-            
+
         ]
     },
     )
@@ -25,7 +26,7 @@ export default function CharteStatistique2() {
       height: "8px",
     };
     return(
-        <div className=' px-6 py-2'>
+        <div className='h-full bg-white rounded-lg px-6 py-2'>
             <h1 className='text-xl '>taux d'occupation ce mois</h1>
             <Line data={data} style={mystyle}>Hello</Line>
         </div>

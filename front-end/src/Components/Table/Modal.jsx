@@ -53,7 +53,6 @@ export default function Modal({ visible, showMethod, refreshParent }) {
           showMethod(false);
         })
         .catch(function (error) {
-          // Object.values()
           console.log(data);
           console.log(error);
         });
@@ -63,10 +62,10 @@ export default function Modal({ visible, showMethod, refreshParent }) {
   const handleAvailable = async (date) => {
     var config = {
       method: "get",
-      url: "http://127.0.0.1:8000/api/membre/requests/getCreateOptions/" + date,
+      url: "http://127.0.0.1:8000/api/colab/requests/getCreateOptions/" + date,
       headers: {
         accept: "application/json",
-        Authorization: "Bearer 15|QYrhpuTfEqZ1t2nGo3KSvXPsCWvsoNqmT1b9sCh8",
+        Authorization: "Bearer " + connectedUserData.token,
       },
     };
 

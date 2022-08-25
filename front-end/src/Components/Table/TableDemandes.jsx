@@ -186,8 +186,8 @@ export default function TableDemandes() {
     // console.log(link);
     const res = await axios.get(link, headers);
     try {
-      setDataTable(res.data);
       console.log(res.data);
+      setDataTable(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -268,6 +268,12 @@ export default function TableDemandes() {
                       scope="col"
                       className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
+                      type de la demande 
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
                       Position demandé
                     </th>
                     <th
@@ -327,29 +333,32 @@ export default function TableDemandes() {
                             : "text-gray-900"
                         )}
                       >
-                        {request.id}
+                        {request?.id}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.creator.first_name}
+                        {request?.creator?.first_name}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.position_id}
+                        {request?.type?.label}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        {request.date}
+                        {request?.position_id}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <Badge statusId={request.status.id}>
-                          {request.status.label}
+                        {request?.date}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <Badge statusId={request?.status?.id}>
+                          {request?.status?.label}
                         </Badge>
                       </td>
-                      {/* {console.log(request)} */}
+                      {/* {console.log(request?)} */}
 
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         {getButton(
                           String(connectedUserData.user.role_id),
-                          request.id,
-                          request.status.id
+                          request?.id,
+                          request?.status?.id
                         )}
                       </td>
                     </tr>
@@ -365,99 +374,3 @@ export default function TableDemandes() {
   );
 }
 
-// const getButton = (role, requestId, statusId) => {
-//   // manager
-//   const handleDelete = (requestId) => {
-//     var body = {
-//       type_id: "1",
-//       position_id: "1",
-//       date: "16-08-2022",
-//     };
-//     var config = {
-//       method: "get",
-//       url: "http://127.0.0.1:8000/api/manager/requests/reject/" + requestId,
-//       headers: {
-//         Accept: "application/json",
-//         Authorization: "Bearer 1|LaaInOSL0bfPnBRO2oqQ08wfqn3rkOUc617YTNzk",
-//       },
-//       data: body,
-//     };
-
-//     axios(config)
-//       .then(function (response) {
-//         console.log(JSON.stringify(response.data));
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//     getUsers();
-//   };
-//   if (role === "2") {
-//     if (statusId == "1") {
-//       return (
-//         <div>
-//           <button
-//             className="bg-green-500 mx-1 rounded px-2 text-white"
-//             onClick={() => {
-//               console.log("accepter" + requestId);
-//             }}
-//           >
-//             Accepter
-//           </button>
-//           <button
-//             className="bg-red-500 mx-1 rounded px-2 text-white"
-//             onClick={() => handleDelete(requestId)}
-//           >
-//             Refuser
-//           </button>
-//         </div>
-//       );
-//     }
-//   }
-//   // user
-//   else {
-//     if (role === "1") {
-//       return (
-//         <button
-//           className="button bg-red-500 mx-1 text-white rounded px-2"
-//           onClick={() => {
-//             console.log("Annuler");
-//           }}
-//         >
-//           Annuler
-//         </button>
-//       );
-//     }
-//   }
-// };
-
-const getStatusString = (s) => {
-  if (s === 1)
-    return (
-      <span className="px-3 leading-wide font-bold text-xs rounded-full shadow-sm bg-green-100 text-green-800">
-        Confirmé
-      </span>
-    );
-  else if (s === 0)
-    return (
-      <span className="px-3 my-2 leading-wide font-bold text-xs rounded-full shadow-sm bg-pink-100 text-pink-800">
-        Refusé
-      </span>
-    );
-  else if (s === 2) {
-    return (
-      <span className="px-3  leading-wide font-bold text-xs rounded-full shadow-sm bg-yellow-100 text-yellow-800">
-        En attente
-      </span>
-    );
-  }
-};
-
-// if(role is membre){
-//   demande accepté /refusé > aucun botton
-//   demande en attente > butoon annuler
-// }else if(role is manager){
-//   demande en attent > deux button accepter et refuser
-//   sinon pas de button
-
-// }
